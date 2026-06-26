@@ -389,8 +389,7 @@
                             <input type="email" placeholder="contoh@gmail.com" required class="bg-black/40 border border-white/10 rounded-xl p-3 text-sm text-white focus:outline-none focus:border-orange-500 w-full">
                         </div>
                         <textarea rows="4" placeholder="Tulis rincian kerja sama di sini..." required class="bg-black/40 border border-white/10 rounded-xl p-3 text-sm text-white focus:outline-none focus:border-orange-500 w-full"></textarea>
-                        <button type="submit" class="w-full py-4 bg-gradient-to-r from-amber-400 via-orange-500 to-rose-500 text-black font-extrabold rounded-xl hover:opacity-90 transition-all">Kirim Pesan</button>
-                    </form>
+                        <button type="button" onclick="kirimEmailManual()" class="w-full py-4 bg-gradient-to-r from-amber-400 via-orange-500 to-rose-500 text-black font-extrabold rounded-xl hover:opacity-95 transition-all cursor-pointer">Kirim Pesan Sekarang</button>
                     <p id="form-success" class="hidden text-emerald-400 text-sm mt-4 text-center font-semibold">Pesan berhasil disimulasikan terkirim!</p>
                 </div>
             </div>
@@ -437,38 +436,46 @@
         }
 
         // Simulasi Submit Form
-      function handleSubmit(e) {
-    e.preventDefault();
+// GANTI BLOK handleSubmit YANG LAMA DENGAN INI
+function kirimEmailManual() {
+    // 1. Mengambil elemen input berdasarkan ID/Selector
+    const nameInput = document.querySelector('#contact form input[placeholder="Nama Lengkap"]');
+    const emailInput = document.querySelector('#contact form input[placeholder="contoh@gmail.com"]');
+    const messageInput = document.querySelector('#contact form textarea');
     
-    // 1. Mengambil data yang diisi oleh pengunjung
-    const inputs = e.target.querySelectorAll('input');
-    const textarea = e.target.querySelector('textarea');
+    const name = nameInput.value;
+    const email = emailInput.value;
+    const message = messageInput.value;
     
-    const name = inputs[0].value;
-    const email = inputs[1].value;
-    const message = textarea.value;
+    // 2. Validasi: Jika ada kolom yang masih kosong, jangan dikirim dulu
+    if (!name || !email || !message) {
+        alert("Mohon isi semua kolom (Nama, Email, dan Pesan) terlebih dahulu!");
+        return;
+    }
     
-    // 2. Merakit judul dan isi tulisan email agar rapi
+    // 3. Merakit judul dan isi tulisan email agar rapi
     const subject = encodeURIComponent(`Pesan Portofolio dari ${name}`);
     const body = encodeURIComponent(`Halo Aditya,\n\nSaya menghubungi Anda dari website portofolio.\n\nBerikut rincian pesan saya:\n"${message}"\n\n---\nHubungi saya kembali di:\nNama: ${name}\nEmail: ${email}`);
     
-    // 3. Tampilkan teks sukses hijau di website terlebih dahulu
+    // 4. Tampilkan teks sukses hijau di website terlebih dahulu
     document.getElementById('form-success').classList.remove('hidden');
     
-    // 4. METODE TERBARU: Membuat tautan mailto murni tersembunyi agar didukung penuh oleh HP & Laptop
+    // 5. Membuat tautan mailto murni tersembunyi
     const mailtoLink = document.createElement('a');
     mailtoLink.href = `mailto:adityaputrara090302@gmail.com?subject=${subject}&body=${body}`;
-    mailtoLink.target = '_blank'; // Membuka di tab/aplikasi baru agar web utama tidak ter-refresh
+    mailtoLink.target = '_blank'; // Membuka aplikasi Gmail di tab/proses terpisah
     
-    // 5. Jalankan klik otomatis pada tautan tersebut
+    // 6. Jalankan klik otomatis pada tautan tersebut
     document.body.appendChild(mailtoLink);
     mailtoLink.click();
-    document.body.removeChild(mailtoLink); // Hapus kembali setelah diklik
+    document.body.removeChild(mailtoLink);
     
-    // 6. Reset formulir setelah berhasil diproses
-    e.target.reset();
+    // 7. Reset atau kosongkan kolom formulir setelah berhasil
+    nameInput.value = '';
+    emailInput.value = '';
+    messageInput.value = '';
 
-    // 7. Sembunyikan kembali pesan sukses setelah 5 detik
+    // 8. Sembunyikan kembali pesan sukses setelah 5 detik
     setTimeout(() => {
         document.getElementById('form-success').classList.add('hidden');
     }, 5000);
