@@ -438,12 +438,30 @@
 
         // Simulasi Submit Form
         function handleSubmit(e) {
-            e.preventDefault();
-            document.getElementById('form-success').classList.remove('hidden');
-            e.target.reset();
-            setTimeout(() => {
-                document.getElementById('form-success').classList.add('hidden');
-            }, 4000);
+    e.preventDefault();
+    
+    // 1. Mengambil data yang diisi oleh pengunjung di input HTML
+    const inputs = e.target.querySelectorAll('input');
+    const textarea = e.target.querySelector('textarea');
+    
+    const name = inputs[0].value;
+    const email = inputs[1].value;
+    const message = textarea.value;
+    
+    // 2. Merakit judul dan isi tulisan email agar rapi
+    const subject = encodeURIComponent(`Pesan Portofolio dari ${name}`);
+    const body = encodeURIComponent(`Halo Aditya,\n\nSaya menghubungi Anda dari website portofolio.\n\nBerikut rincian pesan saya:\n"${message}"\n\n---\nHubungi saya kembali di:\nNama: ${name}\nEmail: ${email}`);
+    
+    // 3. Membuka otomatis aplikasi email (Gmail/Mail bawaan) untuk kirim pesan
+    window.location.href = `mailto:adityaputrara090302@gmail.com?subject=${subject}&body=${body}`;
+    
+    // 4. Memunculkan teks sukses hijau di bawah tombol website
+    document.getElementById('form-success').classList.remove('hidden');
+    e.target.reset();
+    setTimeout(() => {
+        document.getElementById('form-success').classList.add('hidden');
+    }, 4000);
+}
         }
     </script>
 </body>
