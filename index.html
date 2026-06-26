@@ -437,10 +437,10 @@
         }
 
         // Simulasi Submit Form
-        function handleSubmit(e) {
+      function handleSubmit(e) {
     e.preventDefault();
     
-    // 1. Mengambil data yang diisi oleh pengunjung di input HTML
+    // 1. Mengambil data yang diisi oleh pengunjung
     const inputs = e.target.querySelectorAll('input');
     const textarea = e.target.querySelector('textarea');
     
@@ -452,15 +452,26 @@
     const subject = encodeURIComponent(`Pesan Portofolio dari ${name}`);
     const body = encodeURIComponent(`Halo Aditya,\n\nSaya menghubungi Anda dari website portofolio.\n\nBerikut rincian pesan saya:\n"${message}"\n\n---\nHubungi saya kembali di:\nNama: ${name}\nEmail: ${email}`);
     
-    // 3. Membuka otomatis aplikasi email (Gmail/Mail bawaan) untuk kirim pesan
-    window.location.href = `mailto:adityaputrara090302@gmail.com?subject=${subject}&body=${body}`;
-    
-    // 4. Memunculkan teks sukses hijau di bawah tombol website
+    // 3. Tampilkan teks sukses hijau di website terlebih dahulu
     document.getElementById('form-success').classList.remove('hidden');
+    
+    // 4. METODE TERBARU: Membuat tautan mailto murni tersembunyi agar didukung penuh oleh HP & Laptop
+    const mailtoLink = document.createElement('a');
+    mailtoLink.href = `mailto:adityaputrara090302@gmail.com?subject=${subject}&body=${body}`;
+    mailtoLink.target = '_blank'; // Membuka di tab/aplikasi baru agar web utama tidak ter-refresh
+    
+    // 5. Jalankan klik otomatis pada tautan tersebut
+    document.body.appendChild(mailtoLink);
+    mailtoLink.click();
+    document.body.removeChild(mailtoLink); // Hapus kembali setelah diklik
+    
+    // 6. Reset formulir setelah berhasil diproses
     e.target.reset();
+
+    // 7. Sembunyikan kembali pesan sukses setelah 5 detik
     setTimeout(() => {
         document.getElementById('form-success').classList.add('hidden');
-    }, 4000);
+    }, 5000);
 }
         }
     </script>
