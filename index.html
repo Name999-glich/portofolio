@@ -389,7 +389,7 @@
                             <input type="email" placeholder="contoh@gmail.com" required class="bg-black/40 border border-white/10 rounded-xl p-3 text-sm text-white focus:outline-none focus:border-orange-500 w-full">
                         </div>
                         <textarea rows="4" placeholder="Tulis rincian kerja sama di sini..." required class="bg-black/40 border border-white/10 rounded-xl p-3 text-sm text-white focus:outline-none focus:border-orange-500 w-full"></textarea>
-                        <button type="button" onclick="kirimEmailManual()" class="w-full py-4 bg-gradient-to-r from-amber-400 via-orange-500 to-rose-500 text-black font-extrabold rounded-xl hover:opacity-95 transition-all cursor-pointer">Kirim Pesan Sekarang</button>
+                        <button type="submit" class="w-full py-4 bg-gradient-to-r from-amber-400 via-orange-500 to-rose-500 text-black font-extrabold rounded-xl hover:opacity-90 transition-all cursor-pointer">Kirim Pesan Sekarang</button>
                     <p id="form-success" class="hidden text-emerald-400 text-sm mt-4 text-center font-semibold">Pesan berhasil disimulasikan terkirim!</p>
                 </div>
             </div>
@@ -436,49 +436,38 @@
         }
 
         // Simulasi Submit Form
-// GANTI BLOK handleSubmit YANG LAMA DENGAN INI
-function kirimEmailManual() {
-    // 1. Mengambil elemen input berdasarkan ID/Selector
-    const nameInput = document.querySelector('#contact form input[placeholder="Nama Lengkap"]');
-    const emailInput = document.querySelector('#contact form input[placeholder="contoh@gmail.com"]');
-    const messageInput = document.querySelector('#contact form textarea');
+function handleSubmit(e) {
+    // 1. Cegah halaman web agar tidak refresh/lompat ke atas
+    e.preventDefault(); 
     
-    const name = nameInput.value;
-    const email = emailInput.value;
-    const message = messageInput.value;
+    // 2. Ambil teks yang diketik oleh pengunjung
+    const inputs = e.target.querySelectorAll('input');
+    const textarea = e.target.querySelector('textarea');
     
-    // 2. Validasi: Jika ada kolom yang masih kosong, jangan dikirim dulu
-    if (!name || !email || !message) {
-        alert("Mohon isi semua kolom (Nama, Email, dan Pesan) terlebih dahulu!");
-        return;
-    }
+    const name = inputs[0].value;
+    const email = inputs[1].value;
+    const message = textarea.value;
     
-    // 3. Merakit judul dan isi tulisan email agar rapi
+    // 3. Siapkan format email
     const subject = encodeURIComponent(`Pesan Portofolio dari ${name}`);
     const body = encodeURIComponent(`Halo Aditya,\n\nSaya menghubungi Anda dari website portofolio.\n\nBerikut rincian pesan saya:\n"${message}"\n\n---\nHubungi saya kembali di:\nNama: ${name}\nEmail: ${email}`);
     
-    // 4. Tampilkan teks sukses hijau di website terlebih dahulu
-    document.getElementById('form-success').classList.remove('hidden');
-    
-    // 5. Membuat tautan mailto murni tersembunyi
+    // 4. Buka aplikasi email pengunjung (Gmail/Mail) tanpa refresh web
     const mailtoLink = document.createElement('a');
     mailtoLink.href = `mailto:adityaputrara090302@gmail.com?subject=${subject}&body=${body}`;
-    mailtoLink.target = '_blank'; // Membuka aplikasi Gmail di tab/proses terpisah
-    
-    // 6. Jalankan klik otomatis pada tautan tersebut
+    mailtoLink.target = '_blank';
     document.body.appendChild(mailtoLink);
     mailtoLink.click();
     document.body.removeChild(mailtoLink);
     
-    // 7. Reset atau kosongkan kolom formulir setelah berhasil
-    nameInput.value = '';
-    emailInput.value = '';
-    messageInput.value = '';
-
-    // 8. Sembunyikan kembali pesan sukses setelah 5 detik
+    // 5. Tampilkan tulisan sukses berwarna hijau
+    document.getElementById('form-success').classList.remove('hidden');
+    e.target.reset(); // Kosongkan formulir setelah sukses
+    
+    // 6. Sembunyikan tulisan hijau setelah 4 detik
     setTimeout(() => {
         document.getElementById('form-success').classList.add('hidden');
-    }, 5000);
+    }, 4000);
 }
         }
     </script>
