@@ -457,39 +457,49 @@
         }
 
         // Simulasi Submit Form
-function handleSubmit(e) {        ← MULAI HAPUS DARI SINI (baris 459)
-    // 1. Cegah halaman web ...
+emailjs.init("6gGL_stsDFoIR8Vlw");
+
+function handleSubmit(e) {
     e.preventDefault();
-    
-    // 2. Ambil teks ...
-    const inputs = ...
-    const textarea = ...
-    
-    const name = ...
-    const email = ...
-    const message = ...
-    
-    // 3. Siapkan format email
-    const subject = ...
-    const body = ...
-    
-    // 4. Buka aplikasi email ...
-    const mailtoLink = ...
-    mailtoLink.href = ...
-    mailtoLink.target = ...
-    document.body.appendChild...
-    mailtoLink.click();
-    document.body.removeChild...
-    
-    // 5. Tampilkan tulisan sukses
-    document.getElementById...
-    e.target.reset();
-    
-    // 6. Sembunyikan tulisan hijau
-    setTimeout(() => {
-        document.getElementById...
-    }, 4000);
-}                                  ← SAMPAI SINI (baris 491)
+
+    const inputs = e.target.querySelectorAll('input');
+    const textarea = e.target.querySelector('textarea');
+
+    const name = inputs[0].value;
+    const email = inputs[1].value;
+    const message = textarea.value;
+
+    if (!name || !email || !message) {
+        alert('Semua field harus diisi!');
+        return;
+    }
+
+    const submitBtn = e.target.querySelector('button[type="submit"]');
+    const originalText = submitBtn.textContent;
+    submitBtn.textContent = 'Mengirim...';
+    submitBtn.disabled = true;
+
+    emailjs.send('service_hd3ye5a', 'template_2v8mex2', {
+        name: name,
+        email: email,
+        subject: `Pesan Portofolio dari ${name}`,
+        message: message
+    })
+    .then(function() {
+        document.getElementById('form-success').classList.remove('hidden');
+        e.target.reset();
+        submitBtn.textContent = originalText;
+        submitBtn.disabled = false;
+        setTimeout(() => {
+            document.getElementById('form-success').classList.add('hidden');
+        }, 4000);
+    })
+    .catch(function(error) {
+        alert('Gagal mengirim pesan. Silakan coba lagi.');
+        submitBtn.textContent = originalText;
+        submitBtn.disabled = false;
+    });
+}
         }
     </script>
 </body>
