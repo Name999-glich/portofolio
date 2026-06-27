@@ -12,6 +12,7 @@
             scroll-behavior: smooth;
         }
     </style>
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3.11.0/dist/index.min.js"></script>
 </head>
 <body class="min-h-screen bg-gradient-to-b from-[#1e1332] via-[#3a1c40] to-[#4a1835] text-rose-50 font-sans selection:bg-amber-500 selection:text-black">
 
@@ -456,39 +457,39 @@
         }
 
         // Simulasi Submit Form
-function handleSubmit(e) {
-    // 1. Cegah halaman web agar tidak refresh/lompat ke atas
-    e.preventDefault(); 
+function handleSubmit(e) {        ← MULAI HAPUS DARI SINI (baris 459)
+    // 1. Cegah halaman web ...
+    e.preventDefault();
     
-    // 2. Ambil teks yang diketik oleh pengunjung
-    const inputs = e.target.querySelectorAll('input');
-    const textarea = e.target.querySelector('textarea');
+    // 2. Ambil teks ...
+    const inputs = ...
+    const textarea = ...
     
-    const name = inputs[0].value;
-    const email = inputs[1].value;
-    const message = textarea.value;
+    const name = ...
+    const email = ...
+    const message = ...
     
     // 3. Siapkan format email
-    const subject = encodeURIComponent(`Pesan Portofolio dari ${name}`);
-    const body = encodeURIComponent(`Halo Aditya,\n\nSaya menghubungi Anda dari website portofolio.\n\nBerikut rincian pesan saya:\n"${message}"\n\n---\nHubungi saya kembali di:\nNama: ${name}\nEmail: ${email}`);
+    const subject = ...
+    const body = ...
     
-    // 4. Buka aplikasi email pengunjung (Gmail/Mail) tanpa refresh web
-    const mailtoLink = document.createElement('a');
-    mailtoLink.href = `mailto:adityaputrara090302@gmail.com?subject=${subject}&body=${body}`;
-    mailtoLink.target = '_blank';
-    document.body.appendChild(mailtoLink);
+    // 4. Buka aplikasi email ...
+    const mailtoLink = ...
+    mailtoLink.href = ...
+    mailtoLink.target = ...
+    document.body.appendChild...
     mailtoLink.click();
-    document.body.removeChild(mailtoLink);
+    document.body.removeChild...
     
-    // 5. Tampilkan tulisan sukses berwarna hijau
-    document.getElementById('form-success').classList.remove('hidden');
-    e.target.reset(); // Kosongkan formulir setelah sukses
+    // 5. Tampilkan tulisan sukses
+    document.getElementById...
+    e.target.reset();
     
-    // 6. Sembunyikan tulisan hijau setelah 4 detik
+    // 6. Sembunyikan tulisan hijau
     setTimeout(() => {
-        document.getElementById('form-success').classList.add('hidden');
+        document.getElementById...
     }, 4000);
-}
+}                                  ← SAMPAI SINI (baris 491)
         }
     </script>
 </body>
