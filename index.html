@@ -420,6 +420,513 @@
         <p>© 2026 Aditya Putra Rahmayadi. Semua Hak Cipta Dilindungi Undang-Undang.</p>
     </footer>
 
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3.11.0/dist/index.min.js"></script>
+    <script>
+        emailjs.init("6gGL_stsDFoIR8Vlw");
+    </script>
+    <script>
+        // Logika Lightroom Simulator
+        function updateFilters() {
+            const exp = document.getElementById('slide-exp').value;
+            const con = document.getElementById('slide-con').value;
+            const sat = document.getElementById('slide-sat').value;
+            const hue = document.getElementById('slide-hue').value;
+
+            document.getElementById('val-exp').innerText = exp + '%';
+            document.getElementById('val-con').innerText = con + '%';
+            document.getElementById('val-sat').innerText = sat + '%';
+            document.getElementById('val-hue').innerText = hue + '°';
+
+            const canvas = document.getElementById('sim-canvas');
+            canvas.style.filter = `brightness(${exp}%) contrast(${con}%) saturate(${sat}%) hue-rotate(${hue}deg)`;
+        }
+
+        function resetSliders() {
+            document.getElementById('slide-exp').value = 105;
+            document.getElementById('slide-con').value = 110;
+            document.getElementById('slide-sat').value = 115;
+            document.getElementById('slide-hue').value = 10;
+            updateFilters();
+        }
+
+        // Jalankan filter default saat pertama dimuat
+        updateFilters();
+
+        // Fungsi Salin Kontak
+        function copyToClipboard(text) {
+            navigator.clipboard.writeText(text).then(() => {
+                alert('Berhasil menyalin ke papan klip: ' + text);
+            });
+        }
+
+        // Simulasi Submit Form
+
+function handleSubmit(e) {
+    e.preventDefault();
+
+    const inputs = e.target.querySelectorAll('input');
+    const textarea = e.target.querySelector('textarea');
+
+    const name = inputs[0].value;
+    const email = inputs[1].value;
+    const message = textarea.value;
+
+    if (!name || !email || !message) {
+        alert('Semua field harus diisi!');
+        return;
+    }
+
+    const submitBtn = e.target.querySelector('button[type="submit"]');
+    const originalText = submitBtn.textContent;
+    submitBtn.textContent = 'Mengirim...';
+    submitBtn.disabled = true;
+
+    emailjs.send('service_hd3ye5a', 'template_2v8mex2', {
+        name: name,
+        email: email,
+        subject: `Pesan Portofolio dari ${name}`,
+        message: message
+    })
+    .then(function() {
+        document.getElementById('form-success').classList.remove('hidden');
+        e.target.reset();
+        submitBtn.textContent = originalText;
+        submitBtn.disabled = false;
+        setTimeout(() => {
+            document.getElementById('form-success').classList.add('hidden');
+        }, 4000);
+    })
+    .catch(function(error) {
+        alert('Gagal mengirim pesan. Silakan coba lagi.');
+        submitBtn.textContent = originalText;
+        submitBtn.disabled = false;
+    });
+}
+
+    </script>
+</body>
+</html><!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Portfolio - Aditya Putra Rahmayadi</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Menggunakan font kustom jika diinginkan */
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+<body class="min-h-screen bg-gradient-to-b from-[#1e1332] via-[#3a1c40] to-[#4a1835] text-rose-50 font-sans selection:bg-amber-500 selection:text-black">
+
+    <header class="sticky top-0 z-50 backdrop-blur-md bg-[#1e1332]/80 border-b border-rose-900/30">
+        <div class="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between">
+            <div class="flex items-center space-x-2">
+                <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-amber-400 via-orange-500 to-rose-600 flex items-center justify-center font-black text-white text-xl shadow-lg shadow-orange-500/20">
+                    A
+                </div>
+                <span class="font-bold tracking-widest text-lg text-rose-100 hidden sm:block">ADITYA.PORTFOLIO</span>
+            </div>
+            <nav class="flex space-x-6 text-xs sm:text-sm font-semibold text-rose-200/80">
+                <a href="#about" class="hover:text-amber-300 transition-colors">Tentang</a>
+                <a href="#skills" class="hover:text-amber-300 transition-colors">Keahlian</a>
+                <a href="#lightroom-sim" class="hover:text-amber-300 transition-colors hidden md:block">Simulator</a>
+                <a href="#portfolio" class="hover:text-amber-300 transition-colors">Karya</a>
+                <a href="#journey" class="hover:text-amber-300 transition-colors">Perjalanan</a>
+                <a href="#contact" class="hover:text-amber-300 transition-colors">Kontak</a>
+            </nav>
+        </div>
+    </header>
+
+    <section class="relative py-24 md:py-36 overflow-hidden">
+        <div class="absolute top-1/4 left-1/3 -translate-x-1/2 -translate-y-1/2 w-[450px] h-[450px] bg-gradient-to-tr from-orange-500/20 via-rose-500/10 to-transparent rounded-full blur-[100px] pointer-events-none"></div>
+        
+        <div class="max-w-4xl mx-auto px-4 text-center relative z-10">
+            <span class="inline-flex items-center space-x-2 px-4 py-1.5 bg-white/5 border border-white/10 text-amber-300 text-[11px] font-bold tracking-widest rounded-full uppercase shadow-inner backdrop-blur-sm">
+                <i class="fa-solid fa-wand-magic-sparkles text-orange-400 animate-pulse"></i>
+                <span>Desainer Grafis & Editor Visual</span>
+            </span>
+            
+            <h1 class="mt-8 text-5xl md:text-7xl font-black tracking-tight leading-none text-white">
+                Halo, Saya <span class="bg-gradient-to-r from-amber-300 via-orange-400 to-rose-400 bg-clip-text text-transparent">Aditya</span>!
+            </h1>
+            
+            <p class="mt-6 text-base md:text-lg text-rose-100/90 max-w-2xl mx-auto leading-relaxed">
+                Siswa kreatif dari <span class="text-amber-300 font-semibold">SMKN 5 Kota Tangerang Selatan</span>. Seniman visual yang menuangkan keindahan alam, kedalaman imajinasi, serta harmoni desain grafis ke dunia nyata.
+            </p>
+
+            <div class="mt-10 flex flex-col sm:flex-row justify-center items-center gap-4">
+                <a href="#portfolio" class="w-full sm:w-auto px-8 py-4 bg-gradient-to-r from-amber-400 via-orange-500 to-rose-500 text-black font-extrabold rounded-xl hover:shadow-xl hover:shadow-orange-500/25 transition-all transform hover:-translate-y-0.5 flex items-center justify-center space-x-2">
+                    <span>Lihat Hasil Karya</span>
+                    <i class="fa-solid fa-chevron-right text-sm"></i>
+                </a>
+                <a href="#contact" class="w-full sm:w-auto px-8 py-4 bg-white/5 hover:bg-white/10 text-rose-100 font-bold rounded-xl border border-white/10 transition-all flex items-center justify-center space-x-2 backdrop-blur-md">
+                    <span>Hubungi Saya</span>
+                </a>
+            </div>
+
+            <div class="mt-20 grid grid-cols-2 md:grid-cols-4 gap-4 max-w-3xl mx-auto">
+                <div class="bg-white/5 border border-white/10 p-4 rounded-xl backdrop-blur-sm">
+                    <p class="text-[10px] text-rose-200/60 font-bold uppercase tracking-wider">Spesialisasi</p>
+                    <p class="text-sm text-amber-200 font-extrabold mt-1">Adobe </p>
+                </div>
+                <div class="bg-white/5 border border-white/10 p-4 rounded-xl backdrop-blur-sm">
+                    <p class="text-[10px] text-rose-200/60 font-bold uppercase tracking-wider">Asal Sekolah</p>
+                    <p class="text-sm text-amber-200 font-extrabold mt-1">SMKN 5 Tangsel</p>
+                </div>
+                <div class="bg-white/5 border border-white/10 p-4 rounded-xl backdrop-blur-sm">
+                    <p class="text-[10px] text-rose-200/60 font-bold uppercase tracking-wider">Fokus Utama</p>
+                    <p class="text-sm text-amber-200 font-extrabold mt-1">Grading & Layout</p>
+                </div>
+                <div class="bg-white/5 border border-white/10 p-4 rounded-xl backdrop-blur-sm">
+                    <p class="text-[10px] text-rose-200/60 font-bold uppercase tracking-wider">Hobi Terkuat</p>
+                    <p class="text-sm text-amber-200 font-extrabold mt-1">Menulis & Baca</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="py-24 max-w-5xl mx-auto px-4 border-t border-white/5">
+        <div class="grid md:grid-cols-12 gap-12 items-center">
+            <div class="md:col-span-5 space-y-6">
+                <div class="relative group">
+                    <div class="absolute -inset-1.5 bg-gradient-to-r from-amber-400 via-orange-500 to-rose-500 rounded-2xl blur opacity-30 group-hover:opacity-55 transition duration-500"></div>
+                    <div class="relative bg-[#2e153a] rounded-2xl p-6 border border-white/10">
+                        <div class="relative aspect-[4/3] w-full rounded-xl overflow-hidden shadow-inner border border-white/10">
+                            <div class="absolute inset-0 bg-gradient-to-t from-[#2a0d24]/90 via-[#1a0c24]/30 to-transparent flex items-center justify-center z-0">
+                                <span class="bg-black/40 backdrop-blur-md border border-white/10 px-3 py-1.5 rounded text-[10px] font-bold text-amber-300 uppercase tracking-widest">Foto Profil</span>
+                            </div>
+                            <img src="https://github.com/Name999-glich/portofolio/blob/master/data%20buat%20potofolio/IMG_20260208_173255_859.png?raw=true" alt="Foto Aditya" class="absolute inset-0 w-full h-full object-cover opacity-90 transition-transform duration-700 z-10" onerror="this.style.display='none'">
+                            <div class="absolute bottom-4 left-4 z-20 text-left pointer-events-none">
+                                <p class="text-xs text-amber-300 font-bold uppercase tracking-widest drop-shadow-md">Aditya Putra R.</p>
+                                <p class="text-sm text-rose-100 font-serif drop-shadow-md">"Only human"</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white/5 border border-white/10 p-6 rounded-2xl backdrop-blur-sm">
+                    <p class="text-rose-100/90 italic text-sm leading-relaxed">"Cita-cita tidak akan pernah bisa terwujud dengan nyata tanpa adanya kedisiplinan yang konsisten."</p>
+                    <p class="text-xs text-amber-400/90 mt-2 font-semibold">— Filosofi Hidup Aditya</p>
+                </div>
+            </div>
+            <div class="md:col-span-7 space-y-6">
+                <div class="flex items-center space-x-2 text-orange-400">
+                    <i class="fa-solid fa-user text-sm"></i>
+                    <span class="text-xs font-bold uppercase tracking-widest">Tentang Profil Saya</span>
+                </div>
+                <h2 class="text-3xl font-extrabold text-white">Menjajaki Makna Melalui Tulisan, Koleksi, dan Desain Visual</h2>
+                <div class="text-rose-100/80 text-base space-y-4 leading-relaxed">
+                    <p>Saya berasal dari kota <span class="text-amber-300 font-semibold">Tangerang</span> dan memiliki ketertarikan yang mendalam pada berbagai aktivitas reflektif serta pengembangan kualitas diri secara mandiri.</p>
+                    <p>Sebagai pribadi, saya memiliki hobi yang cukup unik: senang mengoleksi berbagai macam benda bersejarah/berkesan, serta gemar membaca buku guna memperluas cakrawala pengetahuan dan wawasan umum saya.</p>
+                    <p>Selain dunia visual, saya juga menekuni dunia kepenulisan. Bagi saya, menulis adalah sarana terapeutik terbaik untuk mengekspresikan ide, menuangkan pemikiran yang rumit, dan memahami aneka ragam perspektif kehidupan manusia.</p>
+                </div>
+                <div class="pt-4 flex flex-wrap gap-2">
+                    <span class="px-3 py-1.5 bg-white/5 text-rose-100 text-xs rounded-lg border border-white/10 backdrop-blur-sm">🌇 Membaca Buku</span>
+                    <span class="px-3 py-1.5 bg-white/5 text-rose-100 text-xs rounded-lg border border-white/10 backdrop-blur-sm">🌇 Menulis Esai</span>
+                    <span class="px-3 py-1.5 bg-white/5 text-rose-100 text-xs rounded-lg border border-white/10 backdrop-blur-sm">🌇 Kolektor Memorabilia</span>
+                    <span class="px-3 py-1.5 bg-white/5 text-rose-100 text-xs rounded-lg border border-white/10 backdrop-blur-sm">🌇 Fotografi Lanskap</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+   <section id="skills" class="py-24 border-t border-white/5 bg-black/10 relative overflow-hidden">
+        
+        <style>
+            @keyframes progressFill {
+                0% { width: 0; opacity: 0; }
+                100% { opacity: 1; }
+            }
+            .animate-progress {
+                animation: progressFill 1.5s ease-out forwards;
+            }
+        </style>
+
+        <div class="max-w-5xl mx-auto px-4 relative z-10">
+            <div class="text-center max-w-xl mx-auto mb-16">
+                <div class="flex justify-center items-center space-x-2 text-rose-400 mb-2">
+                    <i class="fa-solid fa-layer-group text-xs animate-bounce"></i>
+                    <span class="text-xs font-bold uppercase tracking-widest">Kombinasi Keterampilan</span>
+                </div>
+                <h2 class="text-3xl font-bold text-white">Keahlian Teknis & Sosial</h2>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-12">
+                <div class="bg-white/5 border border-white/10 p-8 rounded-2xl backdrop-blur-md hover:-translate-y-2 hover:shadow-[0_10px_30px_rgba(245,158,11,0.15)] transition-all duration-500">
+                    <h3 class="text-xl font-bold flex items-center space-x-2 text-amber-300 mb-6">
+                        <i class="fa-solid fa-palette animate-pulse"></i> <span>Desain & Software</span>
+                    </h3>
+                    <div class="space-y-6">
+                        <div class="group">
+                            <div class="flex justify-between text-sm mb-1 group-hover:text-amber-300 transition-colors"><span>Adobe Lightroom</span><span class="text-amber-400">85%</span></div>
+                            <div class="h-2 bg-black/40 rounded-full overflow-hidden">
+                                <div class="h-full bg-gradient-to-r from-amber-400 via-orange-500 to-rose-500 rounded-full animate-progress" style="width: 85%"></div>
+                            </div>
+                        </div>
+                        <div class="group">
+                            <div class="flex justify-between text-sm mb-1 group-hover:text-orange-400 transition-colors"><span>Adobe Illustrator</span><span class="text-amber-400">75%</span></div>
+                            <div class="h-2 bg-black/40 rounded-full overflow-hidden">
+                                <div class="h-full bg-gradient-to-r from-orange-500 to-rose-500 rounded-full animate-progress" style="width: 75%; animation-delay: 0.2s;"></div>
+                            </div>
+                        </div>
+                        <div class="group">
+                            <div class="flex justify-between text-sm mb-1 group-hover:text-rose-400 transition-colors"><span>Adobe Photoshop</span><span class="text-amber-400">65%</span></div>
+                            <div class="h-2 bg-black/40 rounded-full overflow-hidden">
+                                <div class="h-full bg-gradient-to-r from-rose-500 to-purple-500 rounded-full animate-progress" style="width: 65%; animation-delay: 0.4s;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white/5 border border-white/10 p-8 rounded-2xl backdrop-blur-md hover:-translate-y-2 hover:shadow-[0_10px_30px_rgba(244,63,94,0.15)] transition-all duration-500">
+                    <h3 class="text-xl font-bold flex items-center space-x-2 text-rose-400 mb-6">
+                        <i class="fa-solid fa-user-group animate-pulse"></i> <span>Karakter Interpersonal</span>
+                    </h3>
+                    <div class="space-y-6">
+                        <div class="group">
+                            <div class="flex justify-between text-sm mb-1 group-hover:text-rose-400 transition-colors"><span>Adaptasi (Adaptation)</span><span class="text-rose-400">90%</span></div>
+                            <div class="h-2 bg-black/40 rounded-full overflow-hidden">
+                                <div class="h-full bg-gradient-to-r from-rose-500 via-orange-400 to-amber-300 rounded-full animate-progress" style="width: 90%; animation-delay: 0.1s;"></div>
+                            </div>
+                        </div>
+                        <div class="group">
+                            <div class="flex justify-between text-sm mb-1 group-hover:text-orange-400 transition-colors"><span>Kerjasama Tim (Teamwork)</span><span class="text-rose-400">80%</span></div>
+                            <div class="h-2 bg-black/40 rounded-full overflow-hidden">
+                                <div class="h-full bg-gradient-to-r from-orange-500 to-amber-400 rounded-full animate-progress" style="width: 80%; animation-delay: 0.3s;"></div>
+                            </div>
+                        </div>
+                        <div class="group">
+                            <div class="flex justify-between text-sm mb-1 group-hover:text-purple-400 transition-colors"><span>Komunikasi (Communication)</span><span class="text-rose-400">80%</span></div>
+                            <div class="h-2 bg-black/40 rounded-full overflow-hidden">
+                                <div class="h-full bg-gradient-to-r from-purple-500 to-rose-500 rounded-full animate-progress" style="width: 80%; animation-delay: 0.5s;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="lightroom-sim" class="py-24 border-t border-white/5">
+        <div class="max-w-5xl mx-auto px-4">
+            <div class="text-center max-w-xl mx-auto mb-12">
+                <h2 class="text-3xl font-bold text-white">Uji Keterampilan Lightroom</h2>
+                <p class="text-sm text-rose-100/70 mt-2">Geser kontrol di bawah untuk memanipulasi rona foto secara langsung.</p>
+            </div>
+            <div class="bg-white/5 border border-white/10 backdrop-blur-sm rounded-3xl p-6 md:p-10 grid md:grid-cols-12 gap-8 items-center">
+                <div class="md:col-span-6 space-y-4">
+                    <div id="sim-canvas" class="relative aspect-video w-full rounded-2xl overflow-hidden bg-gradient-to-t from-[#250917] via-[#200e26] to-[#0a0510] p-6 flex flex-col justify-between shadow-inner transition-all duration-75">
+                        <svg class="absolute bottom-0 left-0 w-full h-24 text-[#0d040a]" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0,100 L35,35 L65,75 L82,45 L100,100 Z" fill="currentColor"></path></svg>
+                        <div class="w-20 h-20 rounded-full bg-gradient-to-br from-amber-300 via-orange-500 to-rose-600 absolute bottom-6 right-20 blur-[1px] opacity-90 shadow-2xl shadow-orange-500/30"></div>
+                        <span class="relative z-10 text-[9px] uppercase tracking-widest px-2.5 py-1 bg-black/60 backdrop-blur-md rounded-lg border border-white/10 text-rose-100 w-max">Senja di Tepi Tebing</span>
+                        <p class="relative z-10 text-right text-xs text-amber-200/60 italic font-serif">"Melodi Jingga Reflektif..."</p>
+                    </div>
+                    <div class="flex justify-between items-center text-xs text-rose-200/70">
+                        <p>Ubah tuas di kanan untuk simulasi warna.</p>
+                        <button onclick="resetSliders()" class="text-amber-400 hover:underline font-semibold">Reset Filter</button>
+                    </div>
+                </div>
+                <div class="md:col-span-6 space-y-5">
+                    <div>
+                        <div class="flex justify-between text-xs mb-1"><span>Exposure (Kecerahan)</span><span id="val-exp" class="text-amber-400">105%</span></div>
+                        <input type="range" id="slide-exp" min="30" max="200" value="105" oninput="updateFilters()" class="w-full accent-orange-500 bg-black/40 h-1.5 rounded-lg appearance-none cursor-pointer">
+                    </div>
+                    <div>
+                        <div class="flex justify-between text-xs mb-1"><span>Contrast (Kontras)</span><span id="val-con" class="text-amber-400">110%</span></div>
+                        <input type="range" id="slide-con" min="40" max="200" value="110" oninput="updateFilters()" class="w-full accent-orange-500 bg-black/40 h-1.5 rounded-lg appearance-none cursor-pointer">
+                    </div>
+                    <div>
+                        <div class="flex justify-between text-xs mb-1"><span>Saturation (Warna)</span><span id="val-sat" class="text-amber-400">115%</span></div>
+                        <input type="range" id="slide-sat" min="0" max="200" value="115" oninput="updateFilters()" class="w-full accent-orange-500 bg-black/40 h-1.5 rounded-lg appearance-none cursor-pointer">
+                    </div>
+                    <div>
+                        <div class="flex justify-between text-xs mb-1"><span>Hue Shift (Rona Senja)</span><span id="val-hue" class="text-amber-400">10°</span></div>
+                        <input type="range" id="slide-hue" min="0" max="360" value="10" oninput="updateFilters()" class="w-full accent-orange-500 bg-black/40 h-1.5 rounded-lg appearance-none cursor-pointer">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="portfolio" class="py-24 max-w-5xl mx-auto px-4 border-t border-white/5 bg-black/10">
+        <div class="mb-12">
+            <h2 class="text-3xl font-bold text-white">Koleksi Karya Pilihan</h2>
+            <p class="text-sm text-rose-100/70 mt-1">Mengadaptasi gaya pameran visual resolusi tinggi.</p>
+        </div>
+       <div class="grid md:grid-cols-3 gap-6">
+            <div class="bg-white/5 border border-white/10 backdrop-blur-sm rounded-2xl overflow-hidden flex flex-col group hover:border-white/20 transition-all shadow-md">
+                <div class="relative overflow-hidden flex items-center justify-center bg-black/40">
+                    <img src="https://github.com/Name999-glich/portofolio/blob/master/New%20folder/poster-01.png?raw=true" alt="Grocery" class="w-full h-auto block object-contain group-hover:scale-105 transition-transform duration-500 z-10" onerror="this.style.display='none'">
+                </div>
+                <div class="p-6 flex-1 flex flex-col justify-between">
+                    <div>
+                        <h3 class="font-bold text-white text-lg">Weekend Big Deals Grocery</h3>
+                        <p class="text-xs text-rose-100/70 mt-2">Desain brosur promosi informatif dari tugas sekolah yang tertata rapi.</p>
+                    </div>
+                    <p class="text-[11px] text-rose-300/60 mt-4 pt-2 border-t border-white/10">Software: <strong>Adobe Illustrator</strong></p>
+                </div>
+            </div>
+
+            <div class="bg-white/5 border border-white/10 backdrop-blur-sm rounded-2xl overflow-hidden flex flex-col group hover:border-white/20 transition-all shadow-md">
+                <div class="relative overflow-hidden flex items-center justify-center bg-black/40">
+                    <img src="https://github.com/Name999-glich/portofolio/blob/master/New%20folder/IMG_20260324_083130~2.jpg?raw=true" alt="Portrait" class="w-full h-auto block object-contain group-hover:scale-105 transition-transform duration-500 z-10" onerror="this.style.display='none'">
+                </div>
+                <div class="p-6 flex-1 flex flex-col justify-between">
+                    <div>
+                        <h3 class="font-bold text-white text-lg">Pensive Teenage Portrait</h3>
+                        <p class="text-xs text-rose-100/70 mt-2">Potret reflektif seorang subjek remaja yang menyatu dengan keindahan alam.</p>
+                    </div>
+                    <p class="text-[11px] text-rose-300/60 mt-4 pt-2 border-t border-white/10">Software: <strong>Adobe Lightroom</strong></p>
+                </div>
+            </div>
+
+            <div class="bg-white/5 border border-white/10 backdrop-blur-sm rounded-2xl overflow-hidden flex flex-col group hover:border-white/20 transition-all shadow-md">
+                <div class="relative overflow-hidden flex items-center justify-center bg-black/40">
+                    <img src="https://github.com/Name999-glich/portofolio/blob/master/New%20folder/IMG_20251001_153507.jpg?raw=true" alt="Light Dark" class="w-full h-auto block object-contain group-hover:scale-105 transition-transform duration-500 z-10" onerror="this.style.display='none'">
+                </div>
+                <div class="p-6 flex-1 flex flex-col justify-between">
+                    <div>
+                        <h3 class="font-bold text-white text-lg">Light in a Dark Heart</h3>
+                        <p class="text-xs text-rose-100/70 mt-2">Karya visual kontras tinggi simbolik tentang harapan yang bersinar di kondisi gelap.</p>
+                    </div>
+                    <p class="text-[11px] text-rose-300/60 mt-4 pt-2 border-t border-white/10">Software: <strong>Adobe Photoshop</strong></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="journey" class="py-24 border-t border-white/5 relative">
+        <div class="max-w-4xl mx-auto px-4">
+            <div class="text-center max-w-xl mx-auto mb-16">
+                <h2 class="text-3xl font-bold text-white">Perjalanan Pendidikan Aditya</h2>
+            </div>
+            <div class="relative border-l-2 border-white/10 ml-4 md:ml-36 space-y-16">
+                <div class="relative pl-8 md:pl-10 group">
+                    <div class="absolute -left-[9px] top-2 w-4 h-4 rounded-full bg-[#1e1332] border-2 border-orange-500 shadow-md"></div>
+                    <div class="absolute left-[-135px] top-2 hidden md:block text-right w-28"><p class="text-lg font-black text-white">SD</p></div>
+                    <div class="bg-white/5 border border-white/10 backdrop-blur-md p-6 rounded-3xl group-hover:border-white/20 transition-all">
+                        <div class="grid md:grid-cols-12 gap-6 items-center">
+                            <div class="md:col-span-7 space-y-3">
+                                <span class="text-[11px] font-extrabold text-orange-400 uppercase tracking-widest block">SDN PCU 01</span>
+                                <p class="text-xs text-rose-100/90 italic border-l-2 border-orange-500 pl-3">"This is the beginning of all the stories we will go through."</p>
+                            </div>
+                            <div class="md:col-span-5">
+                                <div class="relative aspect-[4/3] w-full rounded-2xl overflow-hidden border border-white/10">
+                                    <div class="absolute inset-0 bg-gradient-to-tr from-amber-500/80 to-rose-600/80 flex items-center justify-center text-center"><span class="bg-black/40 text-[10px] p-1 rounded font-bold">Momen SD</span></div>
+                                    <img src="https://github.com/Name999-glich/portofolio/blob/master/data%20buat%20potofolio/44865326_322804865171793_850648900384587776_n.jpg?raw=true" alt="SD" class="absolute inset-0 w-full h-full object-cover opacity-90 z-10" onerror="this.style.display='none'">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="relative pl-8 md:pl-10 group">
+                    <div class="absolute -left-[9px] top-2 w-4 h-4 rounded-full bg-[#1e1332] border-2 border-orange-500 shadow-md"></div>
+                    <div class="absolute left-[-135px] top-2 hidden md:block text-right w-28"><p class="text-lg font-black text-white">SMP</p></div>
+                    <div class="bg-white/5 border border-white/10 backdrop-blur-md p-6 rounded-3xl group-hover:border-white/20 transition-all">
+                        <div class="grid md:grid-cols-12 gap-6 items-center">
+                            <div class="md:col-span-7 space-y-3">
+                                <span class="text-[11px] font-extrabold text-orange-400 uppercase tracking-widest block">SMPN 21 Tangsel</span>
+                                <p class="text-xs text-rose-100/90 italic border-l-2 border-orange-500 pl-3">"Maybe this is the middle of our story, but it's not over yet."</p>
+                            </div>
+                            <div class="md:col-span-5">
+                                <div class="relative aspect-[4/3] w-full rounded-2xl overflow-hidden border border-white/10">
+                                    <div class="absolute inset-0 bg-gradient-to-tr from-violet-900/90 via-rose-900/90 to-orange-900/90 flex items-center justify-center text-center"><span class="bg-black/40 text-[10px] p-1 rounded font-bold">Momen SMP</span></div>
+                                    <img src="https://github.com/Name999-glich/portofolio/blob/master/data%20buat%20potofolio/IMG-20240503-WA0064.jpg?raw=true" alt="SMP" class="absolute inset-0 w-full h-full object-cover opacity-90 z-10" onerror="this.style.display='none'">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="relative pl-8 md:pl-10 group">
+                    <div class="absolute -left-[9px] top-2 w-4 h-4 rounded-full bg-[#1e1332] border-2 border-orange-500 shadow-md"></div>
+                    <div class="absolute left-[-135px] top-2 hidden md:block text-right w-28"><p class="text-lg font-black text-white">SMK</p></div>
+                    <div class="bg-white/5 border border-white/10 backdrop-blur-md p-6 rounded-3xl group-hover:border-white/20 transition-all">
+                        <div class="grid md:grid-cols-12 gap-6 items-center">
+                            <div class="md:col-span-7 space-y-3">
+                                <span class="text-[11px] font-extrabold text-orange-400 uppercase tracking-widest block">SMKN 5 Kota Tangerang Selatan</span>
+                                <p class="text-xs text-rose-100/90 italic border-l-2 border-orange-500 pl-3">"Maybe this is the end of our story, but I will always remember it."</p>
+                            </div>
+                            <div class="md:col-span-5">
+                                <div class="relative aspect-[4/3] w-full rounded-2xl overflow-hidden border border-white/10">
+                                    <div class="absolute inset-0 bg-gradient-to-tr from-[#2a1331]/90 via-[#4a1835]/90 to-amber-950/90 flex items-center justify-center text-center"><span class="bg-black/40 text-[10px] p-1 rounded font-bold">Momen SMK</span></div>
+                                    <img src="https://github.com/Name999-glich/portofolio/blob/master/data%20buat%20potofolio/IMG-20260501-WA0003.jpg?raw=true" alt="SMK" class="absolute inset-0 w-full h-full object-cover opacity-90 z-10" onerror="this.style.display='none'">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 max-w-5xl mx-auto px-4 border-t border-white/5 bg-black/10">
+        <div class="text-center max-w-xl mx-auto mb-16">
+            <h2 class="text-3xl font-bold text-white">Ijazah & Sertifikat Resmi</h2>
+        </div>
+        <div class="grid md:grid-cols-2 gap-8">
+            <div class="bg-white/5 border border-white/10 backdrop-blur-md p-6 rounded-3xl flex flex-col">
+                <div class="relative aspect-video w-full rounded-xl overflow-hidden border border-white/10 mb-6">
+                    <div class="absolute inset-0 bg-gradient-to-tr from-amber-900/80 to-rose-900/80 flex items-center justify-center text-center"><span class="bg-black/40 text-[10px] p-1.5 rounded font-bold">Sertifikat Silat</span></div>
+                    <img src="https://github.com/Name999-glich/portofolio/blob/master/data%20buat%20potofolio/IMG_20260503_122905.jpg?raw=true" alt="Silat" class="absolute inset-0 w-full h-full object-cover opacity-90 z-10" onerror="this.style.display='none'">
+                </div>
+                <h3 class="text-xl font-extrabold text-white">Keluarga Silat Nasional Indonesia "Perisai Diri"</h3>
+                <p class="text-xs text-rose-200/70 mt-3 leading-relaxed flex-1">Kompetensi ijazah resmi silat melatih ketahanan fisik, fokus tinggi, dan kedisiplinan diri.</p>
+            </div>
+            <div class="bg-white/5 border border-white/10 backdrop-blur-md p-6 rounded-3xl flex flex-col">
+                <div class="relative aspect-video w-full rounded-xl overflow-hidden border border-white/10 mb-6">
+                    <div class="absolute inset-0 bg-gradient-to-tr from-[#2a1331]/90 to-amber-950/90 flex items-center justify-center text-center"><span class="bg-black/40 text-[10px] p-1.5 rounded font-bold">Sertifikat HKAN</span></div>
+                    <img src="https://github.com/Name999-glich/portofolio/blob/master/data%20buat%20potofolio/IMG_20260503_122719.jpg?raw=true" alt="HKAN" class="absolute inset-0 w-full h-full object-cover opacity-90 z-10" onerror="this.style.display='none'">
+                </div>
+                <h3 class="text-xl font-extrabold text-white">Sertifikat Kehormatan PEAP 2025</h3>
+                <p class="text-xs text-rose-200/70 mt-3 leading-relaxed flex-1">Partisipasi aktif dalam Ecosystem Field Visit di Rumpin Bogor oleh Hari Konservasi Alam Nasional.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="py-24 border-t border-white/5 relative">
+        <div class="max-w-5xl mx-auto px-4">
+            <div class="grid md:grid-cols-12 gap-12 items-start">
+                <div class="md:col-span-5 space-y-8">
+                    <div>
+                        <h2 class="text-3xl font-extrabold text-white">Mari Berkarya Bersama!</h2>
+                        <p class="text-sm text-rose-100/70 mt-2">Hubungi saya untuk kebutuhan desain atau diskusi kreatif.</p>
+                    </div>
+                    <div class="space-y-4 text-sm">
+                        <div class="p-4 bg-white/5 border border-white/10 rounded-2xl flex justify-between items-center">
+                            <span><i class="fa-brands fa-instagram text-pink-400 mr-2"></i> @adityputra090302</span>
+                            <button onclick="copyToClipboard('@adityputra090302')" class="text-xs text-amber-300 hover:underline">Salin</button>
+                        </div>
+                        <div class="p-4 bg-white/5 border border-white/10 rounded-2xl flex justify-between items-center">
+                            <span class="truncate mr-2"><i class="fa-solid fa-envelope text-orange-400 mr-2"></i> adityaputrara090302@gmail.com</span>
+                            <button onclick="copyToClipboard('adityaputrara090302@gmail.com')" class="text-xs text-amber-300 hover:underline">Salin</button>
+                        </div>
+                        <div class="p-4 bg-white/5 border border-white/10 rounded-2xl flex justify-between items-center">
+                            <span><i class="fa-solid fa-phone text-emerald-400 mr-2"></i> +62 857-7987-8856</span>
+                            <button onclick="copyToClipboard('+6285779878856')" class="text-xs text-amber-300 hover:underline">Salin</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="md:col-span-7 bg-white/5 border border-white/10 backdrop-blur-md rounded-3xl p-8 shadow-xl">
+                    <h3 class="text-lg font-bold text-white mb-6">Kirim Pesan Langsung</h3>
+                    <form onsubmit="handleSubmit(event)" class="space-y-4">
+                        <div class="grid sm:grid-cols-2 gap-4">
+                            <input type="text" placeholder="Nama Lengkap" required class="bg-black/40 border border-white/10 rounded-xl p-3 text-sm text-white focus:outline-none focus:border-orange-500 w-full">
+                            <input type="email" placeholder="contoh@gmail.com" required class="bg-black/40 border border-white/10 rounded-xl p-3 text-sm text-white focus:outline-none focus:border-orange-500 w-full">
+                        </div>
+                        <textarea rows="4" placeholder="Tulis rincian kerja sama di sini..." required class="bg-black/40 border border-white/10 rounded-xl p-3 text-sm text-white focus:outline-none focus:border-orange-500 w-full"></textarea>
+                        <button type="submit" class="w-full py-4 bg-gradient-to-r from-amber-400 via-orange-500 to-rose-500 text-black font-extrabold rounded-xl hover:opacity-90 transition-all cursor-pointer">Kirim Pesan Sekarang</button>
+                    <p id="form-success" class="hidden text-emerald-400 text-sm mt-4 text-center font-semibold">Pesan berhasil disimulasikan terkirim!</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-black/40 border-t border-white/5 py-10 text-center text-xs text-rose-200/50 backdrop-blur-md">
+        <p>© 2026 Aditya Putra Rahmayadi. Semua Hak Cipta Dilindungi Undang-Undang.</p>
+    </footer>
+
 <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3.11.0/dist/index.min.js"></script>
     <script>emailjs.init("6gGL_stsDFoIR8Vlw");</script>
     <script>
