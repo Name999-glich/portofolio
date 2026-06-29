@@ -12,6 +12,8 @@
         .tab-content.active { display: block; }
         .tab-btn { background: rgba(255,255,255,0.05); color: #fce7f3; border: 1px solid rgba(255,255,255,0.1); }
         .tab-btn.active { background: linear-gradient(to right, #f59e0b, #f97316, #f43f5e); color: #000; border: none; }
+        .halaman { display: none; }
+        .halaman.active { display: block; }
         .card-karya { cursor: pointer; }
         .img-placeholder { background: linear-gradient(135deg, #1e1332, #3a1c40); border: 2px dashed rgba(255,255,255,0.15); display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 180px; }
     </style>
@@ -27,432 +29,487 @@
             </a>
             <a href="index.html" class="flex items-center space-x-2 text-sm text-rose-200/80 hover:text-amber-300 transition-colors">
                 <i class="fa-solid fa-arrow-left"></i>
-                <span>Kembali</span>
+                <span>Kembali ke Portfolio</span>
             </a>
         </div>
     </header>
 
-    <section class="py-16 max-w-6xl mx-auto px-4">
-        <div class="mb-10">
-            <span class="text-xs font-bold uppercase tracking-widest text-amber-300">Portofolio</span>
-            <h1 class="text-4xl font-black text-white mt-2">Koleksi Karya Pilihan</h1>
-            <p class="text-rose-100/70 mt-2">Pilih kategori software untuk melihat karya</p>
-        </div>
-
-        <!-- TAB BUTTONS -->
-        <div class="flex flex-wrap gap-3 mb-10">
-            <button onclick="gantiTab('illustrator')" id="btn-illustrator" class="tab-btn active px-5 py-2.5 rounded-xl font-bold text-sm transition-all">
-                <i class="fa-solid fa-pen-nib mr-2"></i>Adobe Illustrator
-            </button>
-            <button onclick="gantiTab('lightroom')" id="btn-lightroom" class="tab-btn px-5 py-2.5 rounded-xl font-bold text-sm transition-all">
-                <i class="fa-solid fa-camera mr-2"></i>Adobe Lightroom
-            </button>
-            <button onclick="gantiTab('canva')" id="btn-canva" class="tab-btn px-5 py-2.5 rounded-xl font-bold text-sm transition-all">
-                <i class="fa-solid fa-c mr-2"></i>Canva
-            </button>
-            <button onclick="gantiTab('photoshop')" id="btn-photoshop" class="tab-btn px-5 py-2.5 rounded-xl font-bold text-sm transition-all">
-                <i class="fa-solid fa-wand-magic-sparkles mr-2"></i>Adobe Photoshop
-            </button>
-        </div>
-
-        <!-- ======================== -->
-        <!-- TAB ADOBE ILLUSTRATOR    -->
-        <!-- ======================== -->
-        <div id="tab-illustrator" class="tab-content active">
-            <div class="grid md:grid-cols-3 sm:grid-cols-2 gap-6">
-
-                <!-- ⬇️ ILLUSTRATOR KARYA 1 — ADA GAMBAR -->
-                <div class="card-karya bg-white/5 border border-white/10 rounded-2xl overflow-hidden flex flex-col group hover:border-amber-400/40 hover:shadow-xl transition-all duration-300">
-                    <div class="relative overflow-hidden bg-black/40">
-                        <!-- 🖼️ GANTI LINK FOTO il-1 DI BAWAH INI -->
-                        <img src="https://github.com/Name999-glich/portofolio/blob/master/New%20folder/poster-01.png?raw=true"
-                             alt="il-1" class="w-full h-auto block object-contain group-hover:scale-105 transition-transform duration-500">
-                    </div>
-                    <div class="p-5 flex-1 flex flex-col justify-between">
-                        <!-- ✏️ GANTI JUDUL il-1 -->
-                        <h3 class="font-bold text-white">Weekend Big Deals Grocery</h3>
-                        <!-- ✏️ GANTI DESKRIPSI il-1 -->
-                        <p class="text-xs text-rose-100/70 mt-2">Desain brosur promosi informatif dari tugas sekolah yang tertata rapi.</p>
-                        <div class="flex items-center justify-between mt-3 pt-2 border-t border-white/10">
-                            <p class="text-[11px] text-rose-300/60">Adobe Illustrator</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- ⬇️ ILLUSTRATOR KARYA 2 — BELUM ADA GAMBAR -->
-                <div class="card-karya bg-white/5 border border-white/10 rounded-2xl overflow-hidden flex flex-col group hover:border-amber-400/40 hover:shadow-xl transition-all duration-300">
-                    <div class="img-placeholder">
-                        <!-- 🖼️ GANTI BAGIAN INI DENGAN TAG IMG KETIKA SUDAH ADA FOTO il-2 -->
-                        <!-- CONTOH: <img src="LINK_FOTO_ANDA" alt="il-2" class="w-full h-auto block object-contain"> -->
-                        <i class="fa-solid fa-image text-white/20 text-4xl mb-3"></i>
-                        <p class="text-white/30 text-xs">Belum ada gambar</p>
-                    </div>
-                    <div class="p-5 flex-1 flex flex-col justify-between">
-                        <!-- ✏️ GANTI JUDUL il-2 -->
-                        <h3 class="font-bold text-white">Judul Karya 2</h3>
-                        <!-- ✏️ GANTI DESKRIPSI il-2 -->
-                        <p class="text-xs text-rose-100/70 mt-2">Deskripsi karya 2 di sini...</p>
-                        <div class="flex items-center justify-between mt-3 pt-2 border-t border-white/10">
-                            <p class="text-[11px] text-rose-300/60">Adobe Illustrator</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- ⬇️ ILLUSTRATOR KARYA 3 — BELUM ADA GAMBAR -->
-                <div class="card-karya bg-white/5 border border-white/10 rounded-2xl overflow-hidden flex flex-col group hover:border-amber-400/40 hover:shadow-xl transition-all duration-300">
-                    <div class="img-placeholder">
-                        <!-- 🖼️ GANTI BAGIAN INI DENGAN TAG IMG il-3 -->
-                        <i class="fa-solid fa-image text-white/20 text-4xl mb-3"></i>
-                        <p class="text-white/30 text-xs">Belum ada gambar</p>
-                    </div>
-                    <div class="p-5 flex-1 flex flex-col justify-between">
-                        <!-- ✏️ GANTI JUDUL il-3 -->
-                        <h3 class="font-bold text-white">Judul Karya 3</h3>
-                        <!-- ✏️ GANTI DESKRIPSI il-3 -->
-                        <p class="text-xs text-rose-100/70 mt-2">Deskripsi karya 3 di sini...</p>
-                        <div class="flex items-center justify-between mt-3 pt-2 border-t border-white/10">
-                            <p class="text-[11px] text-rose-300/60">Adobe Illustrator</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- ⬇️ ILLUSTRATOR KARYA 4 — BELUM ADA GAMBAR -->
-                <div class="card-karya bg-white/5 border border-white/10 rounded-2xl overflow-hidden flex flex-col group hover:border-amber-400/40 hover:shadow-xl transition-all duration-300">
-                    <div class="img-placeholder">
-                        <!-- 🖼️ GANTI BAGIAN INI DENGAN TAG IMG il-4 -->
-                        <i class="fa-solid fa-image text-white/20 text-4xl mb-3"></i>
-                        <p class="text-white/30 text-xs">Belum ada gambar</p>
-                    </div>
-                    <div class="p-5 flex-1 flex flex-col justify-between">
-                        <!-- ✏️ GANTI JUDUL il-4 -->
-                        <h3 class="font-bold text-white">Judul Karya 4</h3>
-                        <!-- ✏️ GANTI DESKRIPSI il-4 -->
-                        <p class="text-xs text-rose-100/70 mt-2">Deskripsi karya 4 di sini...</p>
-                        <div class="flex items-center justify-between mt-3 pt-2 border-t border-white/10">
-                            <p class="text-[11px] text-rose-300/60">Adobe Illustrator</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- ⬇️ ILLUSTRATOR KARYA 5 — BELUM ADA GAMBAR -->
-                <div class="card-karya bg-white/5 border border-white/10 rounded-2xl overflow-hidden flex flex-col group hover:border-amber-400/40 hover:shadow-xl transition-all duration-300">
-                    <div class="img-placeholder">
-                        <!-- 🖼️ GANTI BAGIAN INI DENGAN TAG IMG il-5 -->
-                        <i class="fa-solid fa-image text-white/20 text-4xl mb-3"></i>
-                        <p class="text-white/30 text-xs">Belum ada gambar</p>
-                    </div>
-                    <div class="p-5 flex-1 flex flex-col justify-between">
-                        <!-- ✏️ GANTI JUDUL il-5 -->
-                        <h3 class="font-bold text-white">Judul Karya 5</h3>
-                        <!-- ✏️ GANTI DESKRIPSI il-5 -->
-                        <p class="text-xs text-rose-100/70 mt-2">Deskripsi karya 5 di sini...</p>
-                        <div class="flex items-center justify-between mt-3 pt-2 border-t border-white/10">
-                            <p class="text-[11px] text-rose-300/60">Adobe Illustrator</p>
-                        </div>
-                    </div>
-                </div>
-
+    <!-- ==================== -->
+    <!-- HALAMAN DAFTAR KARYA -->
+    <!-- ==================== -->
+    <div id="halaman-list" class="halaman active">
+        <section class="py-16 max-w-6xl mx-auto px-4">
+            <div class="mb-10">
+                <span class="text-xs font-bold uppercase tracking-widest text-amber-300">Portofolio</span>
+                <h1 class="text-4xl font-black text-white mt-2">Koleksi Karya Pilihan</h1>
+                <p class="text-rose-100/70 mt-2">Klik karya untuk melihat detail lengkapnya</p>
             </div>
-        </div>
 
-        <!-- ===================== -->
-        <!-- TAB ADOBE LIGHTROOM   -->
-        <!-- ===================== -->
-        <div id="tab-lightroom" class="tab-content">
-            <div class="grid md:grid-cols-3 sm:grid-cols-2 gap-6">
-
-                <!-- ⬇️ LIGHTROOM KARYA 1 — ADA GAMBAR -->
-                <div class="card-karya bg-white/5 border border-white/10 rounded-2xl overflow-hidden flex flex-col group hover:border-amber-400/40 hover:shadow-xl transition-all duration-300">
-                    <div class="relative overflow-hidden bg-black/40">
-                        <!-- 🖼️ GANTI LINK FOTO lr-1 DI BAWAH INI -->
-                        <img src="https://github.com/Name999-glich/portofolio/blob/master/New%20folder/IMG_20260324_083130~2.jpg?raw=true"
-                             alt="lr-1" class="w-full h-auto block object-contain group-hover:scale-105 transition-transform duration-500">
-                    </div>
-                    <div class="p-5 flex-1 flex flex-col justify-between">
-                        <!-- ✏️ GANTI JUDUL lr-1 -->
-                        <h3 class="font-bold text-white">Pensive Teenage Portrait</h3>
-                        <!-- ✏️ GANTI DESKRIPSI lr-1 -->
-                        <p class="text-xs text-rose-100/70 mt-2">Potret reflektif seorang remaja yang menyatu dengan keindahan alam.</p>
-                        <div class="flex items-center justify-between mt-3 pt-2 border-t border-white/10">
-                            <p class="text-[11px] text-rose-300/60">Adobe Lightroom</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- ⬇️ LIGHTROOM KARYA 2 — BELUM ADA GAMBAR -->
-                <div class="card-karya bg-white/5 border border-white/10 rounded-2xl overflow-hidden flex flex-col group hover:border-amber-400/40 hover:shadow-xl transition-all duration-300">
-                    <div class="img-placeholder">
-                        <!-- 🖼️ GANTI BAGIAN INI DENGAN TAG IMG lr-2 -->
-                        <i class="fa-solid fa-image text-white/20 text-4xl mb-3"></i>
-                        <p class="text-white/30 text-xs">Belum ada gambar</p>
-                    </div>
-                    <div class="p-5 flex-1 flex flex-col justify-between">
-                        <!-- ✏️ GANTI JUDUL lr-2 -->
-                        <h3 class="font-bold text-white">Judul Karya 2</h3>
-                        <!-- ✏️ GANTI DESKRIPSI lr-2 -->
-                        <p class="text-xs text-rose-100/70 mt-2">Deskripsi karya 2 di sini...</p>
-                        <div class="flex items-center justify-between mt-3 pt-2 border-t border-white/10">
-                            <p class="text-[11px] text-rose-300/60">Adobe Lightroom</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- ⬇️ LIGHTROOM KARYA 3 — BELUM ADA GAMBAR -->
-                <div class="card-karya bg-white/5 border border-white/10 rounded-2xl overflow-hidden flex flex-col group hover:border-amber-400/40 hover:shadow-xl transition-all duration-300">
-                    <div class="img-placeholder">
-                        <!-- 🖼️ GANTI BAGIAN INI DENGAN TAG IMG lr-3 -->
-                        <i class="fa-solid fa-image text-white/20 text-4xl mb-3"></i>
-                        <p class="text-white/30 text-xs">Belum ada gambar</p>
-                    </div>
-                    <div class="p-5 flex-1 flex flex-col justify-between">
-                        <!-- ✏️ GANTI JUDUL lr-3 -->
-                        <h3 class="font-bold text-white">Judul Karya 3</h3>
-                        <!-- ✏️ GANTI DESKRIPSI lr-3 -->
-                        <p class="text-xs text-rose-100/70 mt-2">Deskripsi karya 3 di sini...</p>
-                        <div class="flex items-center justify-between mt-3 pt-2 border-t border-white/10">
-                            <p class="text-[11px] text-rose-300/60">Adobe Lightroom</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- ⬇️ LIGHTROOM KARYA 4 — BELUM ADA GAMBAR -->
-                <div class="card-karya bg-white/5 border border-white/10 rounded-2xl overflow-hidden flex flex-col group hover:border-amber-400/40 hover:shadow-xl transition-all duration-300">
-                    <div class="img-placeholder">
-                        <!-- 🖼️ GANTI BAGIAN INI DENGAN TAG IMG lr-4 -->
-                        <i class="fa-solid fa-image text-white/20 text-4xl mb-3"></i>
-                        <p class="text-white/30 text-xs">Belum ada gambar</p>
-                    </div>
-                    <div class="p-5 flex-1 flex flex-col justify-between">
-                        <!-- ✏️ GANTI JUDUL lr-4 -->
-                        <h3 class="font-bold text-white">Judul Karya 4</h3>
-                        <!-- ✏️ GANTI DESKRIPSI lr-4 -->
-                        <p class="text-xs text-rose-100/70 mt-2">Deskripsi karya 4 di sini...</p>
-                        <div class="flex items-center justify-between mt-3 pt-2 border-t border-white/10">
-                            <p class="text-[11px] text-rose-300/60">Adobe Lightroom</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- ⬇️ LIGHTROOM KARYA 5 — BELUM ADA GAMBAR -->
-                <div class="card-karya bg-white/5 border border-white/10 rounded-2xl overflow-hidden flex flex-col group hover:border-amber-400/40 hover:shadow-xl transition-all duration-300">
-                    <div class="img-placeholder">
-                        <!-- 🖼️ GANTI BAGIAN INI DENGAN TAG IMG lr-5 -->
-                        <i class="fa-solid fa-image text-white/20 text-4xl mb-3"></i>
-                        <p class="text-white/30 text-xs">Belum ada gambar</p>
-                    </div>
-                    <div class="p-5 flex-1 flex flex-col justify-between">
-                        <!-- ✏️ GANTI JUDUL lr-5 -->
-                        <h3 class="font-bold text-white">Judul Karya 5</h3>
-                        <!-- ✏️ GANTI DESKRIPSI lr-5 -->
-                        <p class="text-xs text-rose-100/70 mt-2">Deskripsi karya 5 di sini...</p>
-                        <div class="flex items-center justify-between mt-3 pt-2 border-t border-white/10">
-                            <p class="text-[11px] text-rose-300/60">Adobe Lightroom</p>
-                        </div>
-                    </div>
-                </div>
-
+            <!-- TAB BUTTONS -->
+            <div class="flex flex-wrap gap-3 mb-10">
+                <button onclick="gantiTab('illustrator')" id="btn-illustrator" class="tab-btn active px-5 py-2.5 rounded-xl font-bold text-sm transition-all">
+                    <i class="fa-solid fa-pen-nib mr-2"></i>Adobe Illustrator
+                </button>
+                <button onclick="gantiTab('lightroom')" id="btn-lightroom" class="tab-btn px-5 py-2.5 rounded-xl font-bold text-sm transition-all">
+                    <i class="fa-solid fa-camera mr-2"></i>Adobe Lightroom
+                </button>
+                <button onclick="gantiTab('canva')" id="btn-canva" class="tab-btn px-5 py-2.5 rounded-xl font-bold text-sm transition-all">
+                    <i class="fa-solid fa-c mr-2"></i>Canva
+                </button>
+                <button onclick="gantiTab('photoshop')" id="btn-photoshop" class="tab-btn px-5 py-2.5 rounded-xl font-bold text-sm transition-all">
+                    <i class="fa-solid fa-wand-magic-sparkles mr-2"></i>Adobe Photoshop
+                </button>
             </div>
-        </div>
 
-        <!-- =========== -->
-        <!-- TAB CANVA   -->
-        <!-- =========== -->
-        <div id="tab-canva" class="tab-content">
-            <div class="grid md:grid-cols-3 sm:grid-cols-2 gap-6">
+            <!-- ======================== -->
+            <!-- TAB ADOBE ILLUSTRATOR    -->
+            <!-- ======================== -->
+            <div id="tab-illustrator" class="tab-content active">
+                <div class="grid md:grid-cols-3 sm:grid-cols-2 gap-6">
 
-                <!-- ⬇️ CANVA KARYA 1 — BELUM ADA GAMBAR -->
-                <div class="card-karya bg-white/5 border border-white/10 rounded-2xl overflow-hidden flex flex-col group hover:border-amber-400/40 hover:shadow-xl transition-all duration-300">
-                    <div class="img-placeholder">
-                        <!-- 🖼️ GANTI BAGIAN INI DENGAN TAG IMG cv-1 -->
-                        <i class="fa-solid fa-image text-white/20 text-4xl mb-3"></i>
-                        <p class="text-white/30 text-xs">Belum ada gambar</p>
-                    </div>
-                    <div class="p-5 flex-1 flex flex-col justify-between">
-                        <!-- ✏️ GANTI JUDUL cv-1 -->
-                        <h3 class="font-bold text-white">Judul Karya 1</h3>
-                        <!-- ✏️ GANTI DESKRIPSI cv-1 -->
-                        <p class="text-xs text-rose-100/70 mt-2">Deskripsi karya 1 di sini...</p>
-                        <div class="flex items-center justify-between mt-3 pt-2 border-t border-white/10">
-                            <p class="text-[11px] text-rose-300/60">Canva</p>
+                    <!-- ⬇️ ILLUSTRATOR KARYA 1 — ADA GAMBAR -->
+                    <div onclick="bukaDetail('il-1')" class="card-karya bg-white/5 border border-white/10 rounded-2xl overflow-hidden flex flex-col group hover:border-amber-400/40 hover:shadow-xl transition-all duration-300">
+                        <div class="relative overflow-hidden bg-black/40">
+                            <!-- 🖼️ GANTI LINK FOTO il-1 -->
+                            <img src="https://github.com/Name999-glich/portofolio/blob/master/New%20folder/poster-01.png?raw=true" alt="il-1" class="w-full h-auto block object-contain group-hover:scale-105 transition-transform duration-500">
+                            <div class="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-all flex items-center justify-center">
+                                <span class="opacity-0 group-hover:opacity-100 bg-amber-400 text-black font-bold text-xs px-4 py-2 rounded-full transition-all"><i class="fa-solid fa-eye mr-1"></i>Lihat Detail</span>
+                            </div>
+                        </div>
+                        <div class="p-5 flex-1 flex flex-col justify-between">
+                            <!-- ✏️ GANTI JUDUL il-1 -->
+                            <h3 class="font-bold text-white">Weekend Big Deals Grocery</h3>
+                            <!-- ✏️ GANTI DESKRIPSI SINGKAT il-1 -->
+                            <p class="text-xs text-rose-100/70 mt-2">Desain brosur promosi informatif dari tugas sekolah.</p>
+                            <div class="flex items-center justify-between mt-3 pt-2 border-t border-white/10">
+                                <p class="text-[11px] text-rose-300/60">Adobe Illustrator</p>
+                                <span class="text-amber-400 text-xs group-hover:translate-x-1 transition-transform">→</span>
+                            </div>
                         </div>
                     </div>
-                </div>
 
-                <!-- ⬇️ CANVA KARYA 2 — BELUM ADA GAMBAR -->
-                <div class="card-karya bg-white/5 border border-white/10 rounded-2xl overflow-hidden flex flex-col group hover:border-amber-400/40 hover:shadow-xl transition-all duration-300">
-                    <div class="img-placeholder">
-                        <!-- 🖼️ GANTI BAGIAN INI DENGAN TAG IMG cv-2 -->
-                        <i class="fa-solid fa-image text-white/20 text-4xl mb-3"></i>
-                        <p class="text-white/30 text-xs">Belum ada gambar</p>
-                    </div>
-                    <div class="p-5 flex-1 flex flex-col justify-between">
-                        <!-- ✏️ GANTI JUDUL cv-2 -->
-                        <h3 class="font-bold text-white">Judul Karya 2</h3>
-                        <!-- ✏️ GANTI DESKRIPSI cv-2 -->
-                        <p class="text-xs text-rose-100/70 mt-2">Deskripsi karya 2 di sini...</p>
-                        <div class="flex items-center justify-between mt-3 pt-2 border-t border-white/10">
-                            <p class="text-[11px] text-rose-300/60">Canva</p>
+                    <!-- ⬇️ ILLUSTRATOR KARYA 2 — BELUM ADA GAMBAR -->
+                    <div onclick="bukaDetail('il-2')" class="card-karya bg-white/5 border border-white/10 rounded-2xl overflow-hidden flex flex-col group hover:border-amber-400/40 hover:shadow-xl transition-all duration-300">
+                        <div class="img-placeholder">
+                            <!-- 🖼️ GANTI INI DENGAN TAG IMG KETIKA SUDAH ADA FOTO il-2 -->
+                            <i class="fa-solid fa-image text-white/20 text-4xl mb-3"></i>
+                            <p class="text-white/30 text-xs">Belum ada gambar</p>
+                        </div>
+                        <div class="p-5 flex-1 flex flex-col justify-between">
+                            <!-- ✏️ GANTI JUDUL il-2 -->
+                            <h3 class="font-bold text-white">Judul Karya 2</h3>
+                            <!-- ✏️ GANTI DESKRIPSI SINGKAT il-2 -->
+                            <p class="text-xs text-rose-100/70 mt-2">Deskripsi singkat karya 2...</p>
+                            <div class="flex items-center justify-between mt-3 pt-2 border-t border-white/10">
+                                <p class="text-[11px] text-rose-300/60">Adobe Illustrator</p>
+                                <span class="text-amber-400 text-xs group-hover:translate-x-1 transition-transform">→</span>
+                            </div>
                         </div>
                     </div>
-                </div>
 
-                <!-- ⬇️ CANVA KARYA 3 — BELUM ADA GAMBAR -->
-                <div class="card-karya bg-white/5 border border-white/10 rounded-2xl overflow-hidden flex flex-col group hover:border-amber-400/40 hover:shadow-xl transition-all duration-300">
-                    <div class="img-placeholder">
-                        <!-- 🖼️ GANTI BAGIAN INI DENGAN TAG IMG cv-3 -->
-                        <i class="fa-solid fa-image text-white/20 text-4xl mb-3"></i>
-                        <p class="text-white/30 text-xs">Belum ada gambar</p>
-                    </div>
-                    <div class="p-5 flex-1 flex flex-col justify-between">
-                        <!-- ✏️ GANTI JUDUL cv-3 -->
-                        <h3 class="font-bold text-white">Judul Karya 3</h3>
-                        <!-- ✏️ GANTI DESKRIPSI cv-3 -->
-                        <p class="text-xs text-rose-100/70 mt-2">Deskripsi karya 3 di sini...</p>
-                        <div class="flex items-center justify-between mt-3 pt-2 border-t border-white/10">
-                            <p class="text-[11px] text-rose-300/60">Canva</p>
+                    <!-- ⬇️ ILLUSTRATOR KARYA 3 -->
+                    <div onclick="bukaDetail('il-3')" class="card-karya bg-white/5 border border-white/10 rounded-2xl overflow-hidden flex flex-col group hover:border-amber-400/40 hover:shadow-xl transition-all duration-300">
+                        <div class="img-placeholder">
+                            <!-- 🖼️ GANTI INI DENGAN TAG IMG il-3 -->
+                            <i class="fa-solid fa-image text-white/20 text-4xl mb-3"></i>
+                            <p class="text-white/30 text-xs">Belum ada gambar</p>
+                        </div>
+                        <div class="p-5 flex-1 flex flex-col justify-between">
+                            <!-- ✏️ GANTI JUDUL il-3 -->
+                            <h3 class="font-bold text-white">Judul Karya 3</h3>
+                            <!-- ✏️ GANTI DESKRIPSI SINGKAT il-3 -->
+                            <p class="text-xs text-rose-100/70 mt-2">Deskripsi singkat karya 3...</p>
+                            <div class="flex items-center justify-between mt-3 pt-2 border-t border-white/10">
+                                <p class="text-[11px] text-rose-300/60">Adobe Illustrator</p>
+                                <span class="text-amber-400 text-xs group-hover:translate-x-1 transition-transform">→</span>
+                            </div>
                         </div>
                     </div>
-                </div>
 
-                <!-- ⬇️ CANVA KARYA 4 — BELUM ADA GAMBAR -->
-                <div class="card-karya bg-white/5 border border-white/10 rounded-2xl overflow-hidden flex flex-col group hover:border-amber-400/40 hover:shadow-xl transition-all duration-300">
-                    <div class="img-placeholder">
-                        <!-- 🖼️ GANTI BAGIAN INI DENGAN TAG IMG cv-4 -->
-                        <i class="fa-solid fa-image text-white/20 text-4xl mb-3"></i>
-                        <p class="text-white/30 text-xs">Belum ada gambar</p>
-                    </div>
-                    <div class="p-5 flex-1 flex flex-col justify-between">
-                        <!-- ✏️ GANTI JUDUL cv-4 -->
-                        <h3 class="font-bold text-white">Judul Karya 4</h3>
-                        <!-- ✏️ GANTI DESKRIPSI cv-4 -->
-                        <p class="text-xs text-rose-100/70 mt-2">Deskripsi karya 4 di sini...</p>
-                        <div class="flex items-center justify-between mt-3 pt-2 border-t border-white/10">
-                            <p class="text-[11px] text-rose-300/60">Canva</p>
+                    <!-- ⬇️ ILLUSTRATOR KARYA 4 -->
+                    <div onclick="bukaDetail('il-4')" class="card-karya bg-white/5 border border-white/10 rounded-2xl overflow-hidden flex flex-col group hover:border-amber-400/40 hover:shadow-xl transition-all duration-300">
+                        <div class="img-placeholder">
+                            <!-- 🖼️ GANTI INI DENGAN TAG IMG il-4 -->
+                            <i class="fa-solid fa-image text-white/20 text-4xl mb-3"></i>
+                            <p class="text-white/30 text-xs">Belum ada gambar</p>
+                        </div>
+                        <div class="p-5 flex-1 flex flex-col justify-between">
+                            <!-- ✏️ GANTI JUDUL il-4 -->
+                            <h3 class="font-bold text-white">Judul Karya 4</h3>
+                            <!-- ✏️ GANTI DESKRIPSI SINGKAT il-4 -->
+                            <p class="text-xs text-rose-100/70 mt-2">Deskripsi singkat karya 4...</p>
+                            <div class="flex items-center justify-between mt-3 pt-2 border-t border-white/10">
+                                <p class="text-[11px] text-rose-300/60">Adobe Illustrator</p>
+                                <span class="text-amber-400 text-xs group-hover:translate-x-1 transition-transform">→</span>
+                            </div>
                         </div>
                     </div>
-                </div>
 
-                <!-- ⬇️ CANVA KARYA 5 — BELUM ADA GAMBAR -->
-                <div class="card-karya bg-white/5 border border-white/10 rounded-2xl overflow-hidden flex flex-col group hover:border-amber-400/40 hover:shadow-xl transition-all duration-300">
-                    <div class="img-placeholder">
-                        <!-- 🖼️ GANTI BAGIAN INI DENGAN TAG IMG cv-5 -->
-                        <i class="fa-solid fa-image text-white/20 text-4xl mb-3"></i>
-                        <p class="text-white/30 text-xs">Belum ada gambar</p>
-                    </div>
-                    <div class="p-5 flex-1 flex flex-col justify-between">
-                        <!-- ✏️ GANTI JUDUL cv-5 -->
-                        <h3 class="font-bold text-white">Judul Karya 5</h3>
-                        <!-- ✏️ GANTI DESKRIPSI cv-5 -->
-                        <p class="text-xs text-rose-100/70 mt-2">Deskripsi karya 5 di sini...</p>
-                        <div class="flex items-center justify-between mt-3 pt-2 border-t border-white/10">
-                            <p class="text-[11px] text-rose-300/60">Canva</p>
+                    <!-- ⬇️ ILLUSTRATOR KARYA 5 -->
+                    <div onclick="bukaDetail('il-5')" class="card-karya bg-white/5 border border-white/10 rounded-2xl overflow-hidden flex flex-col group hover:border-amber-400/40 hover:shadow-xl transition-all duration-300">
+                        <div class="img-placeholder">
+                            <!-- 🖼️ GANTI INI DENGAN TAG IMG il-5 -->
+                            <i class="fa-solid fa-image text-white/20 text-4xl mb-3"></i>
+                            <p class="text-white/30 text-xs">Belum ada gambar</p>
+                        </div>
+                        <div class="p-5 flex-1 flex flex-col justify-between">
+                            <!-- ✏️ GANTI JUDUL il-5 -->
+                            <h3 class="font-bold text-white">Judul Karya 5</h3>
+                            <!-- ✏️ GANTI DESKRIPSI SINGKAT il-5 -->
+                            <p class="text-xs text-rose-100/70 mt-2">Deskripsi singkat karya 5...</p>
+                            <div class="flex items-center justify-between mt-3 pt-2 border-t border-white/10">
+                                <p class="text-[11px] text-rose-300/60">Adobe Illustrator</p>
+                                <span class="text-amber-400 text-xs group-hover:translate-x-1 transition-transform">→</span>
+                            </div>
                         </div>
                     </div>
-                </div>
 
+                </div>
             </div>
-        </div>
 
-        <!-- ====================== -->
-        <!-- TAB ADOBE PHOTOSHOP    -->
-        <!-- ====================== -->
-        <div id="tab-photoshop" class="tab-content">
-            <div class="grid md:grid-cols-3 sm:grid-cols-2 gap-6">
+            <!-- ===================== -->
+            <!-- TAB ADOBE LIGHTROOM   -->
+            <!-- ===================== -->
+            <div id="tab-lightroom" class="tab-content">
+                <div class="grid md:grid-cols-3 sm:grid-cols-2 gap-6">
 
-                <!-- ⬇️ PHOTOSHOP KARYA 1 — ADA GAMBAR -->
-                <div class="card-karya bg-white/5 border border-white/10 rounded-2xl overflow-hidden flex flex-col group hover:border-amber-400/40 hover:shadow-xl transition-all duration-300">
-                    <div class="relative overflow-hidden bg-black/40">
-                        <!-- 🖼️ GANTI LINK FOTO ps-1 DI BAWAH INI -->
-                        <img src="https://github.com/Name999-glich/portofolio/blob/master/New%20folder/IMG_20251001_153507.jpg?raw=true"
-                             alt="ps-1" class="w-full h-auto block object-contain group-hover:scale-105 transition-transform duration-500">
-                    </div>
-                    <div class="p-5 flex-1 flex flex-col justify-between">
-                        <!-- ✏️ GANTI JUDUL ps-1 -->
-                        <h3 class="font-bold text-white">Light in a Dark Heart</h3>
-                        <!-- ✏️ GANTI DESKRIPSI ps-1 -->
-                        <p class="text-xs text-rose-100/70 mt-2">Karya visual kontras tinggi tentang harapan di kondisi gelap.</p>
-                        <div class="flex items-center justify-between mt-3 pt-2 border-t border-white/10">
-                            <p class="text-[11px] text-rose-300/60">Adobe Photoshop</p>
+                    <!-- ⬇️ LIGHTROOM KARYA 1 — ADA GAMBAR -->
+                    <div onclick="bukaDetail('lr-1')" class="card-karya bg-white/5 border border-white/10 rounded-2xl overflow-hidden flex flex-col group hover:border-amber-400/40 hover:shadow-xl transition-all duration-300">
+                        <div class="relative overflow-hidden bg-black/40">
+                            <!-- 🖼️ GANTI LINK FOTO lr-1 -->
+                            <img src="https://github.com/Name999-glich/portofolio/blob/master/New%20folder/IMG_20260324_083130~2.jpg?raw=true" alt="lr-1" class="w-full h-auto block object-contain group-hover:scale-105 transition-transform duration-500">
+                            <div class="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-all flex items-center justify-center">
+                                <span class="opacity-0 group-hover:opacity-100 bg-amber-400 text-black font-bold text-xs px-4 py-2 rounded-full transition-all"><i class="fa-solid fa-eye mr-1"></i>Lihat Detail</span>
+                            </div>
+                        </div>
+                        <div class="p-5 flex-1 flex flex-col justify-between">
+                            <!-- ✏️ GANTI JUDUL lr-1 -->
+                            <h3 class="font-bold text-white">Pensive Teenage Portrait</h3>
+                            <!-- ✏️ GANTI DESKRIPSI SINGKAT lr-1 -->
+                            <p class="text-xs text-rose-100/70 mt-2">Potret reflektif seorang remaja menyatu dengan alam.</p>
+                            <div class="flex items-center justify-between mt-3 pt-2 border-t border-white/10">
+                                <p class="text-[11px] text-rose-300/60">Adobe Lightroom</p>
+                                <span class="text-amber-400 text-xs group-hover:translate-x-1 transition-transform">→</span>
+                            </div>
                         </div>
                     </div>
-                </div>
 
-                <!-- ⬇️ PHOTOSHOP KARYA 2 — BELUM ADA GAMBAR -->
-                <div class="card-karya bg-white/5 border border-white/10 rounded-2xl overflow-hidden flex flex-col group hover:border-amber-400/40 hover:shadow-xl transition-all duration-300">
-                    <div class="img-placeholder">
-                        <!-- 🖼️ GANTI BAGIAN INI DENGAN TAG IMG ps-2 -->
-                        <i class="fa-solid fa-image text-white/20 text-4xl mb-3"></i>
-                        <p class="text-white/30 text-xs">Belum ada gambar</p>
+                    <!-- ⬇️ LIGHTROOM KARYA 2-5 BELUM ADA GAMBAR -->
+                    <div onclick="bukaDetail('lr-2')" class="card-karya bg-white/5 border border-white/10 rounded-2xl overflow-hidden flex flex-col group hover:border-amber-400/40 hover:shadow-xl transition-all duration-300">
+                        <div class="img-placeholder"><!-- 🖼️ GANTI INI DENGAN TAG IMG lr-2 --><i class="fa-solid fa-image text-white/20 text-4xl mb-3"></i><p class="text-white/30 text-xs">Belum ada gambar</p></div>
+                        <div class="p-5 flex-1 flex flex-col justify-between"><!-- ✏️ GANTI JUDUL lr-2 --><h3 class="font-bold text-white">Judul Karya 2</h3><!-- ✏️ GANTI DESKRIPSI lr-2 --><p class="text-xs text-rose-100/70 mt-2">Deskripsi singkat karya 2...</p><div class="flex items-center justify-between mt-3 pt-2 border-t border-white/10"><p class="text-[11px] text-rose-300/60">Adobe Lightroom</p><span class="text-amber-400 text-xs">→</span></div></div>
                     </div>
-                    <div class="p-5 flex-1 flex flex-col justify-between">
-                        <!-- ✏️ GANTI JUDUL ps-2 -->
-                        <h3 class="font-bold text-white">Judul Karya 2</h3>
-                        <!-- ✏️ GANTI DESKRIPSI ps-2 -->
-                        <p class="text-xs text-rose-100/70 mt-2">Deskripsi karya 2 di sini...</p>
-                        <div class="flex items-center justify-between mt-3 pt-2 border-t border-white/10">
-                            <p class="text-[11px] text-rose-300/60">Adobe Photoshop</p>
-                        </div>
+                    <div onclick="bukaDetail('lr-3')" class="card-karya bg-white/5 border border-white/10 rounded-2xl overflow-hidden flex flex-col group hover:border-amber-400/40 hover:shadow-xl transition-all duration-300">
+                        <div class="img-placeholder"><!-- 🖼️ GANTI INI DENGAN TAG IMG lr-3 --><i class="fa-solid fa-image text-white/20 text-4xl mb-3"></i><p class="text-white/30 text-xs">Belum ada gambar</p></div>
+                        <div class="p-5 flex-1 flex flex-col justify-between"><!-- ✏️ GANTI JUDUL lr-3 --><h3 class="font-bold text-white">Judul Karya 3</h3><!-- ✏️ GANTI DESKRIPSI lr-3 --><p class="text-xs text-rose-100/70 mt-2">Deskripsi singkat karya 3...</p><div class="flex items-center justify-between mt-3 pt-2 border-t border-white/10"><p class="text-[11px] text-rose-300/60">Adobe Lightroom</p><span class="text-amber-400 text-xs">→</span></div></div>
                     </div>
-                </div>
+                    <div onclick="bukaDetail('lr-4')" class="card-karya bg-white/5 border border-white/10 rounded-2xl overflow-hidden flex flex-col group hover:border-amber-400/40 hover:shadow-xl transition-all duration-300">
+                        <div class="img-placeholder"><!-- 🖼️ GANTI INI DENGAN TAG IMG lr-4 --><i class="fa-solid fa-image text-white/20 text-4xl mb-3"></i><p class="text-white/30 text-xs">Belum ada gambar</p></div>
+                        <div class="p-5 flex-1 flex flex-col justify-between"><!-- ✏️ GANTI JUDUL lr-4 --><h3 class="font-bold text-white">Judul Karya 4</h3><!-- ✏️ GANTI DESKRIPSI lr-4 --><p class="text-xs text-rose-100/70 mt-2">Deskripsi singkat karya 4...</p><div class="flex items-center justify-between mt-3 pt-2 border-t border-white/10"><p class="text-[11px] text-rose-300/60">Adobe Lightroom</p><span class="text-amber-400 text-xs">→</span></div></div>
+                    </div>
+                    <div onclick="bukaDetail('lr-5')" class="card-karya bg-white/5 border border-white/10 rounded-2xl overflow-hidden flex flex-col group hover:border-amber-400/40 hover:shadow-xl transition-all duration-300">
+                        <div class="img-placeholder"><!-- 🖼️ GANTI INI DENGAN TAG IMG lr-5 --><i class="fa-solid fa-image text-white/20 text-4xl mb-3"></i><p class="text-white/30 text-xs">Belum ada gambar</p></div>
+                        <div class="p-5 flex-1 flex flex-col justify-between"><!-- ✏️ GANTI JUDUL lr-5 --><h3 class="font-bold text-white">Judul Karya 5</h3><!-- ✏️ GANTI DESKRIPSI lr-5 --><p class="text-xs text-rose-100/70 mt-2">Deskripsi singkat karya 5...</p><div class="flex items-center justify-between mt-3 pt-2 border-t border-white/10"><p class="text-[11px] text-rose-300/60">Adobe Lightroom</p><span class="text-amber-400 text-xs">→</span></div></div>
+                    </div>
 
-                <!-- ⬇️ PHOTOSHOP KARYA 3 — BELUM ADA GAMBAR -->
-                <div class="card-karya bg-white/5 border border-white/10 rounded-2xl overflow-hidden flex flex-col group hover:border-amber-400/40 hover:shadow-xl transition-all duration-300">
-                    <div class="img-placeholder">
-                        <!-- 🖼️ GANTI BAGIAN INI DENGAN TAG IMG ps-3 -->
-                        <i class="fa-solid fa-image text-white/20 text-4xl mb-3"></i>
-                        <p class="text-white/30 text-xs">Belum ada gambar</p>
-                    </div>
-                    <div class="p-5 flex-1 flex flex-col justify-between">
-                        <!-- ✏️ GANTI JUDUL ps-3 -->
-                        <h3 class="font-bold text-white">Judul Karya 3</h3>
-                        <!-- ✏️ GANTI DESKRIPSI ps-3 -->
-                        <p class="text-xs text-rose-100/70 mt-2">Deskripsi karya 3 di sini...</p>
-                        <div class="flex items-center justify-between mt-3 pt-2 border-t border-white/10">
-                            <p class="text-[11px] text-rose-300/60">Adobe Photoshop</p>
-                        </div>
-                    </div>
                 </div>
-
-                <!-- ⬇️ PHOTOSHOP KARYA 4 — BELUM ADA GAMBAR -->
-                <div class="card-karya bg-white/5 border border-white/10 rounded-2xl overflow-hidden flex flex-col group hover:border-amber-400/40 hover:shadow-xl transition-all duration-300">
-                    <div class="img-placeholder">
-                        <!-- 🖼️ GANTI BAGIAN INI DENGAN TAG IMG ps-4 -->
-                        <i class="fa-solid fa-image text-white/20 text-4xl mb-3"></i>
-                        <p class="text-white/30 text-xs">Belum ada gambar</p>
-                    </div>
-                    <div class="p-5 flex-1 flex flex-col justify-between">
-                        <!-- ✏️ GANTI JUDUL ps-4 -->
-                        <h3 class="font-bold text-white">Judul Karya 4</h3>
-                        <!-- ✏️ GANTI DESKRIPSI ps-4 -->
-                        <p class="text-xs text-rose-100/70 mt-2">Deskripsi karya 4 di sini...</p>
-                        <div class="flex items-center justify-between mt-3 pt-2 border-t border-white/10">
-                            <p class="text-[11px] text-rose-300/60">Adobe Photoshop</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- ⬇️ PHOTOSHOP KARYA 5 — BELUM ADA GAMBAR -->
-                <div class="card-karya bg-white/5 border border-white/10 rounded-2xl overflow-hidden flex flex-col group hover:border-amber-400/40 hover:shadow-xl transition-all duration-300">
-                    <div class="img-placeholder">
-                        <!-- 🖼️ GANTI BAGIAN INI DENGAN TAG IMG ps-5 -->
-                        <i class="fa-solid fa-image text-white/20 text-4xl mb-3"></i>
-                        <p class="text-white/30 text-xs">Belum ada gambar</p>
-                    </div>
-                    <div class="p-5 flex-1 flex flex-col justify-between">
-                        <!-- ✏️ GANTI JUDUL ps-5 -->
-                        <h3 class="font-bold text-white">Judul Karya 5</h3>
-                        <!-- ✏️ GANTI DESKRIPSI ps-5 -->
-                        <p class="text-xs text-rose-100/70 mt-2">Deskripsi karya 5 di sini...</p>
-                        <div class="flex items-center justify-between mt-3 pt-2 border-t border-white/10">
-                            <p class="text-[11px] text-rose-300/60">Adobe Photoshop</p>
-                        </div>
-                    </div>
-                </div>
-
             </div>
-        </div>
 
-    </section>
+            <!-- =========== -->
+            <!-- TAB CANVA   -->
+            <!-- =========== -->
+            <div id="tab-canva" class="tab-content">
+                <div class="grid md:grid-cols-3 sm:grid-cols-2 gap-6">
+                    <div onclick="bukaDetail('cv-1')" class="card-karya bg-white/5 border border-white/10 rounded-2xl overflow-hidden flex flex-col group hover:border-amber-400/40 hover:shadow-xl transition-all duration-300">
+                        <div class="img-placeholder"><!-- 🖼️ GANTI INI DENGAN TAG IMG cv-1 --><i class="fa-solid fa-image text-white/20 text-4xl mb-3"></i><p class="text-white/30 text-xs">Belum ada gambar</p></div>
+                        <div class="p-5 flex-1 flex flex-col justify-between"><!-- ✏️ GANTI JUDUL cv-1 --><h3 class="font-bold text-white">Judul Karya 1</h3><!-- ✏️ GANTI DESKRIPSI cv-1 --><p class="text-xs text-rose-100/70 mt-2">Deskripsi singkat karya 1...</p><div class="flex items-center justify-between mt-3 pt-2 border-t border-white/10"><p class="text-[11px] text-rose-300/60">Canva</p><span class="text-amber-400 text-xs">→</span></div></div>
+                    </div>
+                    <div onclick="bukaDetail('cv-2')" class="card-karya bg-white/5 border border-white/10 rounded-2xl overflow-hidden flex flex-col group hover:border-amber-400/40 hover:shadow-xl transition-all duration-300">
+                        <div class="img-placeholder"><!-- 🖼️ GANTI INI DENGAN TAG IMG cv-2 --><i class="fa-solid fa-image text-white/20 text-4xl mb-3"></i><p class="text-white/30 text-xs">Belum ada gambar</p></div>
+                        <div class="p-5 flex-1 flex flex-col justify-between"><!-- ✏️ GANTI JUDUL cv-2 --><h3 class="font-bold text-white">Judul Karya 2</h3><!-- ✏️ GANTI DESKRIPSI cv-2 --><p class="text-xs text-rose-100/70 mt-2">Deskripsi singkat karya 2...</p><div class="flex items-center justify-between mt-3 pt-2 border-t border-white/10"><p class="text-[11px] text-rose-300/60">Canva</p><span class="text-amber-400 text-xs">→</span></div></div>
+                    </div>
+                    <div onclick="bukaDetail('cv-3')" class="card-karya bg-white/5 border border-white/10 rounded-2xl overflow-hidden flex flex-col group hover:border-amber-400/40 hover:shadow-xl transition-all duration-300">
+                        <div class="img-placeholder"><!-- 🖼️ GANTI INI DENGAN TAG IMG cv-3 --><i class="fa-solid fa-image text-white/20 text-4xl mb-3"></i><p class="text-white/30 text-xs">Belum ada gambar</p></div>
+                        <div class="p-5 flex-1 flex flex-col justify-between"><!-- ✏️ GANTI JUDUL cv-3 --><h3 class="font-bold text-white">Judul Karya 3</h3><!-- ✏️ GANTI DESKRIPSI cv-3 --><p class="text-xs text-rose-100/70 mt-2">Deskripsi singkat karya 3...</p><div class="flex items-center justify-between mt-3 pt-2 border-t border-white/10"><p class="text-[11px] text-rose-300/60">Canva</p><span class="text-amber-400 text-xs">→</span></div></div>
+                    </div>
+                    <div onclick="bukaDetail('cv-4')" class="card-karya bg-white/5 border border-white/10 rounded-2xl overflow-hidden flex flex-col group hover:border-amber-400/40 hover:shadow-xl transition-all duration-300">
+                        <div class="img-placeholder"><!-- 🖼️ GANTI INI DENGAN TAG IMG cv-4 --><i class="fa-solid fa-image text-white/20 text-4xl mb-3"></i><p class="text-white/30 text-xs">Belum ada gambar</p></div>
+                        <div class="p-5 flex-1 flex flex-col justify-between"><!-- ✏️ GANTI JUDUL cv-4 --><h3 class="font-bold text-white">Judul Karya 4</h3><!-- ✏️ GANTI DESKRIPSI cv-4 --><p class="text-xs text-rose-100/70 mt-2">Deskripsi singkat karya 4...</p><div class="flex items-center justify-between mt-3 pt-2 border-t border-white/10"><p class="text-[11px] text-rose-300/60">Canva</p><span class="text-amber-400 text-xs">→</span></div></div>
+                    </div>
+                    <div onclick="bukaDetail('cv-5')" class="card-karya bg-white/5 border border-white/10 rounded-2xl overflow-hidden flex flex-col group hover:border-amber-400/40 hover:shadow-xl transition-all duration-300">
+                        <div class="img-placeholder"><!-- 🖼️ GANTI INI DENGAN TAG IMG cv-5 --><i class="fa-solid fa-image text-white/20 text-4xl mb-3"></i><p class="text-white/30 text-xs">Belum ada gambar</p></div>
+                        <div class="p-5 flex-1 flex flex-col justify-between"><!-- ✏️ GANTI JUDUL cv-5 --><h3 class="font-bold text-white">Judul Karya 5</h3><!-- ✏️ GANTI DESKRIPSI cv-5 --><p class="text-xs text-rose-100/70 mt-2">Deskripsi singkat karya 5...</p><div class="flex items-center justify-between mt-3 pt-2 border-t border-white/10"><p class="text-[11px] text-rose-300/60">Canva</p><span class="text-amber-400 text-xs">→</span></div></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ====================== -->
+            <!-- TAB ADOBE PHOTOSHOP    -->
+            <!-- ====================== -->
+            <div id="tab-photoshop" class="tab-content">
+                <div class="grid md:grid-cols-3 sm:grid-cols-2 gap-6">
+
+                    <!-- ⬇️ PHOTOSHOP KARYA 1 — ADA GAMBAR -->
+                    <div onclick="bukaDetail('ps-1')" class="card-karya bg-white/5 border border-white/10 rounded-2xl overflow-hidden flex flex-col group hover:border-amber-400/40 hover:shadow-xl transition-all duration-300">
+                        <div class="relative overflow-hidden bg-black/40">
+                            <!-- 🖼️ GANTI LINK FOTO ps-1 -->
+                            <img src="https://github.com/Name999-glich/portofolio/blob/master/New%20folder/IMG_20251001_153507.jpg?raw=true" alt="ps-1" class="w-full h-auto block object-contain group-hover:scale-105 transition-transform duration-500">
+                            <div class="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-all flex items-center justify-center">
+                                <span class="opacity-0 group-hover:opacity-100 bg-amber-400 text-black font-bold text-xs px-4 py-2 rounded-full transition-all"><i class="fa-solid fa-eye mr-1"></i>Lihat Detail</span>
+                            </div>
+                        </div>
+                        <div class="p-5 flex-1 flex flex-col justify-between">
+                            <!-- ✏️ GANTI JUDUL ps-1 -->
+                            <h3 class="font-bold text-white">Light in a Dark Heart</h3>
+                            <!-- ✏️ GANTI DESKRIPSI SINGKAT ps-1 -->
+                            <p class="text-xs text-rose-100/70 mt-2">Karya visual kontras tinggi tentang harapan di kondisi gelap.</p>
+                            <div class="flex items-center justify-between mt-3 pt-2 border-t border-white/10">
+                                <p class="text-[11px] text-rose-300/60">Adobe Photoshop</p>
+                                <span class="text-amber-400 text-xs group-hover:translate-x-1 transition-transform">→</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ⬇️ PHOTOSHOP KARYA 2-5 BELUM ADA GAMBAR -->
+                    <div onclick="bukaDetail('ps-2')" class="card-karya bg-white/5 border border-white/10 rounded-2xl overflow-hidden flex flex-col group hover:border-amber-400/40 hover:shadow-xl transition-all duration-300">
+                        <div class="img-placeholder"><!-- 🖼️ GANTI INI DENGAN TAG IMG ps-2 --><i class="fa-solid fa-image text-white/20 text-4xl mb-3"></i><p class="text-white/30 text-xs">Belum ada gambar</p></div>
+                        <div class="p-5 flex-1 flex flex-col justify-between"><!-- ✏️ GANTI JUDUL ps-2 --><h3 class="font-bold text-white">Judul Karya 2</h3><!-- ✏️ GANTI DESKRIPSI ps-2 --><p class="text-xs text-rose-100/70 mt-2">Deskripsi singkat karya 2...</p><div class="flex items-center justify-between mt-3 pt-2 border-t border-white/10"><p class="text-[11px] text-rose-300/60">Adobe Photoshop</p><span class="text-amber-400 text-xs">→</span></div></div>
+                    </div>
+                    <div onclick="bukaDetail('ps-3')" class="card-karya bg-white/5 border border-white/10 rounded-2xl overflow-hidden flex flex-col group hover:border-amber-400/40 hover:shadow-xl transition-all duration-300">
+                        <div class="img-placeholder"><!-- 🖼️ GANTI INI DENGAN TAG IMG ps-3 --><i class="fa-solid fa-image text-white/20 text-4xl mb-3"></i><p class="text-white/30 text-xs">Belum ada gambar</p></div>
+                        <div class="p-5 flex-1 flex flex-col justify-between"><!-- ✏️ GANTI JUDUL ps-3 --><h3 class="font-bold text-white">Judul Karya 3</h3><!-- ✏️ GANTI DESKRIPSI ps-3 --><p class="text-xs text-rose-100/70 mt-2">Deskripsi singkat karya 3...</p><div class="flex items-center justify-between mt-3 pt-2 border-t border-white/10"><p class="text-[11px] text-rose-300/60">Adobe Photoshop</p><span class="text-amber-400 text-xs">→</span></div></div>
+                    </div>
+                    <div onclick="bukaDetail('ps-4')" class="card-karya bg-white/5 border border-white/10 rounded-2xl overflow-hidden flex flex-col group hover:border-amber-400/40 hover:shadow-xl transition-all duration-300">
+                        <div class="img-placeholder"><!-- 🖼️ GANTI INI DENGAN TAG IMG ps-4 --><i class="fa-solid fa-image text-white/20 text-4xl mb-3"></i><p class="text-white/30 text-xs">Belum ada gambar</p></div>
+                        <div class="p-5 flex-1 flex flex-col justify-between"><!-- ✏️ GANTI JUDUL ps-4 --><h3 class="font-bold text-white">Judul Karya 4</h3><!-- ✏️ GANTI DESKRIPSI ps-4 --><p class="text-xs text-rose-100/70 mt-2">Deskripsi singkat karya 4...</p><div class="flex items-center justify-between mt-3 pt-2 border-t border-white/10"><p class="text-[11px] text-rose-300/60">Adobe Photoshop</p><span class="text-amber-400 text-xs">→</span></div></div>
+                    </div>
+                    <div onclick="bukaDetail('ps-5')" class="card-karya bg-white/5 border border-white/10 rounded-2xl overflow-hidden flex flex-col group hover:border-amber-400/40 hover:shadow-xl transition-all duration-300">
+                        <div class="img-placeholder"><!-- 🖼️ GANTI INI DENGAN TAG IMG ps-5 --><i class="fa-solid fa-image text-white/20 text-4xl mb-3"></i><p class="text-white/30 text-xs">Belum ada gambar</p></div>
+                        <div class="p-5 flex-1 flex flex-col justify-between"><!-- ✏️ GANTI JUDUL ps-5 --><h3 class="font-bold text-white">Judul Karya 5</h3><!-- ✏️ GANTI DESKRIPSI ps-5 --><p class="text-xs text-rose-100/70 mt-2">Deskripsi singkat karya 5...</p><div class="flex items-center justify-between mt-3 pt-2 border-t border-white/10"><p class="text-[11px] text-rose-300/60">Adobe Photoshop</p><span class="text-amber-400 text-xs">→</span></div></div>
+                    </div>
+
+                </div>
+            </div>
+
+        </section>
+    </div>
+
+    <!-- ===================== -->
+    <!-- HALAMAN DETAIL KARYA  -->
+    <!-- ===================== -->
+
+    <!-- DETAIL il-1 -->
+    <div id="halaman-il-1" class="halaman">
+        <section class="py-16 max-w-4xl mx-auto px-4">
+            <button onclick="kembali()" class="flex items-center space-x-2 text-amber-300 hover:text-amber-400 mb-8 text-sm font-bold transition-colors">
+                <i class="fa-solid fa-arrow-left"></i><span>Kembali ke Semua Karya</span>
+            </button>
+            <div class="grid md:grid-cols-2 gap-10 items-start">
+                <div class="bg-black/40 rounded-2xl overflow-hidden border border-white/10">
+                    <!-- 🖼️ GANTI LINK FOTO DETAIL il-1 -->
+                    <img src="https://github.com/Name999-glich/portofolio/blob/master/New%20folder/poster-01.png?raw=true" alt="il-1" class="w-full h-auto object-contain">
+                </div>
+                <div class="space-y-5">
+                    <div>
+                        <span class="text-xs font-bold uppercase tracking-widest text-amber-300">Adobe Illustrator</span>
+                        <!-- ✏️ GANTI JUDUL DETAIL il-1 -->
+                        <h1 class="text-3xl font-black text-white mt-2">Weekend Big Deals Grocery</h1>
+                    </div>
+                    <!-- ✏️ GANTI DESKRIPSI PANJANG il-1 -->
+                    <p class="text-rose-100/80 leading-relaxed">Desain brosur promosi informatif dari tugas sekolah yang tertata rapi. Menampilkan berbagai penawaran produk grocery dengan layout yang bersih dan menarik perhatian pembaca.</p>
+                    <div class="space-y-3">
+                        <div class="flex items-center space-x-3 bg-white/5 border border-white/10 rounded-xl p-3">
+                            <i class="fa-solid fa-pen-nib text-amber-400 w-5"></i>
+                            <div><p class="text-xs text-rose-200/50">Software</p><p class="text-sm font-bold text-white">Adobe Illustrator</p></div>
+                        </div>
+                        <!-- ✏️ GANTI KATEGORI il-1 -->
+                        <div class="flex items-center space-x-3 bg-white/5 border border-white/10 rounded-xl p-3">
+                            <i class="fa-solid fa-tag text-amber-400 w-5"></i>
+                            <div><p class="text-xs text-rose-200/50">Kategori</p><p class="text-sm font-bold text-white">Desain Brosur & Promosi</p></div>
+                        </div>
+                        <!-- ✏️ GANTI KETERANGAN TAMBAHAN il-1 -->
+                        <div class="flex items-center space-x-3 bg-white/5 border border-white/10 rounded-xl p-3">
+                            <i class="fa-solid fa-graduation-cap text-amber-400 w-5"></i>
+                            <div><p class="text-xs text-rose-200/50">Dibuat untuk</p><p class="text-sm font-bold text-white">Tugas Sekolah SMKN 5 Tangsel</p></div>
+                        </div>
+                    </div>
+                    <div class="flex gap-3 pt-2">
+                        <button onclick="bukaDetail('il-2')" class="flex-1 py-3 bg-white/5 border border-white/10 text-rose-100 font-bold rounded-xl hover:bg-white/10 transition-all text-sm">Karya Berikutnya →</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- DETAIL il-2 -->
+    <div id="halaman-il-2" class="halaman">
+        <section class="py-16 max-w-4xl mx-auto px-4">
+            <button onclick="kembali()" class="flex items-center space-x-2 text-amber-300 hover:text-amber-400 mb-8 text-sm font-bold transition-colors">
+                <i class="fa-solid fa-arrow-left"></i><span>Kembali ke Semua Karya</span>
+            </button>
+            <div class="grid md:grid-cols-2 gap-10 items-start">
+                <div class="bg-black/40 rounded-2xl overflow-hidden border border-white/10 img-placeholder" style="min-height:250px;">
+                    <!-- 🖼️ GANTI INI DENGAN TAG IMG DETAIL il-2 -->
+                    <i class="fa-solid fa-image text-white/20 text-5xl mb-3"></i>
+                    <p class="text-white/30 text-sm">Belum ada gambar</p>
+                </div>
+                <div class="space-y-5">
+                    <div>
+                        <span class="text-xs font-bold uppercase tracking-widest text-amber-300">Adobe Illustrator</span>
+                        <!-- ✏️ GANTI JUDUL DETAIL il-2 -->
+                        <h1 class="text-3xl font-black text-white mt-2">Judul Karya 2</h1>
+                    </div>
+                    <!-- ✏️ GANTI DESKRIPSI PANJANG il-2 -->
+                    <p class="text-rose-100/80 leading-relaxed">Deskripsi lengkap karya 2 di sini. Ceritakan proses pembuatan, tujuan, dan hal menarik dari karya ini.</p>
+                    <div class="space-y-3">
+                        <div class="flex items-center space-x-3 bg-white/5 border border-white/10 rounded-xl p-3">
+                            <i class="fa-solid fa-pen-nib text-amber-400 w-5"></i>
+                            <div><p class="text-xs text-rose-200/50">Software</p><p class="text-sm font-bold text-white">Adobe Illustrator</p></div>
+                        </div>
+                        <!-- ✏️ GANTI KATEGORI il-2 -->
+                        <div class="flex items-center space-x-3 bg-white/5 border border-white/10 rounded-xl p-3">
+                            <i class="fa-solid fa-tag text-amber-400 w-5"></i>
+                            <div><p class="text-xs text-rose-200/50">Kategori</p><p class="text-sm font-bold text-white">Kategori Karya 2</p></div>
+                        </div>
+                        <!-- ✏️ GANTI KETERANGAN TAMBAHAN il-2 -->
+                        <div class="flex items-center space-x-3 bg-white/5 border border-white/10 rounded-xl p-3">
+                            <i class="fa-solid fa-info-circle text-amber-400 w-5"></i>
+                            <div><p class="text-xs text-rose-200/50">Keterangan</p><p class="text-sm font-bold text-white">Keterangan tambahan di sini</p></div>
+                        </div>
+                    </div>
+                    <div class="flex gap-3 pt-2">
+                        <button onclick="bukaDetail('il-1')" class="flex-1 py-3 bg-white/5 border border-white/10 text-rose-100 font-bold rounded-xl hover:bg-white/10 transition-all text-sm">← Sebelumnya</button>
+                        <button onclick="bukaDetail('il-3')" class="flex-1 py-3 bg-white/5 border border-white/10 text-rose-100 font-bold rounded-xl hover:bg-white/10 transition-all text-sm">Berikutnya →</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- DETAIL il-3 -->
+    <div id="halaman-il-3" class="halaman">
+        <section class="py-16 max-w-4xl mx-auto px-4">
+            <button onclick="kembali()" class="flex items-center space-x-2 text-amber-300 hover:text-amber-400 mb-8 text-sm font-bold transition-colors"><i class="fa-solid fa-arrow-left"></i><span>Kembali ke Semua Karya</span></button>
+            <div class="grid md:grid-cols-2 gap-10 items-start">
+                <div class="bg-black/40 rounded-2xl overflow-hidden border border-white/10 img-placeholder" style="min-height:250px;"><!-- 🖼️ GANTI INI DENGAN TAG IMG DETAIL il-3 --><i class="fa-solid fa-image text-white/20 text-5xl mb-3"></i><p class="text-white/30 text-sm">Belum ada gambar</p></div>
+                <div class="space-y-5">
+                    <div><span class="text-xs font-bold uppercase tracking-widest text-amber-300">Adobe Illustrator</span><!-- ✏️ GANTI JUDUL DETAIL il-3 --><h1 class="text-3xl font-black text-white mt-2">Judul Karya 3</h1></div>
+                    <!-- ✏️ GANTI DESKRIPSI PANJANG il-3 --><p class="text-rose-100/80 leading-relaxed">Deskripsi lengkap karya 3 di sini...</p>
+                    <div class="space-y-3">
+                        <div class="flex items-center space-x-3 bg-white/5 border border-white/10 rounded-xl p-3"><i class="fa-solid fa-pen-nib text-amber-400 w-5"></i><div><p class="text-xs text-rose-200/50">Software</p><p class="text-sm font-bold text-white">Adobe Illustrator</p></div></div>
+                        <!-- ✏️ GANTI KATEGORI il-3 --><div class="flex items-center space-x-3 bg-white/5 border border-white/10 rounded-xl p-3"><i class="fa-solid fa-tag text-amber-400 w-5"></i><div><p class="text-xs text-rose-200/50">Kategori</p><p class="text-sm font-bold text-white">Kategori Karya 3</p></div></div>
+                        <!-- ✏️ GANTI KETERANGAN il-3 --><div class="flex items-center space-x-3 bg-white/5 border border-white/10 rounded-xl p-3"><i class="fa-solid fa-info-circle text-amber-400 w-5"></i><div><p class="text-xs text-rose-200/50">Keterangan</p><p class="text-sm font-bold text-white">Keterangan tambahan di sini</p></div></div>
+                    </div>
+                    <div class="flex gap-3 pt-2"><button onclick="bukaDetail('il-2')" class="flex-1 py-3 bg-white/5 border border-white/10 text-rose-100 font-bold rounded-xl hover:bg-white/10 transition-all text-sm">← Sebelumnya</button><button onclick="bukaDetail('il-4')" class="flex-1 py-3 bg-white/5 border border-white/10 text-rose-100 font-bold rounded-xl hover:bg-white/10 transition-all text-sm">Berikutnya →</button></div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- DETAIL il-4 -->
+    <div id="halaman-il-4" class="halaman">
+        <section class="py-16 max-w-4xl mx-auto px-4">
+            <button onclick="kembali()" class="flex items-center space-x-2 text-amber-300 hover:text-amber-400 mb-8 text-sm font-bold transition-colors"><i class="fa-solid fa-arrow-left"></i><span>Kembali ke Semua Karya</span></button>
+            <div class="grid md:grid-cols-2 gap-10 items-start">
+                <div class="bg-black/40 rounded-2xl overflow-hidden border border-white/10 img-placeholder" style="min-height:250px;"><!-- 🖼️ GANTI INI DENGAN TAG IMG DETAIL il-4 --><i class="fa-solid fa-image text-white/20 text-5xl mb-3"></i><p class="text-white/30 text-sm">Belum ada gambar</p></div>
+                <div class="space-y-5">
+                    <div><span class="text-xs font-bold uppercase tracking-widest text-amber-300">Adobe Illustrator</span><!-- ✏️ GANTI JUDUL DETAIL il-4 --><h1 class="text-3xl font-black text-white mt-2">Judul Karya 4</h1></div>
+                    <!-- ✏️ GANTI DESKRIPSI PANJANG il-4 --><p class="text-rose-100/80 leading-relaxed">Deskripsi lengkap karya 4 di sini...</p>
+                    <div class="space-y-3">
+                        <div class="flex items-center space-x-3 bg-white/5 border border-white/10 rounded-xl p-3"><i class="fa-solid fa-pen-nib text-amber-400 w-5"></i><div><p class="text-xs text-rose-200/50">Software</p><p class="text-sm font-bold text-white">Adobe Illustrator</p></div></div>
+                        <!-- ✏️ GANTI KATEGORI il-4 --><div class="flex items-center space-x-3 bg-white/5 border border-white/10 rounded-xl p-3"><i class="fa-solid fa-tag text-amber-400 w-5"></i><div><p class="text-xs text-rose-200/50">Kategori</p><p class="text-sm font-bold text-white">Kategori Karya 4</p></div></div>
+                        <!-- ✏️ GANTI KETERANGAN il-4 --><div class="flex items-center space-x-3 bg-white/5 border border-white/10 rounded-xl p-3"><i class="fa-solid fa-info-circle text-amber-400 w-5"></i><div><p class="text-xs text-rose-200/50">Keterangan</p><p class="text-sm font-bold text-white">Keterangan tambahan di sini</p></div></div>
+                    </div>
+                    <div class="flex gap-3 pt-2"><button onclick="bukaDetail('il-3')" class="flex-1 py-3 bg-white/5 border border-white/10 text-rose-100 font-bold rounded-xl hover:bg-white/10 transition-all text-sm">← Sebelumnya</button><button onclick="bukaDetail('il-5')" class="flex-1 py-3 bg-white/5 border border-white/10 text-rose-100 font-bold rounded-xl hover:bg-white/10 transition-all text-sm">Berikutnya →</button></div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- DETAIL il-5 -->
+    <div id="halaman-il-5" class="halaman">
+        <section class="py-16 max-w-4xl mx-auto px-4">
+            <button onclick="kembali()" class="flex items-center space-x-2 text-amber-300 hover:text-amber-400 mb-8 text-sm font-bold transition-colors"><i class="fa-solid fa-arrow-left"></i><span>Kembali ke Semua Karya</span></button>
+            <div class="grid md:grid-cols-2 gap-10 items-start">
+                <div class="bg-black/40 rounded-2xl overflow-hidden border border-white/10 img-placeholder" style="min-height:250px;"><!-- 🖼️ GANTI INI DENGAN TAG IMG DETAIL il-5 --><i class="fa-solid fa-image text-white/20 text-5xl mb-3"></i><p class="text-white/30 text-sm">Belum ada gambar</p></div>
+                <div class="space-y-5">
+                    <div><span class="text-xs font-bold uppercase tracking-widest text-amber-300">Adobe Illustrator</span><!-- ✏️ GANTI JUDUL DETAIL il-5 --><h1 class="text-3xl font-black text-white mt-2">Judul Karya 5</h1></div>
+                    <!-- ✏️ GANTI DESKRIPSI PANJANG il-5 --><p class="text-rose-100/80 leading-relaxed">Deskripsi lengkap karya 5 di sini...</p>
+                    <div class="space-y-3">
+                        <div class="flex items-center space-x-3 bg-white/5 border border-white/10 rounded-xl p-3"><i class="fa-solid fa-pen-nib text-amber-400 w-5"></i><div><p class="text-xs text-rose-200/50">Software</p><p class="text-sm font-bold text-white">Adobe Illustrator</p></div></div>
+                        <!-- ✏️ GANTI KATEGORI il-5 --><div class="flex items-center space-x-3 bg-white/5 border border-white/10 rounded-xl p-3"><i class="fa-solid fa-tag text-amber-400 w-5"></i><div><p class="text-xs text-rose-200/50">Kategori</p><p class="text-sm font-bold text-white">Kategori Karya 5</p></div></div>
+                        <!-- ✏️ GANTI KETERANGAN il-5 --><div class="flex items-center space-x-3 bg-white/5 border border-white/10 rounded-xl p-3"><i class="fa-solid fa-info-circle text-amber-400 w-5"></i><div><p class="text-xs text-rose-200/50">Keterangan</p><p class="text-sm font-bold text-white">Keterangan tambahan di sini</p></div></div>
+                    </div>
+                    <div class="flex gap-3 pt-2"><button onclick="bukaDetail('il-4')" class="flex-1 py-3 bg-white/5 border border-white/10 text-rose-100 font-bold rounded-xl hover:bg-white/10 transition-all text-sm">← Sebelumnya</button></div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- DETAIL lr-1 -->
+    <div id="halaman-lr-1" class="halaman">
+        <section class="py-16 max-w-4xl mx-auto px-4">
+            <button onclick="kembali()" class="flex items-center space-x-2 text-amber-300 hover:text-amber-400 mb-8 text-sm font-bold transition-colors"><i class="fa-solid fa-arrow-left"></i><span>Kembali ke Semua Karya</span></button>
+            <div class="grid md:grid-cols-2 gap-10 items-start">
+                <div class="bg-black/40 rounded-2xl overflow-hidden border border-white/10">
+                    <!-- 🖼️ GANTI LINK FOTO DETAIL lr-1 -->
+                    <img src="https://github.com/Name999-glich/portofolio/blob/master/New%20folder/IMG_20260324_083130~2.jpg?raw=true" alt="lr-1" class="w-full h-auto object-contain">
+                </div>
+                <div class="space-y-5">
+                    <div><span class="text-xs font-bold uppercase tracking-widest text-amber-300">Adobe Lightroom</span><!-- ✏️ GANTI JUDUL DETAIL lr-1 --><h1 class="text-3xl font-black text-white mt-2">Pensive Teenage Portrait</h1></div>
+                    <!-- ✏️ GANTI DESKRIPSI PANJANG lr-1 --><p class="text-rose-100/80 leading-relaxed">Potret reflektif seorang subjek remaja yang menyatu dengan keindahan alam. Foto ini menangkap momen kontemplatif dengan nuansa warna yang dalam.</p>
+                    <div class="space-y-3">
+                        <div class="flex items-center space-x-3 bg-white/5 border border-white/10 rounded-xl p-3"><i class="fa-solid fa-camera text-amber-400 w-5"></i><div><p class="text-xs text-rose-200/50">Software</p><p class="text-sm font-bold text-white">Adobe Lightroom</p></div></div>
+                        <!-- ✏️ GANTI KATEGORI lr-1 --><div class="flex items-center space-x-3 bg-white/5 border border-white/10 rounded-xl p-3"><i class="fa-solid fa-tag text-amber-400 w-5"></i><div><p class="text-xs text-rose-200/50">Kategori</p><p class="text-sm font-bold text-white">Fotografi Portrait</p></div></div>
+                        <!-- ✏️ GANTI TEKNIK lr-1 --><div class="flex items-center space-x-3 bg-white/5 border border-white/10 rounded-xl p-3"><i class="fa-solid fa-palette text-amber-400 w-5"></i><div><p class="text-xs text-rose-200/50">Teknik</p><p class="text-sm font-bold text-white">Color Grading & Retouching</p></div></div>
+                    </div>
+                    <div class="flex gap-3 pt-2"><button onclick="bukaDetail('lr-2')" class="flex-1 py-3 bg-white/5 border border-white/10 text-rose-100 font-bold rounded-xl hover:bg-white/10 transition-all text-sm">Berikutnya →</button></div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- DETAIL lr-2 sampai lr-5 (template kosong) -->
+    <div id="halaman-lr-2" class="halaman"><section class="py-16 max-w-4xl mx-auto px-4"><button onclick="kembali()" class="flex items-center space-x-2 text-amber-300 hover:text-amber-400 mb-8 text-sm font-bold transition-colors"><i class="fa-solid fa-arrow-left"></i><span>Kembali</span></button><div class="grid md:grid-cols-2 gap-10 items-start"><div class="bg-black/40 rounded-2xl overflow-hidden border border-white/10 img-placeholder" style="min-height:250px;"><!-- 🖼️ GANTI TAG IMG lr-2 --><i class="fa-solid fa-image text-white/20 text-5xl mb-3"></i><p class="text-white/30 text-sm">Belum ada gambar</p></div><div class="space-y-5"><div><span class="text-xs font-bold uppercase tracking-widest text-amber-300">Adobe Lightroom</span><!-- ✏️ GANTI JUDUL lr-2 --><h1 class="text-3xl font-black text-white mt-2">Judul Karya 2</h1></div><!-- ✏️ GANTI DESKRIPSI lr-2 --><p class="text-rose-100/80 leading-relaxed">Deskripsi lengkap karya 2...</p><div class="space-y-3"><div class="flex items-center space-x-3 bg-white/5 border border-white/10 rounded-xl p-3"><i class="fa-solid fa-camera text-amber-400 w-5"></i><div><p class="text-xs text-rose-200/50">Software</p><p class="text-sm font-bold text-white">Adobe Lightroom</p></div></div><!-- ✏️ GANTI KATEGORI lr-2 --><div class="flex items-center space-x-3 bg-white/5 border border-white/10 rounded-xl p-3"><i class="fa-solid fa-tag text-amber-400 w-5"></i><div><p class="text-xs text-rose-200/50">Kategori</p><p class="text-sm font-bold text-white">Kategori Karya 2</p></div></div></div><div class="flex gap-3 pt-2"><button onclick="bukaDetail('lr-1')" class="flex-1 py-3 bg-white/5 border border-white/10 text-rose-100 font-bold rounded-xl hover:bg-white/10 transition-all text-sm">← Sebelumnya</button><button onclick="bukaDetail('lr-3')" class="flex-1 py-3 bg-white/5 border border-white/10 text-rose-100 font-bold rounded-xl hover:bg-white/10 transition-all text-sm">Berikutnya →</button></div></div></div></section></div>
+    <div id="halaman-lr-3" class="halaman"><section class="py-16 max-w-4xl mx-auto px-4"><button onclick="kembali()" class="flex items-center space-x-2 text-amber-300 hover:text-amber-400 mb-8 text-sm font-bold transition-colors"><i class="fa-solid fa-arrow-left"></i><span>Kembali</span></button><div class="grid md:grid-cols-2 gap-10 items-start"><div class="bg-black/40 rounded-2xl overflow-hidden border border-white/10 img-placeholder" style="min-height:250px;"><!-- 🖼️ GANTI TAG IMG lr-3 --><i class="fa-solid fa-image text-white/20 text-5xl mb-3"></i><p class="text-white/30 text-sm">Belum ada gambar</p></div><div class="space-y-5"><div><span class="text-xs font-bold uppercase tracking-widest text-amber-300">Adobe Lightroom</span><!-- ✏️ GANTI JUDUL lr-3 --><h1 class="text-3xl font-black text-white mt-2">Judul Karya 3</h1></div><!-- ✏️ GANTI DESKRIPSI lr-3 --><p class="text-rose-100/80 leading-relaxed">Deskripsi lengkap karya 3...</p><div class="space-y-3"><div class="flex items-center space-x-3 bg-white/5 border border-white/10 rounded-xl p-3"><i class="fa-solid fa-camera text-amber-400 w-5"></i><div><p class="text-xs text-rose-200/50">Software</p><p class="text-sm font-bold text-white">Adobe Lightroom</p></div></div><!-- ✏️ GANTI KATEGORI lr-3 --><div class="flex items-center space-x-3 bg-white/5 border border-white/10 rounded-xl p-3"><i class="fa-solid fa-tag text-amber-400 w-5"></i><div><p class="text-xs text-rose-200/50">Kategori</p><p class="text-sm font-bold text-white">Kategori Karya 3</p></div></div></div><div class="flex gap-3 pt-2"><button onclick="bukaDetail('lr-2')" class="flex-1 py-3 bg-white/5 border border-white/10 text-rose-100 font-bold rounded-xl hover:bg-white/10 transition-all text-sm">← Sebelumnya</button><button onclick="bukaDetail('lr-4')" class="flex-1 py-3 bg-white/5 border border-white/10 text-rose-100 font-bold rounded-xl hover:bg-white/10 transition-all text-sm">Berikutnya →</button></div></div></div></section></div>
+    <div id="halaman-lr-4" class="halaman"><section class="py-16 max-w-4xl mx-auto px-4"><button onclick="kembali()" class="flex items-center space-x-2 text-amber-300 hover:text-amber-400 mb-8 text-sm font-bold transition-colors"><i class="fa-solid fa-arrow-left"></i><span>Kembali</span></button><div class="grid md:grid-cols-2 gap-10 items-start"><div class="bg-black/40 rounded-2xl overflow-hidden border border-white/10 img-placeholder" style="min-height:250px;"><!-- 🖼️ GANTI TAG IMG lr-4 --><i class="fa-solid fa-image text-white/20 text-5xl mb-3"></i><p class="text-white/30 text-sm">Belum ada gambar</p></div><div class="space-y-5"><div><span class="text-xs font-bold uppercase tracking-widest text-amber-300">Adobe Lightroom</span><!-- ✏️ GANTI JUDUL lr-4 --><h1 class="text-3xl font-black text-white mt-2">Judul Karya 4</h1></div><!-- ✏️ GANTI DESKRIPSI lr-4 --><p class="text-rose-100/80 leading-relaxed">Deskripsi lengkap karya 4...</p><div class="space-y-3"><div class="flex items-center space-x-3 bg-white/5 border border-white/10 rounded-xl p-3"><i class="fa-solid fa-camera text-amber-400 w-5"></i><div><p class="text-xs text-rose-200/50">Software</p><p class="text-sm font-bold text-white">Adobe Lightroom</p></div></div><!-- ✏️ GANTI KATEGORI lr-4 --><div class="flex items-center space-x-3 bg-white/5 border border-white/10 rounded-xl p-3"><i class="fa-solid fa-tag text-amber-400 w-5"></i><div><p class="text-xs text-rose-200/50">Kategori</p><p class="text-sm font-bold text-white">Kategori Karya 4</p></div></div></div><div class="flex gap-3 pt-2"><button onclick="bukaDetail('lr-3')" class="flex-1 py-3 bg-white/5 border border-white/10 text-rose-100 font-bold rounded-xl hover:bg-white/10 transition-all text-sm">← Sebelumnya</button><button onclick="bukaDetail('lr-5')" class="flex-1 py-3 bg-white/5 border border-white/10 text-rose-100 font-bold rounded-xl hover:bg-white/10 transition-all text-sm">Berikutnya →</button></div></div></div></section></div>
+    <div id="halaman-lr-5" class="halaman"><section class="py-16 max-w-4xl mx-auto px-4"><button onclick="kembali()" class="flex items-center space-x-2 text-amber-300 hover:text-amber-400 mb-8 text-sm font-bold transition-colors"><i class="fa-solid fa-arrow-left"></i><span>Kembali</span></button><div class="grid md:grid-cols-2 gap-10 items-start"><div class="bg-black/40 rounded-2xl overflow-hidden border border-white/10 img-placeholder" style="min-height:250px;"><!-- 🖼️ GANTI TAG IMG lr-5 --><i class="fa-solid fa-image text-white/20 text-5xl mb-3"></i><p class="text-white/30 text-sm">Belum ada gambar</p></div><div class="space-y-5"><div><span class="text-xs font-bold uppercase tracking-widest text-amber-300">Adobe Lightroom</span><!-- ✏️ GANTI JUDUL lr-5 --><h1 class="text-3xl font-black text-white mt-2">Judul Karya 5</h1></div><!-- ✏️ GANTI DESKRIPSI lr-5 --><p class="text-rose-100/80 leading-relaxed">Deskripsi lengkap karya 5...</p><div class="space-y-3"><div class="flex items-center space-x-3 bg-white/5 border border-white/10 rounded-xl p-3"><i class="fa-solid fa-camera text-amber-400 w-5"></i><div><p class="text-xs text-rose-200/50">Software</p><p class="text-sm font-bold text-white">Adobe Lightroom</p></div></div><!-- ✏️ GANTI KATEGORI lr-5 --><div class="flex items-center space-x-3 bg-white/5 border border-white/10 rounded-xl p-3"><i class="fa-solid fa-tag text-amber-400 w-5"></i><div><p class="text-xs text-rose-200/50">Kategori</p><p class="text-sm font-bold text-white">Kategori Karya 5</p></div></div></div><div class="flex gap-3 pt-2"><button onclick="bukaDetail('lr-4')" class="flex-1 py-3 bg-white/5 border border-white/10 text-rose-100 font-bold rounded-xl hover:bg-white/10 transition-all text-sm">← Sebelumnya</button></div></div></div></section></div>
+
+    <!-- DETAIL cv-1 sampai cv-5 -->
+    <div id="halaman-cv-1" class="halaman"><section class="py-16 max-w-4xl mx-auto px-4"><button onclick="kembali()" class="flex items-center space-x-2 text-amber-300 hover:text-amber-400 mb-8 text-sm font-bold transition-colors"><i class="fa-solid fa-arrow-left"></i><span>Kembali</span></button><div class="grid md:grid-cols-2 gap-10 items-start"><div class="bg-black/40 rounded-2xl overflow-hidden border border-white/10 img-placeholder" style="min-height:250px;"><!-- 🖼️ GANTI TAG IMG cv-1 --><i class="fa-solid fa-image text-white/20 text-5xl mb-3"></i><p class="text-white/30 text-sm">Belum ada gambar</p></div><div class="space-y-5"><div><span class="text-xs font-bold uppercase tracking-widest text-amber-300">Canva</span><!-- ✏️ GANTI JUDUL cv-1 --><h1 class="text-3xl font-black text-white mt-2">Judul Karya 1</h1></div><!-- ✏️ GANTI DESKRIPSI cv-1 --><p class="text-rose-100/80 leading-relaxed">Deskripsi lengkap karya 1...</p><div class="space-y-3"><div class="flex items-center space-x-3 bg-white/5 border border-white/10 rounded-xl p-3"><i class="fa-solid fa-c text-amber-400 w-5"></i><div><p class="text-xs text-rose-200/50">Software</p><p class="text-sm font-bold text-white">Canva</p></div></div><!-- ✏️ GANTI KATEGORI cv-1 --><div class="flex items-center space-x-3 bg-white/5 border border-white/10 rounded-xl p-3"><i class="fa-solid fa-tag text-amber-400 w-5"></i><div><p class="text-xs text-rose-200/50">Kategori</p><p class="text-sm font-bold text-white">Kategori Karya 1</p></div></div></div><div class="flex gap-3 pt-2"><button onclick="bukaDetail('cv-2')" class="flex-1 py-3 bg-white/5 border border-white/10 text-rose-100 font-bold rounded-xl hover:bg-white/10 transition-all text-sm">Berikutnya →</button></div></div></div></section></div>
+    <div id="halaman-cv-2" class="halaman"><section class="py-16 max-w-4xl mx-auto px-4"><button onclick="kembali()" class="flex items-center space-x-2 text-amber-300 hover:text-amber-400 mb-8 text-sm font-bold transition-colors"><i class="fa-solid fa-arrow-left"></i><span>Kembali</span></button><div class="grid md:grid-cols-2 gap-10 items-start"><div class="bg-black/40 rounded-2xl overflow-hidden border border-white/10 img-placeholder" style="min-height:250px;"><!-- 🖼️ GANTI TAG IMG cv-2 --><i class="fa-solid fa-image text-white/20 text-5xl mb-3"></i><p class="text-white/30 text-sm">Belum ada gambar</p></div><div class="space-y-5"><div><span class="text-xs font-bold uppercase tracking-widest text-amber-300">Canva</span><!-- ✏️ GANTI JUDUL cv-2 --><h1 class="text-3xl font-black text-white mt-2">Judul Karya 2</h1></div><!-- ✏️ GANTI DESKRIPSI cv-2 --><p class="text-rose-100/80 leading-relaxed">Deskripsi lengkap karya 2...</p><div class="space-y-3"><div class="flex items-center space-x-3 bg-white/5 border border-white/10 rounded-xl p-3"><i class="fa-solid fa-c text-amber-400 w-5"></i><div><p class="text-xs text-rose-200/50">Software</p><p class="text-sm font-bold text-white">Canva</p></div></div><!-- ✏️ GANTI KATEGORI cv-2 --><div class="flex items-center space-x-3 bg-white/5 border border-white/10 rounded-xl p-3"><i class="fa-solid fa-tag text-amber-400 w-5"></i><div><p class="text-xs text-rose-200/50">Kategori</p><p class="text-sm font-bold text-white">Kategori Karya 2</p></div></div></div><div class="flex gap-3 pt-2"><button onclick="bukaDetail('cv-1')" class="flex-1 py-3 bg-white/5 border border-white/10 text-rose-100 font-bold rounded-xl hover:bg-white/10 transition-all text-sm">← Sebelumnya</button><button onclick="bukaDetail('cv-3')" class="flex-1 py-3 bg-white/5 border border-white/10 text-rose-100 font-bold rounded-xl hover:bg-white/10 transition-all text-sm">Berikutnya →</button></div></div></div></section></div>
+    <div id="halaman-cv-3" class="halaman"><section class="py-16 max-w-4xl mx-auto px-4"><button onclick="kembali()" class="flex items-center space-x-2 text-amber-300 hover:text-amber-400 mb-8 text-sm font-bold transition-colors"><i class="fa-solid fa-arrow-left"></i><span>Kembali</span></button><div class="grid md:grid-cols-2 gap-10 items-start"><div class="bg-black/40 rounded-2xl overflow-hidden border border-white/10 img-placeholder" style="min-height:250px;"><!-- 🖼️ GANTI TAG IMG cv-3 --><i class="fa-solid fa-image text-white/20 text-5xl mb-3"></i><p class="text-white/30 text-sm">Belum ada gambar</p></div><div class="space-y-5"><div><span class="text-xs font-bold uppercase tracking-widest text-amber-300">Canva</span><!-- ✏️ GANTI JUDUL cv-3 --><h1 class="text-3xl font-black text-white mt-2">Judul Karya 3</h1></div><!-- ✏️ GANTI DESKRIPSI cv-3 --><p class="text-rose-100/80 leading-relaxed">Deskripsi lengkap karya 3...</p><div class="space-y-3"><div class="flex items-center space-x-3 bg-white/5 border border-white/10 rounded-xl p-3"><i class="fa-solid fa-c text-amber-400 w-5"></i><div><p class="text-xs text-rose-200/50">Software</p><p class="text-sm font-bold text-white">Canva</p></div></div><!-- ✏️ GANTI KATEGORI cv-3 --><div class="flex items-center space-x-3 bg-white/5 border border-white/10 rounded-xl p-3"><i class="fa-solid fa-tag text-amber-400 w-5"></i><div><p class="text-xs text-rose-200/50">Kategori</p><p class="text-sm font-bold text-white">Kategori Karya 3</p></div></div></div><div class="flex gap-3 pt-2"><button onclick="bukaDetail('cv-2')" class="flex-1 py-3 bg-white/5 border border-white/10 text-rose-100 font-bold rounded-xl hover:bg-white/10 transition-all text-sm">← Sebelumnya</button><button onclick="bukaDetail('cv-4')" class="flex-1 py-3 bg-white/5 border border-white/10 text-rose-100 font-bold rounded-xl hover:bg-white/10 transition-all text-sm">Berikutnya →</button></div></div></div></section></div>
+    <div id="halaman-cv-4" class="halaman"><section class="py-16 max-w-4xl mx-auto px-4"><button onclick="kembali()" class="flex items-center space-x-2 text-amber-300 hover:text-amber-400 mb-8 text-sm font-bold transition-colors"><i class="fa-solid fa-arrow-left"></i><span>Kembali</span></button><div class="grid md:grid-cols-2 gap-10 items-start"><div class="bg-black/40 rounded-2xl overflow-hidden border border-white/10 img-placeholder" style="min-height:250px;"><!-- 🖼️ GANTI TAG IMG cv-4 --><i class="fa-solid fa-image text-white/20 text-5xl mb-3"></i><p class="text-white/30 text-sm">Belum ada gambar</p></div><div class="space-y-5"><div><span class="text-xs font-bold uppercase tracking-widest text-amber-300">Canva</span><!-- ✏️ GANTI JUDUL cv-4 --><h1 class="text-3xl font-black text-white mt-2">Judul Karya 4</h1></div><!-- ✏️ GANTI DESKRIPSI cv-4 --><p class="text-rose-100/80 leading-relaxed">Deskripsi lengkap karya 4...</p><div class="space-y-3"><div class="flex items-center space-x-3 bg-white/5 border border-white/10 rounded-xl p-3"><i class="fa-solid fa-c text-amber-400 w-5"></i><div><p class="text-xs text-rose-200/50">Software</p><p class="text-sm font-bold text-white">Canva</p></div></div><!-- ✏️ GANTI KATEGORI cv-4 --><div class="flex items-center space-x-3 bg-white/5 border border-white/10 rounded-xl p-3"><i class="fa-solid fa-tag text-amber-400 w-5"></i><div><p class="text-xs text-rose-200/50">Kategori</p><p class="text-sm font-bold text-white">Kategori Karya 4</p></div></div></div><div class="flex gap-3 pt-2"><button onclick="bukaDetail('cv-3')" class="flex-1 py-3 bg-white/5 border border-white/10 text-rose-100 font-bold rounded-xl hover:bg-white/10 transition-all text-sm">← Sebelumnya</button><button onclick="bukaDetail('cv-5')" class="flex-1 py-3 bg-white/5 border border-white/10 text-rose-100 font-bold rounded-xl hover:bg-white/10 transition-all text-sm">Berikutnya →</button></div></div></div></section></div>
+    <div id="halaman-cv-5" class="halaman"><section class="py-16 max-w-4xl mx-auto px-4"><button onclick="kembali()" class="flex items-center space-x-2 text-amber-300 hover:text-amber-400 mb-8 text-sm font-bold transition-colors"><i class="fa-solid fa-arrow-left"></i><span>Kembali</span></button><div class="grid md:grid-cols-2 gap-10 items-start"><div class="bg-black/40 rounded-2xl overflow-hidden border border-white/10 img-placeholder" style="min-height:250px;"><!-- 🖼️ GANTI TAG IMG cv-5 --><i class="fa-solid fa-image text-white/20 text-5xl mb-3"></i><p class="text-white/30 text-sm">Belum ada gambar</p></div><div class="space-y-5"><div><span class="text-xs font-bold uppercase tracking-widest text-amber-300">Canva</span><!-- ✏️ GANTI JUDUL cv-5 --><h1 class="text-3xl font-black text-white mt-2">Judul Karya 5</h1></div><!-- ✏️ GANTI DESKRIPSI cv-5 --><p class="text-rose-100/80 leading-relaxed">Deskripsi lengkap karya 5...</p><div class="space-y-3"><div class="flex items-center space-x-3 bg-white/5 border border-white/10 rounded-xl p-3"><i class="fa-solid fa-c text-amber-400 w-5"></i><div><p class="text-xs text-rose-200/50">Software</p><p class="text-sm font-bold text-white">Canva</p></div></div><!-- ✏️ GANTI KATEGORI cv-5 --><div class="flex items-center space-x-3 bg-white/5 border border-white/10 rounded-xl p-3"><i class="fa-solid fa-tag text-amber-400 w-5"></i><div><p class="text-xs text-rose-200/50">Kategori</p><p class="text-sm font-bold text-white">Kategori Karya 5</p></div></div></div><div class="flex gap-3 pt-2"><button onclick="bukaDetail('cv-4')" class="flex-1 py-3 bg-white/5 border border-white/10 text-rose-100 font-bold rounded-xl hover:bg-white/10 transition-all text-sm">← Sebelumnya</button></div></div></div></section></div>
+
+    <!-- DETAIL ps-1 -->
+    <div id="halaman-ps-1" class="halaman">
+        <section class="py-16 max-w-4xl mx-auto px-4">
+            <button onclick="kembali()" class="flex items-center space-x-2 text-amber-300 hover:text-amber-400 mb-8 text-sm font-bold transition-colors"><i class="fa-solid fa-arrow-left"></i><span>Kembali ke Semua Karya</span></button>
+            <div class="grid md:grid-cols-2 gap-10 items-start">
+                <div class="bg-black/40 rounded-2xl overflow-hidden border border-white/10">
+                    <!-- 🖼️ GANTI LINK FOTO DETAIL ps-1 -->
+                    <img src="https://github.com/Name999-glich/portofolio/blob/master/New%20folder/IMG_20251001_153507.jpg?raw=true" alt="ps-1" class="w-full h-auto object-contain">
+                </div>
+                <div class="space-y-5">
+                    <div><span class="text-xs font-bold uppercase tracking-widest text-amber-300">Adobe Photoshop</span><!-- ✏️ GANTI JUDUL DETAIL ps-1 --><h1 class="text-3xl font-black text-white mt-2">Light in a Dark Heart</h1></div>
+                    <!-- ✏️ GANTI DESKRIPSI PANJANG ps-1 --><p class="text-rose-100/80 leading-relaxed">Karya visual kontras tinggi simbolik tentang harapan yang bersinar di kondisi gelap. Menggunakan teknik manipulasi cahaya untuk menciptakan narasi visual yang kuat.</p>
+                    <div class="space-y-3">
+                        <div class="flex items-center space-x-3 bg-white/5 border border-white/10 rounded-xl p-3"><i class="fa-solid fa-wand-magic-sparkles text-amber-400 w-5"></i><div><p class="text-xs text-rose-200/50">Software</p><p class="text-sm font-bold text-white">Adobe Photoshop</p></div></div>
+                        <!-- ✏️ GANTI KATEGORI ps-1 --><div class="flex items-center space-x-3 bg-white/5 border border-white/10 rounded-xl p-3"><i class="fa-solid fa-tag text-amber-400 w-5"></i><div><p class="text-xs text-rose-200/50">Kategori</p><p class="text-sm font-bold text-white">Manipulasi Digital</p></div></div>
+                        <!-- ✏️ GANTI TEKNIK ps-1 --><div class="flex items-center space-x-3 bg-white/5 border border-white/10 rounded-xl p-3"><i class="fa-solid fa-circle-half-stroke text-amber-400 w-5"></i><div><p class="text-xs text-rose-200/50">Teknik</p><p class="text-sm font-bold text-white">High Contrast & Light Manipulation</p></div></div>
+                    </div>
+                    <div class="flex gap-3 pt-2"><button onclick="bukaDetail('ps-2')" class="flex-1 py-3 bg-white/5 border border-white/10 text-rose-100 font-bold rounded-xl hover:bg-white/10 transition-all text-sm">Berikutnya →</button></div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- DETAIL ps-2 sampai ps-5 -->
+    <div id="halaman-ps-2" class="halaman"><section class="py-16 max-w-4xl mx-auto px-4"><button onclick="kembali()" class="flex items-center space-x-2 text-amber-300 hover:text-amber-400 mb-8 text-sm font-bold transition-colors"><i class="fa-solid fa-arrow-left"></i><span>Kembali</span></button><div class="grid md:grid-cols-2 gap-10 items-start"><div class="bg-black/40 rounded-2xl overflow-hidden border border-white/10 img-placeholder" style="min-height:250px;"><!-- 🖼️ GANTI TAG IMG ps-2 --><i class="fa-solid fa-image text-white/20 text-5xl mb-3"></i><p class="text-white/30 text-sm">Belum ada gambar</p></div><div class="space-y-5"><div><span class="text-xs font-bold uppercase tracking-widest text-amber-300">Adobe Photoshop</span><!-- ✏️ GANTI JUDUL ps-2 --><h1 class="text-3xl font-black text-white mt-2">Judul Karya 2</h1></div><!-- ✏️ GANTI DESKRIPSI ps-2 --><p class="text-rose-100/80 leading-relaxed">Deskripsi lengkap karya 2...</p><div class="space-y-3"><div class="flex items-center space-x-3 bg-white/5 border border-white/10 rounded-xl p-3"><i class="fa-solid fa-wand-magic-sparkles text-amber-400 w-5"></i><div><p class="text-xs text-rose-200/50">Software</p><p class="text-sm font-bold text-white">Adobe Photoshop</p></div></div><!-- ✏️ GANTI KATEGORI ps-2 --><div class="flex items-center space-x-3 bg-white/5 border border-white/10 rounded-xl p-3"><i class="fa-solid fa-tag text-amber-400 w-5"></i><div><p class="text-xs text-rose-200/50">Kategori</p><p class="text-sm font-bold text-white">Kategori Karya 2</p></div></div></div><div class="flex gap-3 pt-2"><button onclick="bukaDetail('ps-1')" class="flex-1 py-3 bg-white/5 border border-white/10 text-rose-100 font-bold rounded-xl hover:bg-white/10 transition-all text-sm">← Sebelumnya</button><button onclick="bukaDetail('ps-3')" class="flex-1 py-3 bg-white/5 border border-white/10 text-rose-100 font-bold rounded-xl hover:bg-white/10 transition-all text-sm">Berikutnya →</button></div></div></div></section></div>
+    <div id="halaman-ps-3" class="halaman"><section class="py-16 max-w-4xl mx-auto px-4"><button onclick="kembali()" class="flex items-center space-x-2 text-amber-300 hover:text-amber-400 mb-8 text-sm font-bold transition-colors"><i class="fa-solid fa-arrow-left"></i><span>Kembali</span></button><div class="grid md:grid-cols-2 gap-10 items-start"><div class="bg-black/40 rounded-2xl overflow-hidden border border-white/10 img-placeholder" style="min-height:250px;"><!-- 🖼️ GANTI TAG IMG ps-3 --><i class="fa-solid fa-image text-white/20 text-5xl mb-3"></i><p class="text-white/30 text-sm">Belum ada gambar</p></div><div class="space-y-5"><div><span class="text-xs font-bold uppercase tracking-widest text-amber-300">Adobe Photoshop</span><!-- ✏️ GANTI JUDUL ps-3 --><h1 class="text-3xl font-black text-white mt-2">Judul Karya 3</h1></div><!-- ✏️ GANTI DESKRIPSI ps-3 --><p class="text-rose-100/80 leading-relaxed">Deskripsi lengkap karya 3...</p><div class="space-y-3"><div class="flex items-center space-x-3 bg-white/5 border border-white/10 rounded-xl p-3"><i class="fa-solid fa-wand-magic-sparkles text-amber-400 w-5"></i><div><p class="text-xs text-rose-200/50">Software</p><p class="text-sm font-bold text-white">Adobe Photoshop</p></div></div><!-- ✏️ GANTI KATEGORI ps-3 --><div class="flex items-center space-x-3 bg-white/5 border border-white/10 rounded-xl p-3"><i class="fa-solid fa-tag text-amber-400 w-5"></i><div><p class="text-xs text-rose-200/50">Kategori</p><p class="text-sm font-bold text-white">Kategori Karya 3</p></div></div></div><div class="flex gap-3 pt-2"><button onclick="bukaDetail('ps-2')" class="flex-1 py-3 bg-white/5 border border-white/10 text-rose-100 font-bold rounded-xl hover:bg-white/10 transition-all text-sm">← Sebelumnya</button><button onclick="bukaDetail('ps-4')" class="flex-1 py-3 bg-white/5 border border-white/10 text-rose-100 font-bold rounded-xl hover:bg-white/10 transition-all text-sm">Berikutnya →</button></div></div></div></section></div>
+    <div id="halaman-ps-4" class="halaman"><section class="py-16 max-w-4xl mx-auto px-4"><button onclick="kembali()" class="flex items-center space-x-2 text-amber-300 hover:text-amber-400 mb-8 text-sm font-bold transition-colors"><i class="fa-solid fa-arrow-left"></i><span>Kembali</span></button><div class="grid md:grid-cols-2 gap-10 items-start"><div class="bg-black/40 rounded-2xl overflow-hidden border border-white/10 img-placeholder" style="min-height:250px;"><!-- 🖼️ GANTI TAG IMG ps-4 --><i class="fa-solid fa-image text-white/20 text-5xl mb-3"></i><p class="text-white/30 text-sm">Belum ada gambar</p></div><div class="space-y-5"><div><span class="text-xs font-bold uppercase tracking-widest text-amber-300">Adobe Photoshop</span><!-- ✏️ GANTI JUDUL ps-4 --><h1 class="text-3xl font-black text-white mt-2">Judul Karya 4</h1></div><!-- ✏️ GANTI DESKRIPSI ps-4 --><p class="text-rose-100/80 leading-relaxed">Deskripsi lengkap karya 4...</p><div class="space-y-3"><div class="flex items-center space-x-3 bg-white/5 border border-white/10 rounded-xl p-3"><i class="fa-solid fa-wand-magic-sparkles text-amber-400 w-5"></i><div><p class="text-xs text-rose-200/50">Software</p><p class="text-sm font-bold text-white">Adobe Photoshop</p></div></div><!-- ✏️ GANTI KATEGORI ps-4 --><div class="flex items-center space-x-3 bg-white/5 border border-white/10 rounded-xl p-3"><i class="fa-solid fa-tag text-amber-400 w-5"></i><div><p class="text-xs text-rose-200/50">Kategori</p><p class="text-sm font-bold text-white">Kategori Karya 4</p></div></div></div><div class="flex gap-3 pt-2"><button onclick="bukaDetail('ps-3')" class="flex-1 py-3 bg-white/5 border border-white/10 text-rose-100 font-bold rounded-xl hover:bg-white/10 transition-all text-sm">← Sebelumnya</button><button onclick="bukaDetail('ps-5')" class="flex-1 py-3 bg-white/5 border border-white/10 text-rose-100 font-bold rounded-xl hover:bg-white/10 transition-all text-sm">Berikutnya →</button></div></div></div></section></div>
+    <div id="halaman-ps-5" class="halaman"><section class="py-16 max-w-4xl mx-auto px-4"><button onclick="kembali()" class="flex items-center space-x-2 text-amber-300 hover:text-amber-400 mb-8 text-sm font-bold transition-colors"><i class="fa-solid fa-arrow-left"></i><span>Kembali</span></button><div class="grid md:grid-cols-2 gap-10 items-start"><div class="bg-black/40 rounded-2xl overflow-hidden border border-white/10 img-placeholder" style="min-height:250px;"><!-- 🖼️ GANTI TAG IMG ps-5 --><i class="fa-solid fa-image text-white/20 text-5xl mb-3"></i><p class="text-white/30 text-sm">Belum ada gambar</p></div><div class="space-y-5"><div><span class="text-xs font-bold uppercase tracking-widest text-amber-300">Adobe Photoshop</span><!-- ✏️ GANTI JUDUL ps-5 --><h1 class="text-3xl font-black text-white mt-2">Judul Karya 5</h1></div><!-- ✏️ GANTI DESKRIPSI ps-5 --><p class="text-rose-100/80 leading-relaxed">Deskripsi lengkap karya 5...</p><div class="space-y-3"><div class="flex items-center space-x-3 bg-white/5 border border-white/10 rounded-xl p-3"><i class="fa-solid fa-wand-magic-sparkles text-amber-400 w-5"></i><div><p class="text-xs text-rose-200/50">Software</p><p class="text-sm font-bold text-white">Adobe Photoshop</p></div></div><!-- ✏️ GANTI KATEGORI ps-5 --><div class="flex items-center space-x-3 bg-white/5 border border-white/10 rounded-xl p-3"><i class="fa-solid fa-tag text-amber-400 w-5"></i><div><p class="text-xs text-rose-200/50">Kategori</p><p class="text-sm font-bold text-white">Kategori Karya 5</p></div></div></div><div class="flex gap-3 pt-2"><button onclick="bukaDetail('ps-4')" class="flex-1 py-3 bg-white/5 border border-white/10 text-rose-100 font-bold rounded-xl hover:bg-white/10 transition-all text-sm">← Sebelumnya</button></div></div></div></section></div>
 
     <!-- FOOTER -->
     <footer class="bg-black/40 border-t border-white/5 py-10 text-center text-xs text-rose-200/50">
@@ -460,11 +517,26 @@
     </footer>
 
     <script>
+        let tabAktif = 'illustrator';
+
         function gantiTab(tab) {
+            tabAktif = tab;
             document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
             document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
             document.getElementById('tab-' + tab).classList.add('active');
             document.getElementById('btn-' + tab).classList.add('active');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function bukaDetail(id) {
+            document.querySelectorAll('.halaman').forEach(el => el.classList.remove('active'));
+            document.getElementById('halaman-' + id).classList.add('active');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function kembali() {
+            document.querySelectorAll('.halaman').forEach(el => el.classList.remove('active'));
+            document.getElementById('halaman-list').classList.add('active');
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
     </script>
