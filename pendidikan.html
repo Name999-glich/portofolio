@@ -8,9 +8,141 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         html { scroll-behavior: smooth; }
+
+        /* ANIMASI MASUK */
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes progressFill {
+            0% { width: 0; opacity: 0; }
+            100% { opacity: 1; }
+        }
+        @keyframes pulse-ring {
+            0% { transform: scale(1); opacity: 0.8; }
+            100% { transform: scale(1.5); opacity: 0; }
+        }
+
+        .animate-fadeup { animation: fadeUp 0.7s ease-out forwards; }
+        .animate-fadein { animation: fadeIn 0.5s ease-out forwards; }
+        .animate-progress { animation: progressFill 1.5s ease-out forwards; }
+        .delay-1 { animation-delay: 0.1s; opacity: 0; }
+        .delay-2 { animation-delay: 0.3s; opacity: 0; }
+        .delay-3 { animation-delay: 0.5s; opacity: 0; }
+
+        /* CARD HOVER EFEK */
+        .card-hover {
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .card-hover:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 40px rgba(245, 158, 11, 0.15);
+            border-color: rgba(245, 158, 11, 0.3);
+        }
+
+        /* FOTO KLIK EFEK */
+        .foto-klik {
+            cursor: zoom-in;
+            transition: all 0.3s ease;
+        }
+        .foto-klik:hover {
+            transform: scale(1.03);
+            filter: brightness(1.1);
+        }
+
+        /* LIGHTBOX */
+        #lightbox {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.95);
+            z-index: 9999;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            backdrop-filter: blur(10px);
+        }
+        #lightbox.show {
+            display: flex;
+            animation: fadeIn 0.3s ease-out;
+        }
+        #lightbox img {
+            max-width: 90vw;
+            max-height: 90vh;
+            object-fit: contain;
+            border-radius: 12px;
+            box-shadow: 0 0 60px rgba(245, 158, 11, 0.3);
+            animation: fadeUp 0.4s ease-out;
+        }
+        #lightbox-close {
+            position: fixed;
+            top: 20px;
+            right: 24px;
+            color: white;
+            font-size: 28px;
+            cursor: pointer;
+            z-index: 10000;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            width: 44px;
+            height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.2s;
+        }
+        #lightbox-close:hover { background: rgba(245,158,11,0.4); }
+
+        /* CAPTION LIGHTBOX */
+        #lightbox-caption {
+            position: fixed;
+            bottom: 24px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: white;
+            font-size: 13px;
+            background: rgba(0,0,0,0.6);
+            padding: 8px 20px;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        /* TIMELINE DOT ANIMASI */
+        .dot-pulse::after {
+            content: '';
+            position: absolute;
+            inset: -4px;
+            border-radius: 50%;
+            border: 2px solid #f97316;
+            animation: pulse-ring 1.5s ease-out infinite;
+        }
+
+        /* SERTIFIKAT HOVER */
+        .sertif-card {
+            transition: all 0.4s ease;
+        }
+        .sertif-card:hover {
+            transform: translateY(-6px) scale(1.01);
+            box-shadow: 0 20px 40px rgba(244, 63, 94, 0.15);
+            border-color: rgba(244, 63, 94, 0.3);
+        }
     </style>
 </head>
 <body class="min-h-screen bg-gradient-to-b from-[#1e1332] via-[#3a1c40] to-[#4a1835] text-rose-50 font-sans">
+
+    <!-- LIGHTBOX -->
+    <div id="lightbox" onclick="tutupLightbox()">
+        <button id="lightbox-close" onclick="tutupLightbox()">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+        <img id="lightbox-img" src="" alt="">
+        <div id="lightbox-caption"></div>
+    </div>
 
     <!-- HEADER -->
     <header class="sticky top-0 z-50 backdrop-blur-md bg-[#1e1332]/80 border-b border-rose-900/30">
@@ -27,35 +159,33 @@
     </header>
 
     <!-- HERO -->
-    <section class="py-16 max-w-4xl mx-auto px-4 text-center">
+    <section class="py-16 max-w-4xl mx-auto px-4 text-center animate-fadeup">
         <span class="text-xs font-bold uppercase tracking-widest text-amber-300">Riwayat</span>
         <h1 class="text-4xl font-black text-white mt-2">Perjalanan Pendidikan</h1>
         <p class="text-rose-100/70 mt-3 max-w-xl mx-auto">Setiap sekolah adalah babak baru dalam cerita hidup saya. Dari SD hingga SMK, setiap langkah membentuk siapa saya hari ini.</p>
+        <p class="text-amber-300/70 text-xs mt-4"><i class="fa-solid fa-hand-pointer mr-1"></i> Klik foto untuk melihat ukuran penuh</p>
     </section>
 
     <!-- ================ -->
     <!-- TIMELINE SECTION -->
     <!-- ================ -->
     <section class="pb-20 max-w-4xl mx-auto px-4">
-        <h2 class="text-2xl font-black text-white mb-12 flex items-center space-x-3">
-            <i class="fa-solid fa-graduation-cap text-amber-400"></i>
+        <h2 class="text-2xl font-black text-white mb-12 flex items-center space-x-3 animate-fadeup delay-1">
+            <i class="fa-solid fa-graduation-cap text-amber-400 animate-bounce"></i>
             <span>Riwayat Sekolah</span>
         </h2>
 
         <div class="relative border-l-2 border-white/10 ml-4 md:ml-36 space-y-16">
 
-            <!-- ======================= -->
-            <!-- JENJANG SD              -->
-            <!-- ======================= -->
-            <div class="relative pl-8 md:pl-10 group">
-                <div class="absolute -left-[9px] top-2 w-4 h-4 rounded-full bg-[#1e1332] border-2 border-orange-500 shadow-md"></div>
-                <!-- ✏️ GANTI LABEL JENJANG SD -->
+            <!-- ======== SD ======== -->
+            <div class="relative pl-8 md:pl-10 group animate-fadeup delay-1">
+                <div class="absolute -left-[9px] top-2 w-4 h-4 rounded-full bg-[#1e1332] border-2 border-orange-500 shadow-md dot-pulse relative"></div>
                 <div class="absolute left-[-135px] top-2 hidden md:block text-right w-28">
                     <p class="text-lg font-black text-white">SD</p>
                     <!-- ✏️ GANTI TAHUN SD -->
                     <p class="text-xs text-rose-300/60">2012 – 2018</p>
                 </div>
-                <div class="bg-white/5 border border-white/10 backdrop-blur-md p-6 rounded-3xl group-hover:border-white/20 transition-all">
+                <div class="card-hover bg-white/5 border border-white/10 backdrop-blur-md p-6 rounded-3xl">
                     <div class="grid md:grid-cols-12 gap-6 items-start">
                         <div class="md:col-span-7 space-y-4">
                             <!-- ✏️ GANTI NAMA SEKOLAH SD -->
@@ -64,7 +194,6 @@
                             <p class="text-xs text-rose-100/90 italic border-l-2 border-orange-500 pl-3">"This is the beginning of all the stories we will go through."</p>
                             <!-- ✏️ GANTI DESKRIPSI SD -->
                             <p class="text-sm text-rose-100/70 leading-relaxed">Masa SD adalah awal dari perjalanan panjang. Di sinilah fondasi belajar, berteman, dan mengenal dunia pertama kali terbentuk.</p>
-                            <!-- ✏️ TAMBAH/HAPUS PRESTASI SD DI BAWAH INI -->
                             <div class="space-y-2 pt-2">
                                 <p class="text-xs font-bold text-amber-300 uppercase tracking-wider">Prestasi & Kegiatan:</p>
                                 <div class="flex items-start space-x-2">
@@ -77,22 +206,27 @@
                                     <!-- ✏️ GANTI PRESTASI SD-2 -->
                                     <p class="text-xs text-rose-100/70">Aktif mengikuti kegiatan ekstrakurikuler</p>
                                 </div>
-                                <!-- ✏️ DUPLIKAT BLOK DI ATAS UNTUK TAMBAH PRESTASI SD BARU -->
+                                <!-- ✏️ DUPLIKAT BARIS DI ATAS UNTUK TAMBAH PRESTASI -->
                             </div>
                         </div>
                         <div class="md:col-span-5 space-y-3">
-                            <!-- ✏️ FOTO SD-1 -->
-                            <div class="relative w-full rounded-2xl overflow-hidden border border-white/10">
-                                <div class="absolute inset-0 bg-gradient-to-tr from-amber-500/80 to-rose-600/80 flex items-center justify-center text-center z-0">
+                            <!-- ✏️ GANTI FOTO SD-1 (klik = full screen) -->
+                            <div class="relative w-full rounded-2xl overflow-hidden border border-white/10"
+                                 onclick="bukaLightbox(this.querySelector('img').src, 'Momen SD - SDN PCU 01')">
+                                <div class="absolute inset-0 bg-gradient-to-tr from-amber-500/80 to-rose-600/80 flex items-center justify-center z-0">
                                     <span class="bg-black/40 text-[10px] p-1 rounded font-bold">Momen SD</span>
                                 </div>
                                 <img src="https://github.com/Name999-glich/portofolio/blob/master/data%20buat%20potofolio/44865326_322804865171793_850648900384587776_n.jpg?raw=true"
-                                     alt="SD" class="relative w-full h-auto object-cover z-10" onerror="this.style.display='none'">
+                                     alt="SD" class="foto-klik relative w-full h-auto object-cover z-10" onerror="this.style.display='none'">
+                                <div class="absolute bottom-2 right-2 z-20 bg-black/50 rounded-full p-1.5 opacity-0 group-hover:opacity-100 transition-opacity">
+                                    <i class="fa-solid fa-expand text-white text-xs"></i>
+                                </div>
                             </div>
-                            <!-- ✏️ FOTO SD-2 (kosong - isi kalau ada foto lain) -->
-                            <!-- HAPUS KOMENTAR INI DAN ISI LINK FOTO JIKA ADA:
-                            <div class="relative w-full rounded-2xl overflow-hidden border border-white/10">
-                                <img src="LINK_FOTO_SD_2" alt="SD 2" class="w-full h-auto object-cover">
+                            <!-- ✏️ FOTO SD-2 (hapus komentar jika ada foto) -->
+                            <!--
+                            <div class="relative w-full rounded-2xl overflow-hidden border border-white/10"
+                                 onclick="bukaLightbox('LINK_FOTO_SD_2', 'Momen SD 2')">
+                                <img src="LINK_FOTO_SD_2" alt="SD 2" class="foto-klik w-full h-auto object-cover">
                             </div>
                             -->
                         </div>
@@ -100,18 +234,15 @@
                 </div>
             </div>
 
-            <!-- ======================= -->
-            <!-- JENJANG SMP             -->
-            <!-- ======================= -->
-            <div class="relative pl-8 md:pl-10 group">
+            <!-- ======== SMP ======== -->
+            <div class="relative pl-8 md:pl-10 group animate-fadeup delay-2">
                 <div class="absolute -left-[9px] top-2 w-4 h-4 rounded-full bg-[#1e1332] border-2 border-orange-500 shadow-md"></div>
-                <!-- ✏️ GANTI LABEL JENJANG SMP -->
                 <div class="absolute left-[-135px] top-2 hidden md:block text-right w-28">
                     <p class="text-lg font-black text-white">SMP</p>
                     <!-- ✏️ GANTI TAHUN SMP -->
                     <p class="text-xs text-rose-300/60">2018 – 2021</p>
                 </div>
-                <div class="bg-white/5 border border-white/10 backdrop-blur-md p-6 rounded-3xl group-hover:border-white/20 transition-all">
+                <div class="card-hover bg-white/5 border border-white/10 backdrop-blur-md p-6 rounded-3xl">
                     <div class="grid md:grid-cols-12 gap-6 items-start">
                         <div class="md:col-span-7 space-y-4">
                             <!-- ✏️ GANTI NAMA SEKOLAH SMP -->
@@ -120,7 +251,6 @@
                             <p class="text-xs text-rose-100/90 italic border-l-2 border-orange-500 pl-3">"Maybe this is the middle of our story, but it's not over yet."</p>
                             <!-- ✏️ GANTI DESKRIPSI SMP -->
                             <p class="text-sm text-rose-100/70 leading-relaxed">SMP adalah masa peralihan yang penuh dengan penemuan jati diri. Di sini saya mulai mengenal minat saya di bidang seni dan desain.</p>
-                            <!-- ✏️ TAMBAH/HAPUS PRESTASI SMP -->
                             <div class="space-y-2 pt-2">
                                 <p class="text-xs font-bold text-amber-300 uppercase tracking-wider">Prestasi & Kegiatan:</p>
                                 <div class="flex items-start space-x-2">
@@ -133,22 +263,27 @@
                                     <!-- ✏️ GANTI PRESTASI SMP-2 -->
                                     <p class="text-xs text-rose-100/70">Mengikuti berbagai kegiatan ekskul</p>
                                 </div>
-                                <!-- ✏️ DUPLIKAT BLOK DI ATAS UNTUK TAMBAH PRESTASI SMP BARU -->
+                                <!-- ✏️ DUPLIKAT BARIS DI ATAS UNTUK TAMBAH PRESTASI -->
                             </div>
                         </div>
                         <div class="md:col-span-5 space-y-3">
-                            <!-- ✏️ FOTO SMP-1 -->
-                            <div class="relative w-full rounded-2xl overflow-hidden border border-white/10">
-                                <div class="absolute inset-0 bg-gradient-to-tr from-violet-900/90 via-rose-900/90 to-orange-900/90 flex items-center justify-center text-center z-0">
+                            <!-- ✏️ GANTI FOTO SMP-1 (klik = full screen) -->
+                            <div class="relative w-full rounded-2xl overflow-hidden border border-white/10"
+                                 onclick="bukaLightbox(this.querySelector('img').src, 'Momen SMP - SMPN 21 Tangsel')">
+                                <div class="absolute inset-0 bg-gradient-to-tr from-violet-900/90 via-rose-900/90 to-orange-900/90 flex items-center justify-center z-0">
                                     <span class="bg-black/40 text-[10px] p-1 rounded font-bold">Momen SMP</span>
                                 </div>
                                 <img src="https://github.com/Name999-glich/portofolio/blob/master/data%20buat%20potofolio/IMG-20240503-WA0064.jpg?raw=true"
-                                     alt="SMP" class="relative w-full h-auto object-cover z-10" onerror="this.style.display='none'">
+                                     alt="SMP" class="foto-klik relative w-full h-auto object-cover z-10" onerror="this.style.display='none'">
+                                <div class="absolute bottom-2 right-2 z-20 bg-black/50 rounded-full p-1.5 opacity-0 group-hover:opacity-100 transition-opacity">
+                                    <i class="fa-solid fa-expand text-white text-xs"></i>
+                                </div>
                             </div>
-                            <!-- ✏️ FOTO SMP-2 (kosong - isi kalau ada foto lain) -->
-                            <!-- HAPUS KOMENTAR INI DAN ISI LINK FOTO JIKA ADA:
-                            <div class="relative w-full rounded-2xl overflow-hidden border border-white/10">
-                                <img src="LINK_FOTO_SMP_2" alt="SMP 2" class="w-full h-auto object-cover">
+                            <!-- ✏️ FOTO SMP-2 (hapus komentar jika ada foto) -->
+                            <!--
+                            <div class="relative w-full rounded-2xl overflow-hidden border border-white/10"
+                                 onclick="bukaLightbox('LINK_FOTO_SMP_2', 'Momen SMP 2')">
+                                <img src="LINK_FOTO_SMP_2" alt="SMP 2" class="foto-klik w-full h-auto object-cover">
                             </div>
                             -->
                         </div>
@@ -156,18 +291,15 @@
                 </div>
             </div>
 
-            <!-- ======================= -->
-            <!-- JENJANG SMK             -->
-            <!-- ======================= -->
-            <div class="relative pl-8 md:pl-10 group">
+            <!-- ======== SMK ======== -->
+            <div class="relative pl-8 md:pl-10 group animate-fadeup delay-3">
                 <div class="absolute -left-[9px] top-2 w-4 h-4 rounded-full bg-[#1e1332] border-2 border-orange-500 shadow-md"></div>
-                <!-- ✏️ GANTI LABEL JENJANG SMK -->
                 <div class="absolute left-[-135px] top-2 hidden md:block text-right w-28">
                     <p class="text-lg font-black text-white">SMK</p>
                     <!-- ✏️ GANTI TAHUN SMK -->
                     <p class="text-xs text-rose-300/60">2021 – 2024</p>
                 </div>
-                <div class="bg-white/5 border border-white/10 backdrop-blur-md p-6 rounded-3xl group-hover:border-white/20 transition-all">
+                <div class="card-hover bg-white/5 border border-white/10 backdrop-blur-md p-6 rounded-3xl">
                     <div class="grid md:grid-cols-12 gap-6 items-start">
                         <div class="md:col-span-7 space-y-4">
                             <!-- ✏️ GANTI NAMA SEKOLAH SMK -->
@@ -178,7 +310,6 @@
                             <p class="text-xs text-rose-100/90 italic border-l-2 border-orange-500 pl-3">"Maybe this is the end of our story, but I will always remember it."</p>
                             <!-- ✏️ GANTI DESKRIPSI SMK -->
                             <p class="text-sm text-rose-100/70 leading-relaxed">SMK adalah tempat saya menemukan passion sesungguhnya di bidang desain grafis dan visual. Di sini saya belajar Adobe Illustrator, Photoshop, Lightroom dan Canva secara mendalam.</p>
-                            <!-- ✏️ TAMBAH/HAPUS PRESTASI SMK -->
                             <div class="space-y-2 pt-2">
                                 <p class="text-xs font-bold text-amber-300 uppercase tracking-wider">Prestasi & Kegiatan:</p>
                                 <div class="flex items-start space-x-2">
@@ -196,34 +327,70 @@
                                     <!-- ✏️ GANTI PRESTASI SMK-3 -->
                                     <p class="text-xs text-rose-100/70">Menguasai Adobe Illustrator, Photoshop, Lightroom & Canva</p>
                                 </div>
-                                <!-- ✏️ DUPLIKAT BLOK DI ATAS UNTUK TAMBAH PRESTASI SMK BARU -->
+                                <!-- ✏️ DUPLIKAT BARIS DI ATAS UNTUK TAMBAH PRESTASI -->
+                            </div>
+
+                            <!-- SKILL BAR seperti halaman skill -->
+                            <div class="space-y-4 pt-4 border-t border-white/10">
+                                <p class="text-xs font-bold text-amber-300 uppercase tracking-wider">Keahlian yang Dikembangkan:</p>
+                                <div class="group">
+                                    <div class="flex justify-between text-xs mb-1 group-hover:text-amber-300 transition-colors">
+                                        <span>Adobe Lightroom</span><span class="text-amber-400">85%</span>
+                                    </div>
+                                    <div class="h-1.5 bg-black/40 rounded-full overflow-hidden">
+                                        <div class="h-full bg-gradient-to-r from-amber-400 via-orange-500 to-rose-500 rounded-full animate-progress" style="width: 85%"></div>
+                                    </div>
+                                </div>
+                                <div class="group">
+                                    <div class="flex justify-between text-xs mb-1 group-hover:text-orange-400 transition-colors">
+                                        <span>Adobe Illustrator</span><span class="text-amber-400">75%</span>
+                                    </div>
+                                    <div class="h-1.5 bg-black/40 rounded-full overflow-hidden">
+                                        <div class="h-full bg-gradient-to-r from-orange-500 to-rose-500 rounded-full animate-progress" style="width: 75%; animation-delay: 0.2s;"></div>
+                                    </div>
+                                </div>
+                                <div class="group">
+                                    <div class="flex justify-between text-xs mb-1 group-hover:text-rose-400 transition-colors">
+                                        <span>Adobe Photoshop</span><span class="text-amber-400">65%</span>
+                                    </div>
+                                    <div class="h-1.5 bg-black/40 rounded-full overflow-hidden">
+                                        <div class="h-full bg-gradient-to-r from-rose-500 to-purple-500 rounded-full animate-progress" style="width: 65%; animation-delay: 0.4s;"></div>
+                                    </div>
+                                </div>
+                                <div class="group">
+                                    <div class="flex justify-between text-xs mb-1 group-hover:text-blue-400 transition-colors">
+                                        <span>Canva</span><span class="text-amber-400">90%</span>
+                                    </div>
+                                    <div class="h-1.5 bg-black/40 rounded-full overflow-hidden">
+                                        <div class="h-full bg-gradient-to-r from-blue-500 to-cyan-400 rounded-full animate-progress" style="width: 90%; animation-delay: 0.3s;"></div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <div class="md:col-span-5 space-y-3">
-                            <!-- ✏️ FOTO SMK-1 -->
-                            <div class="relative w-full rounded-2xl overflow-hidden border border-white/10">
-                                <div class="absolute inset-0 bg-gradient-to-tr from-[#2a1331]/90 via-[#4a1835]/90 to-amber-950/90 flex items-center justify-center text-center z-0">
+                            <!-- ✏️ GANTI FOTO SMK-1 (klik = full screen) -->
+                            <div class="relative w-full rounded-2xl overflow-hidden border border-white/10"
+                                 onclick="bukaLightbox(this.querySelector('img').src, 'Momen SMK - SMKN 5 Tangsel')">
+                                <div class="absolute inset-0 bg-gradient-to-tr from-[#2a1331]/90 via-[#4a1835]/90 to-amber-950/90 flex items-center justify-center z-0">
                                     <span class="bg-black/40 text-[10px] p-1 rounded font-bold">Momen SMK</span>
                                 </div>
                                 <img src="https://github.com/Name999-glich/portofolio/blob/master/data%20buat%20potofolio/IMG-20260501-WA0003.jpg?raw=true"
-                                     alt="SMK" class="relative w-full h-auto object-cover z-10" onerror="this.style.display='none'">
+                                     alt="SMK" class="foto-klik relative w-full h-auto object-cover z-10" onerror="this.style.display='none'">
+                                <div class="absolute bottom-2 right-2 z-20 bg-black/50 rounded-full p-1.5 opacity-0 group-hover:opacity-100 transition-opacity">
+                                    <i class="fa-solid fa-expand text-white text-xs"></i>
+                                </div>
                             </div>
-                            <!-- ✏️ FOTO SMK-2 (kosong - isi kalau ada foto lain) -->
-                            <!-- HAPUS KOMENTAR INI DAN ISI LINK FOTO JIKA ADA:
-                            <div class="relative w-full rounded-2xl overflow-hidden border border-white/10">
-                                <img src="LINK_FOTO_SMK_2" alt="SMK 2" class="w-full h-auto object-cover">
+                            <!-- ✏️ FOTO SMK-2 (hapus komentar jika ada foto) -->
+                            <!--
+                            <div class="relative w-full rounded-2xl overflow-hidden border border-white/10"
+                                 onclick="bukaLightbox('LINK_FOTO_SMK_2', 'Momen SMK 2')">
+                                <img src="LINK_FOTO_SMK_2" alt="SMK 2" class="foto-klik w-full h-auto object-cover">
                             </div>
                             -->
                         </div>
                     </div>
                 </div>
             </div>
-
-            <!-- ======================= -->
-            <!-- ✏️ TAMBAH JENJANG BARU  -->
-            <!-- Duplikat blok di atas   -->
-            <!-- dan ganti isinya        -->
-            <!-- ======================= -->
 
         </div>
     </section>
@@ -232,24 +399,26 @@
     <!-- SERTIFIKAT SECTION  -->
     <!-- =================== -->
     <section class="py-20 border-t border-white/5 max-w-4xl mx-auto px-4">
-        <h2 class="text-2xl font-black text-white mb-12 flex items-center space-x-3">
-            <i class="fa-solid fa-certificate text-amber-400"></i>
+        <h2 class="text-2xl font-black text-white mb-12 flex items-center space-x-3 animate-fadeup">
+            <i class="fa-solid fa-certificate text-amber-400 animate-pulse"></i>
             <span>Ijazah & Sertifikat</span>
         </h2>
 
         <div class="grid md:grid-cols-2 gap-8">
 
-            <!-- ======================= -->
-            <!-- SERTIFIKAT 1 — ADA FOTO -->
-            <!-- ======================= -->
-            <div class="bg-white/5 border border-white/10 backdrop-blur-md p-6 rounded-3xl flex flex-col hover:border-white/20 transition-all">
-                <!-- ✏️ GANTI FOTO SERTIFIKAT-1 -->
-                <div class="relative w-full rounded-xl overflow-hidden border border-white/10 mb-5">
+            <!-- SERTIFIKAT 1 -->
+            <div class="sertif-card bg-white/5 border border-white/10 backdrop-blur-md p-6 rounded-3xl flex flex-col animate-fadeup delay-1">
+                <!-- ✏️ GANTI FOTO SERTIFIKAT-1 (klik = full screen) -->
+                <div class="relative w-full rounded-xl overflow-hidden border border-white/10 mb-5 group"
+                     onclick="bukaLightbox(this.querySelector('img').src, 'Sertifikat Silat - Perisai Diri')">
                     <div class="absolute inset-0 bg-gradient-to-tr from-amber-900/80 to-rose-900/80 flex items-center justify-center z-0">
                         <span class="bg-black/40 text-[10px] p-1.5 rounded font-bold">Sertifikat Silat</span>
                     </div>
                     <img src="https://github.com/Name999-glich/portofolio/blob/master/data%20buat%20potofolio/IMG_20260503_122905.jpg?raw=true"
-                         alt="Silat" class="relative w-full h-auto object-cover z-10" onerror="this.style.display='none'">
+                         alt="Silat" class="foto-klik relative w-full h-auto object-cover z-10" onerror="this.style.display='none'">
+                    <div class="absolute bottom-2 right-2 z-20 bg-black/50 rounded-full p-1.5 opacity-0 group-hover:opacity-100 transition-opacity">
+                        <i class="fa-solid fa-expand text-white text-xs"></i>
+                    </div>
                 </div>
                 <!-- ✏️ GANTI JUDUL SERTIFIKAT-1 -->
                 <h3 class="text-lg font-extrabold text-white">Keluarga Silat Nasional Indonesia "Perisai Diri"</h3>
@@ -259,17 +428,19 @@
                 <p class="text-[11px] text-amber-300/70 mt-3 font-bold">📅 Tahun: 2023</p>
             </div>
 
-            <!-- ======================= -->
-            <!-- SERTIFIKAT 2 — ADA FOTO -->
-            <!-- ======================= -->
-            <div class="bg-white/5 border border-white/10 backdrop-blur-md p-6 rounded-3xl flex flex-col hover:border-white/20 transition-all">
-                <!-- ✏️ GANTI FOTO SERTIFIKAT-2 -->
-                <div class="relative w-full rounded-xl overflow-hidden border border-white/10 mb-5">
+            <!-- SERTIFIKAT 2 -->
+            <div class="sertif-card bg-white/5 border border-white/10 backdrop-blur-md p-6 rounded-3xl flex flex-col animate-fadeup delay-2">
+                <!-- ✏️ GANTI FOTO SERTIFIKAT-2 (klik = full screen) -->
+                <div class="relative w-full rounded-xl overflow-hidden border border-white/10 mb-5 group"
+                     onclick="bukaLightbox(this.querySelector('img').src, 'Sertifikat HKAN - PEAP 2025')">
                     <div class="absolute inset-0 bg-gradient-to-tr from-[#2a1331]/90 to-amber-950/90 flex items-center justify-center z-0">
                         <span class="bg-black/40 text-[10px] p-1.5 rounded font-bold">Sertifikat HKAN</span>
                     </div>
                     <img src="https://github.com/Name999-glich/portofolio/blob/master/data%20buat%20potofolio/IMG_20260503_122719.jpg?raw=true"
-                         alt="HKAN" class="relative w-full h-auto object-cover z-10" onerror="this.style.display='none'">
+                         alt="HKAN" class="foto-klik relative w-full h-auto object-cover z-10" onerror="this.style.display='none'">
+                    <div class="absolute bottom-2 right-2 z-20 bg-black/50 rounded-full p-1.5 opacity-0 group-hover:opacity-100 transition-opacity">
+                        <i class="fa-solid fa-expand text-white text-xs"></i>
+                    </div>
                 </div>
                 <!-- ✏️ GANTI JUDUL SERTIFIKAT-2 -->
                 <h3 class="text-lg font-extrabold text-white">Sertifikat Kehormatan PEAP 2025</h3>
@@ -279,14 +450,13 @@
                 <p class="text-[11px] text-amber-300/70 mt-3 font-bold">📅 Tahun: 2025</p>
             </div>
 
-            <!-- ========================== -->
-            <!-- SERTIFIKAT 3 — KOSONG      -->
-            <!-- ========================== -->
-            <div class="bg-white/5 border border-dashed border-white/20 p-6 rounded-3xl flex flex-col hover:border-white/30 transition-all">
-                <!-- ✏️ GANTI FOTO SERTIFIKAT-3 (hapus placeholder di bawah jika sudah ada foto) -->
+            <!-- SERTIFIKAT 3 — KOSONG -->
+            <div class="sertif-card bg-white/5 border border-dashed border-white/20 p-6 rounded-3xl flex flex-col animate-fadeup delay-3">
                 <div class="w-full rounded-xl border border-dashed border-white/15 mb-5 flex flex-col items-center justify-center py-10 bg-white/5">
-                    <!-- 🖼️ GANTI INI DENGAN TAG IMG KETIKA SUDAH ADA FOTO:
-                    <img src="LINK_FOTO_SERTIFIKAT_3" alt="sertifikat-3" class="w-full h-auto object-cover rounded-xl">
+                    <!-- 🖼️ GANTI INI DENGAN TAG IMG + onclick="bukaLightbox(...)" KETIKA SUDAH ADA FOTO -->
+                    <!-- CONTOH:
+                    <img src="LINK_FOTO" alt="sertif-3" class="foto-klik w-full h-auto object-cover rounded-xl"
+                         onclick="bukaLightbox('LINK_FOTO', 'Judul Sertifikat 3')">
                     -->
                     <i class="fa-solid fa-image text-white/20 text-4xl mb-2"></i>
                     <p class="text-white/30 text-xs">Belum ada foto</p>
@@ -299,15 +469,10 @@
                 <p class="text-[11px] text-amber-300/70 mt-3 font-bold">📅 Tahun: -</p>
             </div>
 
-            <!-- ========================== -->
-            <!-- SERTIFIKAT 4 — KOSONG      -->
-            <!-- ========================== -->
-            <div class="bg-white/5 border border-dashed border-white/20 p-6 rounded-3xl flex flex-col hover:border-white/30 transition-all">
-                <!-- ✏️ GANTI FOTO SERTIFIKAT-4 -->
+            <!-- SERTIFIKAT 4 — KOSONG -->
+            <div class="sertif-card bg-white/5 border border-dashed border-white/20 p-6 rounded-3xl flex flex-col animate-fadeup delay-3">
                 <div class="w-full rounded-xl border border-dashed border-white/15 mb-5 flex flex-col items-center justify-center py-10 bg-white/5">
-                    <!-- 🖼️ GANTI INI DENGAN TAG IMG KETIKA SUDAH ADA FOTO:
-                    <img src="LINK_FOTO_SERTIFIKAT_4" alt="sertifikat-4" class="w-full h-auto object-cover rounded-xl">
-                    -->
+                    <!-- 🖼️ GANTI INI DENGAN TAG IMG sertif-4 -->
                     <i class="fa-solid fa-image text-white/20 text-4xl mb-2"></i>
                     <p class="text-white/30 text-xs">Belum ada foto</p>
                 </div>
@@ -319,12 +484,10 @@
                 <p class="text-[11px] text-amber-300/70 mt-3 font-bold">📅 Tahun: -</p>
             </div>
 
-            <!-- ========================== -->
-            <!-- SERTIFIKAT 5 — KOSONG      -->
-            <!-- ========================== -->
-            <div class="bg-white/5 border border-dashed border-white/20 p-6 rounded-3xl flex flex-col hover:border-white/30 transition-all">
+            <!-- SERTIFIKAT 5 — KOSONG -->
+            <div class="sertif-card bg-white/5 border border-dashed border-white/20 p-6 rounded-3xl flex flex-col">
                 <div class="w-full rounded-xl border border-dashed border-white/15 mb-5 flex flex-col items-center justify-center py-10 bg-white/5">
-                    <!-- 🖼️ GANTI INI DENGAN TAG IMG SERTIFIKAT-5 -->
+                    <!-- 🖼️ GANTI INI DENGAN TAG IMG sertif-5 -->
                     <i class="fa-solid fa-image text-white/20 text-4xl mb-2"></i>
                     <p class="text-white/30 text-xs">Belum ada foto</p>
                 </div>
@@ -336,12 +499,10 @@
                 <p class="text-[11px] text-amber-300/70 mt-3 font-bold">📅 Tahun: -</p>
             </div>
 
-            <!-- ========================== -->
-            <!-- SERTIFIKAT 6 — KOSONG      -->
-            <!-- ========================== -->
-            <div class="bg-white/5 border border-dashed border-white/20 p-6 rounded-3xl flex flex-col hover:border-white/30 transition-all">
+            <!-- SERTIFIKAT 6 — KOSONG -->
+            <div class="sertif-card bg-white/5 border border-dashed border-white/20 p-6 rounded-3xl flex flex-col">
                 <div class="w-full rounded-xl border border-dashed border-white/15 mb-5 flex flex-col items-center justify-center py-10 bg-white/5">
-                    <!-- 🖼️ GANTI INI DENGAN TAG IMG SERTIFIKAT-6 -->
+                    <!-- 🖼️ GANTI INI DENGAN TAG IMG sertif-6 -->
                     <i class="fa-solid fa-image text-white/20 text-4xl mb-2"></i>
                     <p class="text-white/30 text-xs">Belum ada foto</p>
                 </div>
@@ -363,5 +524,32 @@
         <p>© 2026 Aditya Putra Rahmayadi. Semua Hak Cipta Dilindungi.</p>
     </footer>
 
+    <script>
+        // LIGHTBOX
+        function bukaLightbox(src, caption) {
+            const lb = document.getElementById('lightbox');
+            const img = document.getElementById('lightbox-img');
+            const cap = document.getElementById('lightbox-caption');
+            img.src = src;
+            cap.textContent = caption || '';
+            lb.classList.add('show');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function tutupLightbox() {
+            document.getElementById('lightbox').classList.remove('show');
+            document.body.style.overflow = '';
+        }
+
+        // Tutup lightbox dengan tombol ESC
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') tutupLightbox();
+        });
+
+        // Cegah lightbox tertutup saat klik gambar
+        document.getElementById('lightbox-img').addEventListener('click', function(e) {
+            e.stopPropagation();
+        });
+    </script>
 </body>
 </html>
