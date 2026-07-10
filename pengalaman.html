@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pengalaman Kerja - Aditya Portfolio</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        html { scroll-behavior: smooth; }
+
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes pulse-ring {
+            0% { transform: scale(1); opacity: 0.8; }
+            100% { transform: scale(1.5); opacity: 0; }
+        }
+
+        .animate-fadeup { animation: fadeUp 0.7s ease-out forwards; }
+        .delay-1 { animation-delay: 0.1s; opacity: 0; }
+        .delay-2 { animation-delay: 0.3s; opacity: 0; }
+        .delay-3 { animation-delay: 0.5s; opacity: 0; }
+
+        .card-hover {
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .card-hover:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 40px rgba(245, 158, 11, 0.15);
+            border-color: rgba(245, 158, 11, 0.3);
+        }
+
+        .foto-klik {
+            cursor: zoom-in;
+            transition: all 0.3s ease;
+        }
+        .foto-klik:hover {
+            transform: scale(1.03);
+            filter: brightness(1.1);
+        }
+
+        /* LIGHTBOX */
+        #lightbox {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.95);
+            z-index: 9999;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            backdrop-filter: blur(10px);
+        }
+        #lightbox.show {
+            display: flex;
+            animation: fadeIn 0.3s ease-out;
+        }
+        #lightbox img {
+            max-width: 90vw;
+            max-height: 90vh;
+            object-fit: contain;
+            border-radius: 12px;
+            box-shadow: 0 0 60px rgba(245, 158, 11, 0.3);
+            animation: fadeUp 0.4s ease-out;
+        }
+        #lightbox-close {
+            position: fixed;
+            top: 20px;
+            right: 24px;
+            color: white;
+            font-size: 28px;
+            cursor: pointer;
+            z-index: 10000;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            width: 44px;
+            height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.2s;
+        }
+        #lightbox-close:hover { background: rgba(245,158,11,0.4); }
+        #lightbox-caption {
+            position: fixed;
+            bottom: 24px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: white;
+            font-size: 13px;
+            background: rgba(0,0,0,0.6);
+            padding: 8px 20px;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .dot-pulse::after {
+            content: '';
+            position: absolute;
+            inset: -4px;
+            border-radius: 50%;
+            border: 2px solid #f97316;
+            animation: pulse-ring 1.5s ease-out infinite;
+        }
+    </style>
+</head>
+<body class="min-h-screen bg-gradient-to-b from-[#1e1332] via-[#3a1c40] to-[#4a1835] text-rose-50 font-sans">
+
+    <!-- LIGHTBOX -->
+    <div id="lightbox" onclick="tutupLightbox()">
+        <button id="lightbox-close" onclick="tutupLightbox()">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+        <img id="lightbox-img" src="" alt="">
+        <div id="lightbox-caption"></div>
+    </div>
+
+    <!-- HEADER -->
+    <header class="sticky top-0 z-50 backdrop-blur-md bg-[#1e1332]/80 border-b border-rose-900/30">
+        <div class="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between">
+            <a href="index.html" class="flex items-center space-x-2">
+                <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-amber-400 via-orange-500 to-rose-600 flex items-center justify-center font-black text-white text-xl">A</div>
+                <span class="font-bold tracking-widest text-lg text-rose-100 hidden sm:block">ADITYA.PORTFOLIO</span>
+            </a>
+            <a href="index.html" class="flex items-center space-x-2 text-sm text-rose-200/80 hover:text-amber-300 transition-colors">
+                <i class="fa-solid fa-arrow-left"></i>
+                <span>Kembali ke Portfolio</span>
+            </a>
+        </div>
+    </header>
+
+    <!-- HERO -->
+    <section class="py-16 max-w-4xl mx-auto px-4 text-center animate-fadeup">
+        <span class="text-xs font-bold uppercase tracking-widest text-amber-300">Pengalaman</span>
+        <h1 class="text-4xl font-black text-white mt-2">Pengalaman Kerja & PKL</h1>
+        <p class="text-rose-100/70 mt-3 max-w-xl mx-auto">Perjalanan nyata saya di dunia kerja, magang, dan PKL yang membentuk kemampuan profesional saya.</p>
+        <p class="text-amber-300/70 text-xs mt-4"><i class="fa-solid fa-hand-pointer mr-1"></i> Klik foto untuk melihat ukuran penuh</p>
+    </section>
+
+    <!-- TIMELINE PENGALAMAN -->
+    <section class="pb-20 max-w-4xl mx-auto px-4">
+        <h2 class="text-2xl font-black text-white mb-12 flex items-center space-x-3 animate-fadeup delay-1">
+            <i class="fa-solid fa-briefcase text-amber-400 animate-bounce"></i>
+            <span>Riwayat Pengalaman</span>
+        </h2>
+
+        <div class="relative border-l-2 border-white/10 ml-4 md:ml-40 space-y-16">
+
+            <!-- ================================ -->
+            <!-- PENGALAMAN 1 — GANTI SESUAI DATA -->
+            <!-- ================================ -->
+            <div class="relative pl-8 md:pl-10 group animate-fadeup delay-1">
+                <div class="absolute -left-[9px] top-2 w-4 h-4 rounded-full bg-[#1e1332] border-2 border-orange-500 shadow-md dot-pulse relative"></div>
+
+                <!-- ✏️ GANTI LABEL & TAHUN PENGALAMAN 1 -->
+                <div class="absolute left-[-155px] top-2 hidden md:block text-right w-36">
+                    <p class="text-sm font-black text-white">GANTI_TIPE_1</p>
+                    <!-- Contoh: PKL / Magang / Freelance -->
+                    <p class="text-xs text-rose-300/60">GANTI_PERIODE_1</p>
+                    <!-- Contoh: Jan 2024 – Mar 2024 -->
+                </div>
+
+                <div class="card-hover bg-white/5 border border-white/10 backdrop-blur-md p-6 rounded-3xl">
+                    <div class="grid md:grid-cols-12 gap-6 items-start">
+                        <div class="md:col-span-7 space-y-4">
+
+                            <!-- ✏️ GANTI NAMA PERUSAHAAN 1 -->
+                            <span class="text-[11px] font-extrabold text-orange-400 uppercase tracking-widest block">GANTI_NAMA_PERUSAHAAN_1_DI_SINI</span>
+
+                            <!-- ✏️ GANTI POSISI/JABATAN 1 -->
+                            <p class="text-base font-bold text-white">GANTI_POSISI_1_DI_SINI</p>
+
+                            <!-- ✏️ GANTI DESKRIPSI LENGKAP 1 -->
+                            <p class="text-sm text-rose-100/70 leading-relaxed">GANTI_DESKRIPSI_LENGKAP_1_DI_SINI</p>
+
+                            <!-- TUGAS & TANGGUNG JAWAB -->
+                            <div class="space-y-2 pt-2">
+                                <p class="text-xs font-bold text-amber-300 uppercase tracking-wider">Tugas & Tanggung Jawab:</p>
+                                <div class="flex items-start space-x-2">
+                                    <i class="fa-solid fa-check text-amber-400 text-xs mt-0.5"></i>
+                                    <!-- ✏️ GANTI TUGAS 1-1 -->
+                                    <p class="text-xs text-rose-100/70">GANTI_TUGAS_1_DI_SINI</p>
+                                </div>
+                                <div class="flex items-start space-x-2">
+                                    <i class="fa-solid fa-check text-amber-400 text-xs mt-0.5"></i>
+                                    <!-- ✏️ GANTI TUGAS 1-2 -->
+                                    <p class="text-xs text-rose-100/70">GANTI_TUGAS_2_DI_SINI</p>
+                                </div>
+                                <div class="flex items-start space-x-2">
+                                    <i class="fa-solid fa-check text-amber-400 text-xs mt-0.5"></i>
+                                    <!-- ✏️ GANTI TUGAS 1-3 -->
+                                    <p class="text-xs text-rose-100/70">GANTI_TUGAS_3_DI_SINI</p>
+                                </div>
+                                <!-- ✏️ DUPLIKAT BARIS DI ATAS UNTUK TAMBAH TUGAS BARU -->
+                            </div>
+
+                            <!-- TOOLS YANG DIGUNAKAN -->
+                            <div class="flex flex-wrap gap-2 pt-2">
+                                <!-- ✏️ GANTI/TAMBAH TOOLS YANG DIGUNAKAN -->
+                                <span class="text-[11px] bg-amber-400/10 text-amber-300 border border-amber-400/20 px-2 py-0.5 rounded-full font-bold">GANTI_TOOL_1</span>
+                                <span class="text-[11px] bg-amber-400/10 text-amber-300 border border-amber-400/20 px-2 py-0.5 rounded-full font-bold">GANTI_TOOL_2</span>
+                                <span class="text-[11px] bg-amber-400/10 text-amber-300 border border-amber-400/20 px-2 py-0.5 rounded-full font-bold">GANTI_TOOL_3</span>
+                            </div>
+                        </div>
+
+                        <div class="md:col-span-5 space-y-3">
+                            <!-- ✏️ FOTO PENGALAMAN 1 (klik = full screen) -->
+                            <!-- Kalau belum ada foto, hapus div ini dan biarkan kosong -->
+                            <div class="relative w-full rounded-2xl overflow-hidden border border-white/10 group"
+                                 onclick="bukaLightbox(this.querySelector('img').src, 'GANTI_CAPTION_FOTO_1')">
+                                <!-- 🖼️ GANTI URL FOTO PENGALAMAN 1 DI BAWAH INI -->
+                                <img src="GANTI_URL_FOTO_PENGALAMAN_1_DI_SINI"
+                                     alt="pengalaman-1" class="foto-klik w-full h-auto object-cover"
+                                     onerror="this.parentElement.style.display='none'">
+                                <div class="absolute bottom-2 right-2 z-20 bg-black/50 rounded-full p-1.5 opacity-0 group-hover:opacity-100 transition-opacity">
+                                    <i class="fa-solid fa-expand text-white text-xs"></i>
+                                </div>
+                            </div>
+                            <!-- ✏️ FOTO PENGALAMAN 1 TAMBAHAN (hapus komentar jika ada) -->
+                            <!--
+                            <div class="relative w-full rounded-2xl overflow-hidden border border-white/10 group"
+                                 onclick="bukaLightbox('LINK_FOTO_2', 'Caption foto 2')">
+                                <img src="LINK_FOTO_2" alt="pengalaman-1b" class="foto-klik w-full h-auto object-cover">
+                            </div>
+                            -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ================================ -->
+            <!-- PENGALAMAN 2 — GANTI SESUAI DATA -->
+            <!-- ================================ -->
+            <div class="relative pl-8 md:pl-10 group animate-fadeup delay-2">
+                <div class="absolute -left-[9px] top-2 w-4 h-4 rounded-full bg-[#1e1332] border-2 border-orange-500 shadow-md"></div>
+
+                <!-- ✏️ GANTI LABEL & TAHUN PENGALAMAN 2 -->
+                <div class="absolute left-[-155px] top-2 hidden md:block text-right w-36">
+                    <p class="text-sm font-black text-white">GANTI_TIPE_2</p>
+                    <p class="text-xs text-rose-300/60">GANTI_PERIODE_2</p>
+                </div>
+
+                <div class="card-hover bg-white/5 border border-white/10 backdrop-blur-md p-6 rounded-3xl">
+                    <div class="grid md:grid-cols-12 gap-6 items-start">
+                        <div class="md:col-span-7 space-y-4">
+                            <!-- ✏️ GANTI NAMA PERUSAHAAN 2 -->
+                            <span class="text-[11px] font-extrabold text-orange-400 uppercase tracking-widest block">GANTI_NAMA_PERUSAHAAN_2_DI_SINI</span>
+                            <!-- ✏️ GANTI POSISI 2 -->
+                            <p class="text-base font-bold text-white">GANTI_POSISI_2_DI_SINI</p>
+                            <!-- ✏️ GANTI DESKRIPSI LENGKAP 2 -->
+                            <p class="text-sm text-rose-100/70 leading-relaxed">GANTI_DESKRIPSI_LENGKAP_2_DI_SINI</p>
+                            <div class="space-y-2 pt-2">
+                                <p class="text-xs font-bold text-amber-300 uppercase tracking-wider">Tugas & Tanggung Jawab:</p>
+                                <div class="flex items-start space-x-2">
+                                    <i class="fa-solid fa-check text-amber-400 text-xs mt-0.5"></i>
+                                    <!-- ✏️ GANTI TUGAS 2-1 -->
+                                    <p class="text-xs text-rose-100/70">GANTI_TUGAS_1_DI_SINI</p>
+                                </div>
+                                <div class="flex items-start space-x-2">
+                                    <i class="fa-solid fa-check text-amber-400 text-xs mt-0.5"></i>
+                                    <!-- ✏️ GANTI TUGAS 2-2 -->
+                                    <p class="text-xs text-rose-100/70">GANTI_TUGAS_2_DI_SINI</p>
+                                </div>
+                                <div class="flex items-start space-x-2">
+                                    <i class="fa-solid fa-check text-amber-400 text-xs mt-0.5"></i>
+                                    <!-- ✏️ GANTI TUGAS 2-3 -->
+                                    <p class="text-xs text-rose-100/70">GANTI_TUGAS_3_DI_SINI</p>
+                                </div>
+                                <!-- ✏️ DUPLIKAT BARIS DI ATAS UNTUK TAMBAH TUGAS BARU -->
+                            </div>
+                            <div class="flex flex-wrap gap-2 pt-2">
+                                <!-- ✏️ GANTI/TAMBAH TOOLS -->
+                                <span class="text-[11px] bg-amber-400/10 text-amber-300 border border-amber-400/20 px-2 py-0.5 rounded-full font-bold">GANTI_TOOL_1</span>
+                                <span class="text-[11px] bg-amber-400/10 text-amber-300 border border-amber-400/20 px-2 py-0.5 rounded-full font-bold">GANTI_TOOL_2</span>
+                            </div>
+                        </div>
+                        <div class="md:col-span-5 space-y-3">
+                            <!-- ✏️ FOTO PENGALAMAN 2 -->
+                            <div class="relative w-full rounded-2xl overflow-hidden border border-white/10 group"
+                                 onclick="bukaLightbox(this.querySelector('img').src, 'GANTI_CAPTION_FOTO_2')">
+                                <!-- 🖼️ GANTI URL FOTO PENGALAMAN 2 DI BAWAH INI -->
+                                <img src="GANTI_URL_FOTO_PENGALAMAN_2_DI_SINI"
+                                     alt="pengalaman-2" class="foto-klik w-full h-auto object-cover"
+                                     onerror="this.parentElement.style.display='none'">
+                                <div class="absolute bottom-2 right-2 z-20 bg-black/50 rounded-full p-1.5 opacity-0 group-hover:opacity-100 transition-opacity">
+                                    <i class="fa-solid fa-expand text-white text-xs"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ================================ -->
+            <!-- PENGALAMAN 3 — GANTI SESUAI DATA -->
+            <!-- ================================ -->
+            <div class="relative pl-8 md:pl-10 group animate-fadeup delay-3">
+                <div class="absolute -left-[9px] top-2 w-4 h-4 rounded-full bg-[#1e1332] border-2 border-orange-500 shadow-md"></div>
+                <div class="absolute left-[-155px] top-2 hidden md:block text-right w-36">
+                    <p class="text-sm font-black text-white">GANTI_TIPE_3</p>
+                    <p class="text-xs text-rose-300/60">GANTI_PERIODE_3</p>
+                </div>
+                <div class="card-hover bg-white/5 border border-white/10 backdrop-blur-md p-6 rounded-3xl">
+                    <div class="grid md:grid-cols-12 gap-6 items-start">
+                        <div class="md:col-span-7 space-y-4">
+                            <span class="text-[11px] font-extrabold text-orange-400 uppercase tracking-widest block">GANTI_NAMA_PERUSAHAAN_3_DI_SINI</span>
+                            <p class="text-base font-bold text-white">GANTI_POSISI_3_DI_SINI</p>
+                            <p class="text-sm text-rose-100/70 leading-relaxed">GANTI_DESKRIPSI_LENGKAP_3_DI_SINI</p>
+                            <div class="space-y-2 pt-2">
+                                <p class="text-xs font-bold text-amber-300 uppercase tracking-wider">Tugas & Tanggung Jawab:</p>
+                                <div class="flex items-start space-x-2">
+                                    <i class="fa-solid fa-check text-amber-400 text-xs mt-0.5"></i>
+                                    <p class="text-xs text-rose-100/70">GANTI_TUGAS_1_DI_SINI</p>
+                                </div>
+                                <div class="flex items-start space-x-2">
+                                    <i class="fa-solid fa-check text-amber-400 text-xs mt-0.5"></i>
+                                    <p class="text-xs text-rose-100/70">GANTI_TUGAS_2_DI_SINI</p>
+                                </div>
+                                <!-- ✏️ DUPLIKAT BARIS DI ATAS UNTUK TAMBAH TUGAS -->
+                            </div>
+                            <div class="flex flex-wrap gap-2 pt-2">
+                                <span class="text-[11px] bg-amber-400/10 text-amber-300 border border-amber-400/20 px-2 py-0.5 rounded-full font-bold">GANTI_TOOL_1</span>
+                                <span class="text-[11px] bg-amber-400/10 text-amber-300 border border-amber-400/20 px-2 py-0.5 rounded-full font-bold">GANTI_TOOL_2</span>
+                            </div>
+                        </div>
+                        <div class="md:col-span-5 space-y-3">
+                            <div class="relative w-full rounded-2xl overflow-hidden border border-white/10 group"
+                                 onclick="bukaLightbox(this.querySelector('img').src, 'GANTI_CAPTION_FOTO_3')">
+                                <!-- 🖼️ GANTI URL FOTO PENGALAMAN 3 DI BAWAH INI -->
+                                <img src="GANTI_URL_FOTO_PENGALAMAN_3_DI_SINI"
+                                     alt="pengalaman-3" class="foto-klik w-full h-auto object-cover"
+                                     onerror="this.parentElement.style.display='none'">
+                                <div class="absolute bottom-2 right-2 z-20 bg-black/50 rounded-full p-1.5 opacity-0 group-hover:opacity-100 transition-opacity">
+                                    <i class="fa-solid fa-expand text-white text-xs"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ✏️ DUPLIKAT BLOK DI ATAS UNTUK TAMBAH PENGALAMAN BARU -->
+
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-black/40 border-t border-white/5 py-10 text-center text-xs text-rose-200/50">
+        <p>© 2026 Aditya Putra Rahmayadi. Semua Hak Cipta Dilindungi.</p>
+    </footer>
+
+    <script>
+        function bukaLightbox(src, caption) {
+            const lb = document.getElementById('lightbox');
+            const img = document.getElementById('lightbox-img');
+            const cap = document.getElementById('lightbox-caption');
+            img.src = src;
+            cap.textContent = caption || '';
+            lb.classList.add('show');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function tutupLightbox() {
+            document.getElementById('lightbox').classList.remove('show');
+            document.body.style.overflow = '';
+        }
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') tutupLightbox();
+        });
+
+        document.getElementById('lightbox-img').addEventListener('click', function(e) {
+            e.stopPropagation();
+        });
+    </script>
+</body>
+</html>
