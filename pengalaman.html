@@ -41,7 +41,7 @@
             transition: all 0.3s ease;
         }
         .foto-klik:hover {
-            transform: scale(1.03);
+            transform: scale(1.05);
             filter: brightness(1.1);
         }
 
@@ -57,13 +57,10 @@
             padding: 20px;
             backdrop-filter: blur(10px);
         }
-        #lightbox.show {
-            display: flex;
-            animation: fadeIn 0.3s ease-out;
-        }
-        #lightbox img {
+        #lightbox.show { display: flex; animation: fadeIn 0.3s ease-out; }
+        #lightbox-img {
             max-width: 90vw;
-            max-height: 90vh;
+            max-height: 85vh;
             object-fit: contain;
             border-radius: 12px;
             box-shadow: 0 0 60px rgba(245, 158, 11, 0.3);
@@ -74,7 +71,7 @@
             top: 20px;
             right: 24px;
             color: white;
-            font-size: 28px;
+            font-size: 24px;
             cursor: pointer;
             z-index: 10000;
             background: rgba(255,255,255,0.1);
@@ -87,6 +84,29 @@
             transition: background 0.2s;
         }
         #lightbox-close:hover { background: rgba(245,158,11,0.4); }
+
+        /* NAVIGASI FOTO DI LIGHTBOX */
+        #lightbox-prev, #lightbox-next {
+            position: fixed;
+            top: 50%;
+            transform: translateY(-50%);
+            color: white;
+            font-size: 20px;
+            cursor: pointer;
+            z-index: 10000;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            width: 44px;
+            height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.2s;
+        }
+        #lightbox-prev { left: 16px; }
+        #lightbox-next { right: 16px; }
+        #lightbox-prev:hover, #lightbox-next:hover { background: rgba(245,158,11,0.4); }
+
         #lightbox-caption {
             position: fixed;
             bottom: 24px;
@@ -99,7 +119,64 @@
             border-radius: 20px;
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255,255,255,0.1);
+            white-space: nowrap;
         }
+
+        #lightbox-counter {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: white;
+            font-size: 12px;
+            background: rgba(0,0,0,0.5);
+            padding: 5px 14px;
+            border-radius: 20px;
+        }
+
+        /* GALERI FOTO */
+        .galeri-foto {
+            display: grid;
+            gap: 8px;
+        }
+        .galeri-foto.satu { grid-template-columns: 1fr; }
+        .galeri-foto.dua { grid-template-columns: 1fr 1fr; }
+        .galeri-foto.tiga { grid-template-columns: 1fr 1fr; }
+        .galeri-foto.tiga .foto-utama { grid-column: 1 / -1; }
+        .galeri-foto.empat { grid-template-columns: 1fr 1fr; }
+        .galeri-foto.lima { grid-template-columns: 1fr 1fr 1fr; }
+        .galeri-foto.lima .foto-utama { grid-column: 1 / -1; }
+
+        .foto-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 12px;
+            border: 1px solid rgba(255,255,255,0.1);
+            background: rgba(0,0,0,0.4);
+        }
+        .foto-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+        .foto-item .overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(0,0,0,0);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.3s;
+        }
+        .foto-item:hover .overlay { background: rgba(0,0,0,0.35); }
+        .foto-item .overlay i {
+            opacity: 0;
+            color: white;
+            font-size: 20px;
+            transition: opacity 0.3s;
+        }
+        .foto-item:hover .overlay i { opacity: 1; }
 
         .dot-pulse::after {
             content: '';
@@ -114,11 +191,18 @@
 <body class="min-h-screen bg-gradient-to-b from-[#1e1332] via-[#3a1c40] to-[#4a1835] text-rose-50 font-sans">
 
     <!-- LIGHTBOX -->
-    <div id="lightbox" onclick="tutupLightbox()">
+    <div id="lightbox" onclick="tutupLightbox(event)">
         <button id="lightbox-close" onclick="tutupLightbox()">
             <i class="fa-solid fa-xmark"></i>
         </button>
+        <button id="lightbox-prev" onclick="navigasiFoto(-1); event.stopPropagation()">
+            <i class="fa-solid fa-chevron-left"></i>
+        </button>
         <img id="lightbox-img" src="" alt="">
+        <button id="lightbox-next" onclick="navigasiFoto(1); event.stopPropagation()">
+            <i class="fa-solid fa-chevron-right"></i>
+        </button>
+        <div id="lightbox-counter"></div>
         <div id="lightbox-caption"></div>
     </div>
 
@@ -141,7 +225,7 @@
         <span class="text-xs font-bold uppercase tracking-widest text-amber-300">Pengalaman</span>
         <h1 class="text-4xl font-black text-white mt-2">Pengalaman Kerja & PKL</h1>
         <p class="text-rose-100/70 mt-3 max-w-xl mx-auto">Perjalanan nyata saya di dunia kerja, magang, dan PKL yang membentuk kemampuan profesional saya.</p>
-        <p class="text-amber-300/70 text-xs mt-4"><i class="fa-solid fa-hand-pointer mr-1"></i> Klik foto untuk melihat ukuran penuh</p>
+        <p class="text-amber-300/70 text-xs mt-4"><i class="fa-solid fa-hand-pointer mr-1"></i> Klik foto untuk melihat ukuran penuh • Geser untuk foto berikutnya</p>
     </section>
 
     <!-- TIMELINE PENGALAMAN -->
@@ -154,199 +238,280 @@
         <div class="relative border-l-2 border-white/10 ml-4 md:ml-40 space-y-16">
 
             <!-- ================================ -->
-            <!-- PENGALAMAN 1 — GANTI SESUAI DATA -->
+            <!-- PENGALAMAN 1                     -->
             <!-- ================================ -->
             <div class="relative pl-8 md:pl-10 group animate-fadeup delay-1">
                 <div class="absolute -left-[9px] top-2 w-4 h-4 rounded-full bg-[#1e1332] border-2 border-orange-500 shadow-md dot-pulse relative"></div>
-
-                <!-- ✏️ GANTI LABEL & TAHUN PENGALAMAN 1 -->
                 <div class="absolute left-[-155px] top-2 hidden md:block text-right w-36">
+                    <!-- ✏️ GANTI TIPE & PERIODE PENGALAMAN 1 -->
                     <p class="text-sm font-black text-white">GANTI_TIPE_1</p>
-                    <!-- Contoh: PKL / Magang / Freelance -->
                     <p class="text-xs text-rose-300/60">GANTI_PERIODE_1</p>
-                    <!-- Contoh: Jan 2024 – Mar 2024 -->
                 </div>
 
                 <div class="card-hover bg-white/5 border border-white/10 backdrop-blur-md p-6 rounded-3xl">
-                    <div class="grid md:grid-cols-12 gap-6 items-start">
-                        <div class="md:col-span-7 space-y-4">
+                    <div class="space-y-5">
 
+                        <!-- INFO PERUSAHAAN -->
+                        <div>
                             <!-- ✏️ GANTI NAMA PERUSAHAAN 1 -->
-                            <span class="text-[11px] font-extrabold text-orange-400 uppercase tracking-widest block">GANTI_NAMA_PERUSAHAAN_1_DI_SINI</span>
-
-                            <!-- ✏️ GANTI POSISI/JABATAN 1 -->
-                            <p class="text-base font-bold text-white">GANTI_POSISI_1_DI_SINI</p>
-
-                            <!-- ✏️ GANTI DESKRIPSI LENGKAP 1 -->
-                            <p class="text-sm text-rose-100/70 leading-relaxed">GANTI_DESKRIPSI_LENGKAP_1_DI_SINI</p>
-
-                            <!-- TUGAS & TANGGUNG JAWAB -->
-                            <div class="space-y-2 pt-2">
-                                <p class="text-xs font-bold text-amber-300 uppercase tracking-wider">Tugas & Tanggung Jawab:</p>
-                                <div class="flex items-start space-x-2">
-                                    <i class="fa-solid fa-check text-amber-400 text-xs mt-0.5"></i>
-                                    <!-- ✏️ GANTI TUGAS 1-1 -->
-                                    <p class="text-xs text-rose-100/70">GANTI_TUGAS_1_DI_SINI</p>
-                                </div>
-                                <div class="flex items-start space-x-2">
-                                    <i class="fa-solid fa-check text-amber-400 text-xs mt-0.5"></i>
-                                    <!-- ✏️ GANTI TUGAS 1-2 -->
-                                    <p class="text-xs text-rose-100/70">GANTI_TUGAS_2_DI_SINI</p>
-                                </div>
-                                <div class="flex items-start space-x-2">
-                                    <i class="fa-solid fa-check text-amber-400 text-xs mt-0.5"></i>
-                                    <!-- ✏️ GANTI TUGAS 1-3 -->
-                                    <p class="text-xs text-rose-100/70">GANTI_TUGAS_3_DI_SINI</p>
-                                </div>
-                                <!-- ✏️ DUPLIKAT BARIS DI ATAS UNTUK TAMBAH TUGAS BARU -->
-                            </div>
-
-                            <!-- TOOLS YANG DIGUNAKAN -->
-                            <div class="flex flex-wrap gap-2 pt-2">
-                                <!-- ✏️ GANTI/TAMBAH TOOLS YANG DIGUNAKAN -->
-                                <span class="text-[11px] bg-amber-400/10 text-amber-300 border border-amber-400/20 px-2 py-0.5 rounded-full font-bold">GANTI_TOOL_1</span>
-                                <span class="text-[11px] bg-amber-400/10 text-amber-300 border border-amber-400/20 px-2 py-0.5 rounded-full font-bold">GANTI_TOOL_2</span>
-                                <span class="text-[11px] bg-amber-400/10 text-amber-300 border border-amber-400/20 px-2 py-0.5 rounded-full font-bold">GANTI_TOOL_3</span>
-                            </div>
+                            <span class="text-[11px] font-extrabold text-orange-400 uppercase tracking-widest block">AMERTA GRUP</span>
+                            <!-- ✏️ GANTI POSISI 1 -->
+                            <p class="text-base font-bold text-white mt-1">CRM (Customer Relationship Management) p>
+                            <!-- ✏️ GANTI DESKRIPSI 1 -->
+                            <p class="text-sm text-rose-100/70 mt-3 leading-relaxed">Saya magang sebagai CRM (Customer Relationship Management) adalah strategi dan perangkat lunak bisnis untuk mengelola interaksi dengan pelanggan dan calon pelanggan. 
+                                Sistem ini menyatukan data dari berbagai saluran seperti email dan telepon ke dalam satu dasbor terpusat untuk meningkatkan penjualan, pemasaran, dan layanan pelanggan.</p>
                         </div>
 
-                        <div class="md:col-span-5 space-y-3">
-                            <!-- ✏️ FOTO PENGALAMAN 1 (klik = full screen) -->
-                            <!-- Kalau belum ada foto, hapus div ini dan biarkan kosong -->
-                            <div class="relative w-full rounded-2xl overflow-hidden border border-white/10 group"
-                                 onclick="bukaLightbox(this.querySelector('img').src, 'GANTI_CAPTION_FOTO_1')">
-                                <!-- 🖼️ GANTI URL FOTO PENGALAMAN 1 DI BAWAH INI -->
-                                <img src="GANTI_URL_FOTO_PENGALAMAN_1_DI_SINI"
-                                     alt="pengalaman-1" class="foto-klik w-full h-auto object-cover"
-                                     onerror="this.parentElement.style.display='none'">
-                                <div class="absolute bottom-2 right-2 z-20 bg-black/50 rounded-full p-1.5 opacity-0 group-hover:opacity-100 transition-opacity">
-                                    <i class="fa-solid fa-expand text-white text-xs"></i>
-                                </div>
+                        <!-- TUGAS -->
+                        <div class="space-y-2">
+                            <p class="text-xs font-bold text-amber-300 uppercase tracking-wider">Tugas & Tanggung Jawab:</p>
+                            <div class="flex items-start space-x-2">
+                                <i class="fa-solid fa-check text-amber-400 text-xs mt-0.5 flex-shrink-0"></i>
+                                <!-- ✏️ GANTI TUGAS 1-1 -->
+                                <p class="text-xs text-rose-100/70">GANTI_TUGAS_1_DI_SINI</p>
                             </div>
-                            <!-- ✏️ FOTO PENGALAMAN 1 TAMBAHAN (hapus komentar jika ada) -->
-                            <!--
-                            <div class="relative w-full rounded-2xl overflow-hidden border border-white/10 group"
-                                 onclick="bukaLightbox('LINK_FOTO_2', 'Caption foto 2')">
-                                <img src="LINK_FOTO_2" alt="pengalaman-1b" class="foto-klik w-full h-auto object-cover">
+                            <div class="flex items-start space-x-2">
+                                <i class="fa-solid fa-check text-amber-400 text-xs mt-0.5 flex-shrink-0"></i>
+                                <!-- ✏️ GANTI TUGAS 1-2 -->
+                                <p class="text-xs text-rose-100/70">GANTI_TUGAS_2_DI_SINI</p>
                             </div>
-                            -->
+                            <div class="flex items-start space-x-2">
+                                <i class="fa-solid fa-check text-amber-400 text-xs mt-0.5 flex-shrink-0"></i>
+                                <!-- ✏️ GANTI TUGAS 1-3 -->
+                                <p class="text-xs text-rose-100/70">GANTI_TUGAS_3_DI_SINI</p>
+                            </div>
+                            <!-- ✏️ DUPLIKAT BARIS DI ATAS UNTUK TAMBAH TUGAS BARU -->
                         </div>
+
+                        <!-- TOOLS -->
+                        <div class="flex flex-wrap gap-2">
+                            <!-- ✏️ GANTI/TAMBAH TOOLS -->
+                            <span class="text-[11px] bg-amber-400/10 text-amber-300 border border-amber-400/20 px-2 py-0.5 rounded-full font-bold">EXCEL</span>
+                            <span class="text-[11px] bg-amber-400/10 text-amber-300 border border-amber-400/20 px-2 py-0.5 rounded-full font-bold">WORD</span>
+                        
+                       </div>
+
+                        <!-- ======================= -->
+                        <!-- GALERI FOTO PERUSAHAAN 1 -->
+                        <!-- ======================= -->
+                        <!-- 
+                            CARA ATUR JUMLAH FOTO:
+                            - 1 foto  → class="galeri-foto satu"
+                            - 2 foto  → class="galeri-foto dua"
+                            - 3 foto  → class="galeri-foto tiga" (1 besar di atas, 2 kecil di bawah)
+                            - 4 foto  → class="galeri-foto empat"
+                            - 5 foto  → class="galeri-foto lima"
+                            
+                            CARA TAMBAH FOTO:
+                            Duplikat blok <div class="foto-item"> di bawah
+                            dan ganti URL foto serta caption nya
+                        -->
+                        <div>
+                            <p class="text-xs font-bold text-amber-300 uppercase tracking-wider mb-3">Dokumentasi:</p>
+                            <!-- ✏️ GANTI class galeri sesuai jumlah foto (satu/dua/tiga/empat/lima) -->
+                            <div class="galeri-foto tiga" id="galeri-1">
+
+                                <!-- 🖼️ FOTO UTAMA (besar) - GANTI URL DI BAWAH -->
+                                <div class="foto-item foto-utama" style="height: 200px;"
+                                     onclick="bukaGaleri('galeri-1', 0)">
+                                    <img src="GANTI_URL_FOTO_1A_DI_SINI" alt="foto-1a"
+                                         onerror="this.parentElement.style.display='none'">
+                                    <div class="overlay"><i class="fa-solid fa-expand"></i></div>
+                                </div>
+
+                                <!-- 🖼️ FOTO KEDUA - GANTI URL DI BAWAH -->
+                                <div class="foto-item" style="height: 130px;"
+                                     onclick="bukaGaleri('galeri-1', 1)">
+                                    <img src="GANTI_URL_FOTO_1B_DI_SINI" alt="foto-1b"
+                                         onerror="this.parentElement.style.display='none'">
+                                    <div class="overlay"><i class="fa-solid fa-expand"></i></div>
+                                </div>
+
+                                <!-- 🖼️ FOTO KETIGA - GANTI URL DI BAWAH -->
+                                <div class="foto-item" style="height: 130px;"
+                                     onclick="bukaGaleri('galeri-1', 2)">
+                                    <img src="GANTI_URL_FOTO_1C_DI_SINI" alt="foto-1c"
+                                         onerror="this.parentElement.style.display='none'">
+                                    <div class="overlay"><i class="fa-solid fa-expand"></i></div>
+                                </div>
+
+                                <!-- ✏️ TAMBAH FOTO LAGI? Duplikat blok foto-item di atas -->
+                                <!-- Contoh foto ke-4:
+                                <div class="foto-item" style="height: 130px;"
+                                     onclick="bukaGaleri('galeri-1', 3)">
+                                    <img src="LINK_FOTO_1D" alt="foto-1d"
+                                         onerror="this.parentElement.style.display='none'">
+                                    <div class="overlay"><i class="fa-solid fa-expand"></i></div>
+                                </div>
+                                -->
+
+                            </div>
+                        </div>
+                        <!-- Caption galeri 1 - isi nama perusahaan/event -->
+                        <p class="text-[11px] text-rose-300/50 text-center -mt-2">
+                            <!-- ✏️ GANTI CAPTION GALERI 1 -->
+                            GANTI_CAPTION_GALERI_1_DI_SINI
+                        </p>
+
                     </div>
                 </div>
             </div>
 
             <!-- ================================ -->
-            <!-- PENGALAMAN 2 — GANTI SESUAI DATA -->
+            <!-- PENGALAMAN 2                     -->
             <!-- ================================ -->
             <div class="relative pl-8 md:pl-10 group animate-fadeup delay-2">
                 <div class="absolute -left-[9px] top-2 w-4 h-4 rounded-full bg-[#1e1332] border-2 border-orange-500 shadow-md"></div>
-
-                <!-- ✏️ GANTI LABEL & TAHUN PENGALAMAN 2 -->
                 <div class="absolute left-[-155px] top-2 hidden md:block text-right w-36">
+                    <!-- ✏️ GANTI TIPE & PERIODE PENGALAMAN 2 -->
                     <p class="text-sm font-black text-white">GANTI_TIPE_2</p>
                     <p class="text-xs text-rose-300/60">GANTI_PERIODE_2</p>
                 </div>
 
                 <div class="card-hover bg-white/5 border border-white/10 backdrop-blur-md p-6 rounded-3xl">
-                    <div class="grid md:grid-cols-12 gap-6 items-start">
-                        <div class="md:col-span-7 space-y-4">
+                    <div class="space-y-5">
+                        <div>
                             <!-- ✏️ GANTI NAMA PERUSAHAAN 2 -->
                             <span class="text-[11px] font-extrabold text-orange-400 uppercase tracking-widest block">GANTI_NAMA_PERUSAHAAN_2_DI_SINI</span>
                             <!-- ✏️ GANTI POSISI 2 -->
-                            <p class="text-base font-bold text-white">GANTI_POSISI_2_DI_SINI</p>
-                            <!-- ✏️ GANTI DESKRIPSI LENGKAP 2 -->
-                            <p class="text-sm text-rose-100/70 leading-relaxed">GANTI_DESKRIPSI_LENGKAP_2_DI_SINI</p>
-                            <div class="space-y-2 pt-2">
-                                <p class="text-xs font-bold text-amber-300 uppercase tracking-wider">Tugas & Tanggung Jawab:</p>
-                                <div class="flex items-start space-x-2">
-                                    <i class="fa-solid fa-check text-amber-400 text-xs mt-0.5"></i>
-                                    <!-- ✏️ GANTI TUGAS 2-1 -->
-                                    <p class="text-xs text-rose-100/70">GANTI_TUGAS_1_DI_SINI</p>
-                                </div>
-                                <div class="flex items-start space-x-2">
-                                    <i class="fa-solid fa-check text-amber-400 text-xs mt-0.5"></i>
-                                    <!-- ✏️ GANTI TUGAS 2-2 -->
-                                    <p class="text-xs text-rose-100/70">GANTI_TUGAS_2_DI_SINI</p>
-                                </div>
-                                <div class="flex items-start space-x-2">
-                                    <i class="fa-solid fa-check text-amber-400 text-xs mt-0.5"></i>
-                                    <!-- ✏️ GANTI TUGAS 2-3 -->
-                                    <p class="text-xs text-rose-100/70">GANTI_TUGAS_3_DI_SINI</p>
-                                </div>
-                                <!-- ✏️ DUPLIKAT BARIS DI ATAS UNTUK TAMBAH TUGAS BARU -->
+                            <p class="text-base font-bold text-white mt-1">GANTI_POSISI_2_DI_SINI</p>
+                            <!-- ✏️ GANTI DESKRIPSI 2 -->
+                            <p class="text-sm text-rose-100/70 mt-3 leading-relaxed">GANTI_DESKRIPSI_LENGKAP_2_DI_SINI</p>
+                        </div>
+
+                        <div class="space-y-2">
+                            <p class="text-xs font-bold text-amber-300 uppercase tracking-wider">Tugas & Tanggung Jawab:</p>
+                            <div class="flex items-start space-x-2">
+                                <i class="fa-solid fa-check text-amber-400 text-xs mt-0.5 flex-shrink-0"></i>
+                                <!-- ✏️ GANTI TUGAS 2-1 -->
+                                <p class="text-xs text-rose-100/70">GANTI_TUGAS_1_DI_SINI</p>
                             </div>
-                            <div class="flex flex-wrap gap-2 pt-2">
-                                <!-- ✏️ GANTI/TAMBAH TOOLS -->
-                                <span class="text-[11px] bg-amber-400/10 text-amber-300 border border-amber-400/20 px-2 py-0.5 rounded-full font-bold">GANTI_TOOL_1</span>
-                                <span class="text-[11px] bg-amber-400/10 text-amber-300 border border-amber-400/20 px-2 py-0.5 rounded-full font-bold">GANTI_TOOL_2</span>
+                            <div class="flex items-start space-x-2">
+                                <i class="fa-solid fa-check text-amber-400 text-xs mt-0.5 flex-shrink-0"></i>
+                                <!-- ✏️ GANTI TUGAS 2-2 -->
+                                <p class="text-xs text-rose-100/70">GANTI_TUGAS_2_DI_SINI</p>
+                            </div>
+                            <div class="flex items-start space-x-2">
+                                <i class="fa-solid fa-check text-amber-400 text-xs mt-0.5 flex-shrink-0"></i>
+                                <!-- ✏️ GANTI TUGAS 2-3 -->
+                                <p class="text-xs text-rose-100/70">GANTI_TUGAS_3_DI_SINI</p>
+                            </div>
+                            <!-- ✏️ DUPLIKAT BARIS DI ATAS UNTUK TAMBAH TUGAS BARU -->
+                        </div>
+
+                        <div class="flex flex-wrap gap-2">
+                            <!-- ✏️ GANTI/TAMBAH TOOLS -->
+                            <span class="text-[11px] bg-amber-400/10 text-amber-300 border border-amber-400/20 px-2 py-0.5 rounded-full font-bold">GANTI_TOOL_1</span>
+                            <span class="text-[11px] bg-amber-400/10 text-amber-300 border border-amber-400/20 px-2 py-0.5 rounded-full font-bold">GANTI_TOOL_2</span>
+                        </div>
+
+                        <!-- GALERI FOTO PERUSAHAAN 2 -->
+                        <div>
+                            <p class="text-xs font-bold text-amber-300 uppercase tracking-wider mb-3">Dokumentasi:</p>
+                            <!-- ✏️ GANTI class galeri (satu/dua/tiga/empat/lima) -->
+                            <div class="galeri-foto dua" id="galeri-2">
+
+                                <!-- 🖼️ FOTO PERTAMA - GANTI URL DI BAWAH -->
+                                <div class="foto-item" style="height: 160px;"
+                                     onclick="bukaGaleri('galeri-2', 0)">
+                                    <img src="GANTI_URL_FOTO_2A_DI_SINI" alt="foto-2a"
+                                         onerror="this.parentElement.style.display='none'">
+                                    <div class="overlay"><i class="fa-solid fa-expand"></i></div>
+                                </div>
+
+                                <!-- 🖼️ FOTO KEDUA - GANTI URL DI BAWAH -->
+                                <div class="foto-item" style="height: 160px;"
+                                     onclick="bukaGaleri('galeri-2', 1)">
+                                    <img src="GANTI_URL_FOTO_2B_DI_SINI" alt="foto-2b"
+                                         onerror="this.parentElement.style.display='none'">
+                                    <div class="overlay"><i class="fa-solid fa-expand"></i></div>
+                                </div>
+
+                                <!-- ✏️ TAMBAH FOTO LAGI? Duplikat blok foto-item di atas -->
+
                             </div>
                         </div>
-                        <div class="md:col-span-5 space-y-3">
-                            <!-- ✏️ FOTO PENGALAMAN 2 -->
-                            <div class="relative w-full rounded-2xl overflow-hidden border border-white/10 group"
-                                 onclick="bukaLightbox(this.querySelector('img').src, 'GANTI_CAPTION_FOTO_2')">
-                                <!-- 🖼️ GANTI URL FOTO PENGALAMAN 2 DI BAWAH INI -->
-                                <img src="GANTI_URL_FOTO_PENGALAMAN_2_DI_SINI"
-                                     alt="pengalaman-2" class="foto-klik w-full h-auto object-cover"
-                                     onerror="this.parentElement.style.display='none'">
-                                <div class="absolute bottom-2 right-2 z-20 bg-black/50 rounded-full p-1.5 opacity-0 group-hover:opacity-100 transition-opacity">
-                                    <i class="fa-solid fa-expand text-white text-xs"></i>
-                                </div>
-                            </div>
-                        </div>
+                        <p class="text-[11px] text-rose-300/50 text-center -mt-2">
+                            <!-- ✏️ GANTI CAPTION GALERI 2 -->
+                            GANTI_CAPTION_GALERI_2_DI_SINI
+                        </p>
+
                     </div>
                 </div>
             </div>
 
             <!-- ================================ -->
-            <!-- PENGALAMAN 3 — GANTI SESUAI DATA -->
+            <!-- PENGALAMAN 3                     -->
             <!-- ================================ -->
             <div class="relative pl-8 md:pl-10 group animate-fadeup delay-3">
                 <div class="absolute -left-[9px] top-2 w-4 h-4 rounded-full bg-[#1e1332] border-2 border-orange-500 shadow-md"></div>
                 <div class="absolute left-[-155px] top-2 hidden md:block text-right w-36">
+                    <!-- ✏️ GANTI TIPE & PERIODE PENGALAMAN 3 -->
                     <p class="text-sm font-black text-white">GANTI_TIPE_3</p>
                     <p class="text-xs text-rose-300/60">GANTI_PERIODE_3</p>
                 </div>
+
                 <div class="card-hover bg-white/5 border border-white/10 backdrop-blur-md p-6 rounded-3xl">
-                    <div class="grid md:grid-cols-12 gap-6 items-start">
-                        <div class="md:col-span-7 space-y-4">
+                    <div class="space-y-5">
+                        <div>
+                            <!-- ✏️ GANTI NAMA PERUSAHAAN 3 -->
                             <span class="text-[11px] font-extrabold text-orange-400 uppercase tracking-widest block">GANTI_NAMA_PERUSAHAAN_3_DI_SINI</span>
-                            <p class="text-base font-bold text-white">GANTI_POSISI_3_DI_SINI</p>
-                            <p class="text-sm text-rose-100/70 leading-relaxed">GANTI_DESKRIPSI_LENGKAP_3_DI_SINI</p>
-                            <div class="space-y-2 pt-2">
-                                <p class="text-xs font-bold text-amber-300 uppercase tracking-wider">Tugas & Tanggung Jawab:</p>
-                                <div class="flex items-start space-x-2">
-                                    <i class="fa-solid fa-check text-amber-400 text-xs mt-0.5"></i>
-                                    <p class="text-xs text-rose-100/70">GANTI_TUGAS_1_DI_SINI</p>
-                                </div>
-                                <div class="flex items-start space-x-2">
-                                    <i class="fa-solid fa-check text-amber-400 text-xs mt-0.5"></i>
-                                    <p class="text-xs text-rose-100/70">GANTI_TUGAS_2_DI_SINI</p>
-                                </div>
-                                <!-- ✏️ DUPLIKAT BARIS DI ATAS UNTUK TAMBAH TUGAS -->
+                            <!-- ✏️ GANTI POSISI 3 -->
+                            <p class="text-base font-bold text-white mt-1">GANTI_POSISI_3_DI_SINI</p>
+                            <!-- ✏️ GANTI DESKRIPSI 3 -->
+                            <p class="text-sm text-rose-100/70 mt-3 leading-relaxed">GANTI_DESKRIPSI_LENGKAP_3_DI_SINI</p>
+                        </div>
+
+                        <div class="space-y-2">
+                            <p class="text-xs font-bold text-amber-300 uppercase tracking-wider">Tugas & Tanggung Jawab:</p>
+                            <div class="flex items-start space-x-2">
+                                <i class="fa-solid fa-check text-amber-400 text-xs mt-0.5 flex-shrink-0"></i>
+                                <!-- ✏️ GANTI TUGAS 3-1 -->
+                                <p class="text-xs text-rose-100/70">GANTI_TUGAS_1_DI_SINI</p>
                             </div>
-                            <div class="flex flex-wrap gap-2 pt-2">
-                                <span class="text-[11px] bg-amber-400/10 text-amber-300 border border-amber-400/20 px-2 py-0.5 rounded-full font-bold">GANTI_TOOL_1</span>
-                                <span class="text-[11px] bg-amber-400/10 text-amber-300 border border-amber-400/20 px-2 py-0.5 rounded-full font-bold">GANTI_TOOL_2</span>
+                            <div class="flex items-start space-x-2">
+                                <i class="fa-solid fa-check text-amber-400 text-xs mt-0.5 flex-shrink-0"></i>
+                                <!-- ✏️ GANTI TUGAS 3-2 -->
+                                <p class="text-xs text-rose-100/70">GANTI_TUGAS_2_DI_SINI</p>
+                            </div>
+                            <!-- ✏️ DUPLIKAT BARIS DI ATAS UNTUK TAMBAH TUGAS BARU -->
+                        </div>
+
+                        <div class="flex flex-wrap gap-2">
+                            <!-- ✏️ GANTI/TAMBAH TOOLS -->
+                            <span class="text-[11px] bg-amber-400/10 text-amber-300 border border-amber-400/20 px-2 py-0.5 rounded-full font-bold">GANTI_TOOL_1</span>
+                            <span class="text-[11px] bg-amber-400/10 text-amber-300 border border-amber-400/20 px-2 py-0.5 rounded-full font-bold">GANTI_TOOL_2</span>
+                        </div>
+
+                        <!-- GALERI FOTO PERUSAHAAN 3 -->
+                        <div>
+                            <p class="text-xs font-bold text-amber-300 uppercase tracking-wider mb-3">Dokumentasi:</p>
+                            <!-- ✏️ GANTI class galeri (satu/dua/tiga/empat/lima) -->
+                            <div class="galeri-foto satu" id="galeri-3">
+
+                                <!-- 🖼️ FOTO PERTAMA - GANTI URL DI BAWAH -->
+                                <div class="foto-item" style="height: 220px;"
+                                     onclick="bukaGaleri('galeri-3', 0)">
+                                    <img src="GANTI_URL_FOTO_3A_DI_SINI" alt="foto-3a"
+                                         onerror="this.parentElement.style.display='none'">
+                                    <div class="overlay"><i class="fa-solid fa-expand"></i></div>
+                                </div>
+
+                                <!-- ✏️ TAMBAH FOTO LAGI? Duplikat blok foto-item di atas -->
+
                             </div>
                         </div>
-                        <div class="md:col-span-5 space-y-3">
-                            <div class="relative w-full rounded-2xl overflow-hidden border border-white/10 group"
-                                 onclick="bukaLightbox(this.querySelector('img').src, 'GANTI_CAPTION_FOTO_3')">
-                                <!-- 🖼️ GANTI URL FOTO PENGALAMAN 3 DI BAWAH INI -->
-                                <img src="GANTI_URL_FOTO_PENGALAMAN_3_DI_SINI"
-                                     alt="pengalaman-3" class="foto-klik w-full h-auto object-cover"
-                                     onerror="this.parentElement.style.display='none'">
-                                <div class="absolute bottom-2 right-2 z-20 bg-black/50 rounded-full p-1.5 opacity-0 group-hover:opacity-100 transition-opacity">
-                                    <i class="fa-solid fa-expand text-white text-xs"></i>
-                                </div>
-                            </div>
-                        </div>
+                        <p class="text-[11px] text-rose-300/50 text-center -mt-2">
+                            <!-- ✏️ GANTI CAPTION GALERI 3 -->
+                            GANTI_CAPTION_GALERI_3_DI_SINI
+                        </p>
+
                     </div>
                 </div>
             </div>
 
-            <!-- ✏️ DUPLIKAT BLOK DI ATAS UNTUK TAMBAH PENGALAMAN BARU -->
+            <!-- ✏️ DUPLIKAT SELURUH BLOK PENGALAMAN DI ATAS UNTUK TAMBAH PENGALAMAN BARU -->
+            <!-- Jangan lupa ganti id galeri menjadi galeri-4, galeri-5, dst -->
 
         </div>
     </section>
@@ -357,27 +522,71 @@
     </footer>
 
     <script>
-        function bukaLightbox(src, caption) {
-            const lb = document.getElementById('lightbox');
-            const img = document.getElementById('lightbox-img');
-            const cap = document.getElementById('lightbox-caption');
-            img.src = src;
-            cap.textContent = caption || '';
-            lb.classList.add('show');
+        // Data galeri aktif untuk navigasi
+        let galeriAktif = [];
+        let indeksAktif = 0;
+        let captionGaleri = '';
+
+        function bukaGaleri(idGaleri, indeks) {
+            const galeri = document.getElementById(idGaleri);
+            const semuaFoto = galeri.querySelectorAll('.foto-item img');
+            const caption = galeri.closest('.card-hover')
+                .querySelector('.text-rose-300\\/50')?.textContent?.trim() || '';
+
+            // Kumpulkan semua URL foto yang berhasil load
+            galeriAktif = [];
+            semuaFoto.forEach(img => {
+                if (img.style.display !== 'none' && img.src && !img.src.includes('GANTI_URL')) {
+                    galeriAktif.push(img.src);
+                }
+            });
+
+            if (galeriAktif.length === 0) return;
+
+            captionGaleri = caption;
+            indeksAktif = Math.min(indeks, galeriAktif.length - 1);
+            tampilFoto();
+
+            document.getElementById('lightbox').classList.add('show');
             document.body.style.overflow = 'hidden';
         }
 
-        function tutupLightbox() {
-            document.getElementById('lightbox').classList.remove('show');
-            document.body.style.overflow = '';
+        function tampilFoto() {
+            document.getElementById('lightbox-img').src = galeriAktif[indeksAktif];
+            document.getElementById('lightbox-counter').textContent =
+                `${indeksAktif + 1} / ${galeriAktif.length}`;
+            document.getElementById('lightbox-caption').textContent = captionGaleri;
+
+            // Sembunyikan tombol prev/next kalau hanya 1 foto
+            const showNav = galeriAktif.length > 1;
+            document.getElementById('lightbox-prev').style.display = showNav ? 'flex' : 'none';
+            document.getElementById('lightbox-next').style.display = showNav ? 'flex' : 'none';
         }
 
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape') tutupLightbox();
-        });
+        function navigasiFoto(arah) {
+            indeksAktif = (indeksAktif + arah + galeriAktif.length) % galeriAktif.length;
+            tampilFoto();
+        }
 
-        document.getElementById('lightbox-img').addEventListener('click', function(e) {
-            e.stopPropagation();
+        function tutupLightbox(event) {
+            if (event && event.target !== document.getElementById('lightbox') &&
+                event.target !== document.getElementById('lightbox-close') &&
+                !document.getElementById('lightbox-close').contains(event.target)) {
+                return;
+            }
+            document.getElementById('lightbox').classList.remove('show');
+            document.body.style.overflow = '';
+            galeriAktif = [];
+        }
+
+        // Tombol ESC untuk tutup
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                document.getElementById('lightbox').classList.remove('show');
+                document.body.style.overflow = '';
+            }
+            if (e.key === 'ArrowLeft') navigasiFoto(-1);
+            if (e.key === 'ArrowRight') navigasiFoto(1);
         });
     </script>
 </body>
