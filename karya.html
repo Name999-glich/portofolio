@@ -1,4 +1,581 @@
 <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Selected Works - Aditya Portfolio</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        html { scroll-behavior: smooth; }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+        .tab-btn { background: rgba(255,255,255,0.05); color: #fce7f3; border: 1px solid rgba(255,255,255,0.1); }
+        .tab-btn.active { background: linear-gradient(to right, #f59e0b, #f97316, #f43f5e); color: #000; border: none; }
+        .halaman { display: none; }
+        .halaman.active { display: block; }
+        .card-karya { cursor: pointer; }
+        .img-placeholder { background: linear-gradient(135deg, #1e1332, #3a1c40); border: 2px dashed rgba(255,255,255,0.15); display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 180px; }
+    </style>
+</head>
+<body class="min-h-screen bg-gradient-to-b from-[#1e1332] via-[#3a1c40] to-[#4a1835] text-rose-50 font-sans">
+
+    <!-- HEADER -->
+    <header class="sticky top-0 z-50 backdrop-blur-md bg-[#1e1332]/80 border-b border-rose-900/30">
+        <div class="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between">
+            <a href="index.html" class="flex items-center space-x-2">
+                <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-amber-400 via-orange-500 to-rose-600 flex items-center justify-center font-black text-white text-xl">A</div>
+                <span class="font-bold tracking-widest text-lg text-rose-100 hidden sm:block">ADITYA.PORTFOLIO</span>
+            </a>
+            <a href="index.html" class="flex items-center space-x-2 text-sm text-rose-200/80 hover:text-amber-300 transition-colors">
+                <i class="fa-solid fa-arrow-left"></i>
+                <span>Back to Portfolio</span>
+            </a>
+        </div>
+    </header>
+
+    <!-- ==================== -->
+    <!-- WORKS LIST PAGE -->
+    <!-- ==================== -->
+    <div id="halaman-list" class="halaman active">
+        <section class="py-16 max-w-6xl mx-auto px-4">
+            <div class="mb-10">
+                <span class="text-xs font-bold uppercase tracking-widest text-amber-300">Portfolio</span>
+                <h1 class="text-4xl font-black text-white mt-2">Selected Works Collection</h1>
+                <p class="text-rose-100/70 mt-2">Click a work to see full details</p>
+            </div>
+
+            <!-- TAB BUTTONS -->
+            <div class="flex flex-wrap gap-3 mb-10">
+                <button onclick="switchTab('illustrator')" id="btn-illustrator" class="tab-btn active px-5 py-2.5 rounded-xl font-bold text-sm transition-all">
+                    <i class="fa-solid fa-pen-nib mr-2"></i>Adobe Illustrator
+                </button>
+                <button onclick="switchTab('lightroom')" id="btn-lightroom" class="tab-btn px-5 py-2.5 rounded-xl font-bold text-sm transition-all">
+                    <i class="fa-solid fa-camera mr-2"></i>Adobe Lightroom
+                </button>
+                <button onclick="switchTab('canva')" id="btn-canva" class="tab-btn px-5 py-2.5 rounded-xl font-bold text-sm transition-all">
+                    <i class="fa-solid fa-c mr-2"></i>Canva
+                </button>
+                <button onclick="switchTab('photoshop')" id="btn-photoshop" class="tab-btn px-5 py-2.5 rounded-xl font-bold text-sm transition-all">
+                    <i class="fa-solid fa-wand-magic-sparkles mr-2"></i>Adobe Photoshop
+                </button>
+            </div>
+
+            <!-- ======================== -->
+            <!-- TAB ADOBE ILLUSTRATOR    -->
+            <!-- ======================== -->
+            <div id="tab-illustrator" class="tab-content active">
+                <div class="grid md:grid-cols-3 sm:grid-cols-2 gap-6">
+
+                    <!-- ⬇️ ILLUSTRATOR WORK 1 — HAS IMAGE -->
+                    <div onclick="openDetails('il-1')" class="card-karya bg-white/5 border border-white/10 rounded-2xl overflow-hidden flex flex-col group hover:border-amber-400/40 hover:shadow-xl transition-all duration-300">
+                        <div class="relative overflow-hidden bg-black/40">
+                            <!-- 🖼️ CHANGE PHOTO LINK il-1 -->
+                            <img src="https://github.com/Name999-glich/portofolio/blob/master/New%20folder/poster-01.png?raw=true" alt="il-1" class="w-full h-auto block object-contain group-hover:scale-105 transition-transform duration-500">
+                            <div class="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-all flex items-center justify-center">
+                                <span class="opacity-0 group-hover:opacity-100 bg-amber-400 text-black font-bold text-xs px-4 py-2 rounded-full transition-all"><i class="fa-solid fa-eye mr-1"></i>View Details</span>
+                            </div>
+                        </div>
+                        <div class="p-5 flex-1 flex flex-col justify-between">
+                            <!-- ✏️ CHANGE TITLE il-1 -->
+                            <h3 class="font-bold text-white">Weekend Big Deals Grocery</h3>
+                            <!-- ✏️ CHANGE SHORT DESCRIPTION il-1 -->
+                            <p class="text-xs text-rose-100/70 mt-2">An informative promotional brochure design made for a school assignment.</p>
+                            <div class="flex items-center justify-between mt-3 pt-2 border-t border-white/10">
+                                <p class="text-[11px] text-rose-300/60">Adobe Illustrator</p>
+                                <span class="text-amber-400 text-xs group-hover:translate-x-1 transition-transform">→</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ⬇️ ILLUSTRATOR WORK 2 — NO IMAGE YET -->
+                    <div onclick="openDetails('il-2')" class="card-karya bg-white/5 border border-white/10 rounded-2xl overflow-hidden flex flex-col group hover:border-amber-400/40 hover:shadow-xl transition-all duration-300">
+                        <div class="relative overflow-hidden bg-black/40">
+                            <!-- 🖼️ CHANGE PHOTO URL il-2 BELOW (remove the CHANGE_URL... text and paste your GitHub photo link) -->
+                            <img src="https://github.com/Name999-glich/portofolio/blob/master/data%20buat%20potofolio/khayalan%20(01)-01.png?raw=true" alt="il-2" class="w-full h-auto block object-contain group-hover:scale-105 transition-transform duration-500">
+                        </div>
+                        <div class="p-5 flex-1 flex flex-col justify-between">
+                            <!-- ✏️ CHANGE TITLE il-2 BELOW -->
+                            <h3 class="font-bold text-white">Imaginative Illustration</h3>
+                            <!-- ✏️ CHANGE DESCRIPTION il-2 BELOW -->
+                            <p class="text-xs text-rose-100/70 mt-2">CHANGE_DESCRIPTION_IL-2_HERE</p>
+                            <div class="flex items-center justify-between mt-3 pt-2 border-t border-white/10">
+                                <p class="text-[11px] text-rose-300/60">Adobe Illustrator</p>
+                                <span class="text-amber-400 text-xs group-hover:translate-x-1 transition-transform">→</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ⬇️ ILLUSTRATOR WORK 3 -->
+                    <div onclick="openDetails('il-3')" class="card-karya bg-white/5 border border-white/10 rounded-2xl overflow-hidden flex flex-col group hover:border-amber-400/40 hover:shadow-xl transition-all duration-300">
+                        <div class="relative overflow-hidden bg-black/40">
+                            <!-- 🖼️ CHANGE PHOTO URL il-3 BELOW (remove the CHANGE_URL... text and paste your GitHub photo link) -->
+                            <img src="https://github.com/Name999-glich/portofolio/blob/master/data%20buat%20potofolio/logo%20supermarket.png?raw=true" alt="il-3" class="w-full h-auto block object-contain group-hover:scale-105 transition-transform duration-500">
+                        </div>
+                        <div class="p-5 flex-1 flex flex-col justify-between">
+                            <!-- ✏️ CHANGE TITLE il-3 BELOW -->
+                            <h3 class="font-bold text-white">Logo Supermarket TRA</h3>
+                            <!-- ✏️ CHANGE DESCRIPTION il-3 BELOW -->
+                            <p class="text-xs text-rose-100/70 mt-2">Supermarket logo illustration</p>
+                            <div class="flex items-center justify-between mt-3 pt-2 border-t border-white/10">
+                                <p class="text-[11px] text-rose-300/60">Adobe Illustrator</p>
+                                <span class="text-amber-400 text-xs group-hover:translate-x-1 transition-transform">→</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ⬇️ ILLUSTRATOR WORK 4 -->
+                    <div onclick="openDetails('il-4')" class="card-karya bg-white/5 border border-white/10 rounded-2xl overflow-hidden flex flex-col group hover:border-amber-400/40 hover:shadow-xl transition-all duration-300">
+                        <div class="relative overflow-hidden bg-black/40">
+                            <!-- 🖼️ CHANGE PHOTO URL il-4 BELOW (remove the CHANGE_URL... text and paste your GitHub photo link) -->
+                            <img src="CHANGE_URL_PHOTO_IL-4_HERE" alt="il-4" class="w-full h-auto block object-contain group-hover:scale-105 transition-transform duration-500">
+                        </div>
+                        <div class="p-5 flex-1 flex flex-col justify-between">
+                            <!-- ✏️ CHANGE TITLE il-4 BELOW -->
+                            <h3 class="font-bold text-white">CHANGE_TITLE_IL-4_HERE</h3>
+                            <!-- ✏️ CHANGE DESCRIPTION il-4 BELOW -->
+                            <p class="text-xs text-rose-100/70 mt-2">CHANGE_DESCRIPTION_IL-4_HERE</p>
+                            <div class="flex items-center justify-between mt-3 pt-2 border-t border-white/10">
+                                <p class="text-[11px] text-rose-300/60">Adobe Illustrator</p>
+                                <span class="text-amber-400 text-xs group-hover:translate-x-1 transition-transform">→</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ⬇️ ILLUSTRATOR WORK 5 -->
+                    <div onclick="openDetails('il-5')" class="card-karya bg-white/5 border border-white/10 rounded-2xl overflow-hidden flex flex-col group hover:border-amber-400/40 hover:shadow-xl transition-all duration-300">
+                        <div class="relative overflow-hidden bg-black/40">
+                            <!-- 🖼️ CHANGE PHOTO URL il-5 BELOW (remove the CHANGE_URL... text and paste your GitHub photo link) -->
+                            <img src="CHANGE_URL_PHOTO_IL-5_HERE" alt="il-5" class="w-full h-auto block object-contain group-hover:scale-105 transition-transform duration-500">
+                        </div>
+                        <div class="p-5 flex-1 flex flex-col justify-between">
+                            <!-- ✏️ CHANGE TITLE il-5 BELOW -->
+                            <h3 class="font-bold text-white">CHANGE_TITLE_IL-5_HERE</h3>
+                            <!-- ✏️ CHANGE DESCRIPTION il-5 BELOW -->
+                            <p class="text-xs text-rose-100/70 mt-2">CHANGE_DESCRIPTION_IL-5_HERE</p>
+                            <div class="flex items-center justify-between mt-3 pt-2 border-t border-white/10">
+                                <p class="text-[11px] text-rose-300/60">Adobe Illustrator</p>
+                                <span class="text-amber-400 text-xs group-hover:translate-x-1 transition-transform">→</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- ===================== -->
+            <!-- TAB ADOBE LIGHTROOM   -->
+            <!-- ===================== -->
+            <div id="tab-lightroom" class="tab-content">
+                <div class="grid md:grid-cols-3 sm:grid-cols-2 gap-6">
+
+                    <!-- ⬇️ LIGHTROOM WORK 1 — HAS IMAGE -->
+                    <div onclick="openDetails('lr-1')" class="card-karya bg-white/5 border border-white/10 rounded-2xl overflow-hidden flex flex-col group hover:border-amber-400/40 hover:shadow-xl transition-all duration-300">
+                        <div class="relative overflow-hidden bg-black/40">
+                            <!-- 🖼️ CHANGE PHOTO LINK lr-1 -->
+                            <img src="https://github.com/Name999-glich/portofolio/blob/master/New%20folder/IMG_20260324_083130~2.jpg?raw=true" alt="lr-1" class="w-full h-auto block object-contain group-hover:scale-105 transition-transform duration-500">
+                            <div class="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-all flex items-center justify-center">
+                                <span class="opacity-0 group-hover:opacity-100 bg-amber-400 text-black font-bold text-xs px-4 py-2 rounded-full transition-all"><i class="fa-solid fa-eye mr-1"></i>View Details</span>
+                            </div>
+                        </div>
+                        <div class="p-5 flex-1 flex flex-col justify-between">
+                            <!-- ✏️ CHANGE TITLE lr-1 -->
+                            <h3 class="font-bold text-white">Pensive Teenage Portrait</h3>
+                            <!-- ✏️ CHANGE SHORT DESCRIPTION lr-1 -->
+                            <p class="text-xs text-rose-100/70 mt-2">A reflective teenage portrait blended with nature.</p>
+                            <div class="flex items-center justify-between mt-3 pt-2 border-t border-white/10">
+                                <p class="text-[11px] text-rose-300/60">Adobe Lightroom</p>
+                                <span class="text-amber-400 text-xs group-hover:translate-x-1 transition-transform">→</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ⬇️ LIGHTROOM WORK 2-5 NO IMAGE YET -->
+                    <div onclick="openDetails('lr-2')" class="card-karya bg-white/5 border border-white/10 rounded-2xl overflow-hidden flex flex-col group hover:border-amber-400/40 hover:shadow-xl transition-all duration-300">
+                        <div class="relative overflow-hidden bg-black/40">
+                            <!-- 🖼️ CHANGE PHOTO URL lr-2 BELOW -->
+                            <img src="https://github.com/Name999-glich/portofolio/blob/master/data%20buat%20potofolio/IMG_20251001_162530.jpg?raw=true" alt="lr-2" class="w-full h-auto block object-contain group-hover:scale-105 transition-transform duration-500">
+                        </div>
+                        <div class="p-5 flex-1 flex flex-col justify-between"><!-- ✏️ CHANGE TITLE lr-2 --><h3 class="font-bold text-white">CHANGE_TITLE_LR-2_HERE</h3><!-- ✏️ CHANGE DESCRIPTION lr-2 --><p class="text-xs text-rose-100/70 mt-2">CHANGE_DESCRIPTION_LR-2_HERE</p><div class="flex items-center justify-between mt-3 pt-2 border-t border-white/10"><p class="text-[11px] text-rose-300/60">Adobe Lightroom</p><span class="text-amber-400 text-xs">→</span></div></div>
+                    </div>
+                    <div onclick="openDetails('lr-3')" class="card-karya bg-white/5 border border-white/10 rounded-2xl overflow-hidden flex flex-col group hover:border-amber-400/40 hover:shadow-xl transition-all duration-300">
+                        <div class="relative overflow-hidden bg-black/40">
+                            <!-- 🖼️ CHANGE PHOTO URL lr-3 BELOW -->
+                            <img src="https://github.com/Name999-glich/portofolio/blob/master/data%20buat%20potofolio/IMG_20251119_073926.jpg?raw=true" alt="lr-3" class="w-full h-auto block object-contain group-hover:scale-105 transition-transform duration-500">
+                        </div>
+                        <div class="p-5 flex-1 flex flex-col justify-between"><!-- ✏️ CHANGE TITLE lr-3 --><h3 class="font-bold text-white">CHANGE_TITLE_LR-3_HERE</h3><!-- ✏️ CHANGE DESCRIPTION lr-3 --><p class="text-xs text-rose-100/70 mt-2">CHANGE_DESCRIPTION_LR-3_HERE</p><div class="flex items-center justify-between mt-3 pt-2 border-t border-white/10"><p class="text-[11px] text-rose-300/60">Adobe Lightroom</p><span class="text-amber-400 text-xs">→</span></div></div>
+                    </div>
+                    <div onclick="openDetails('lr-4')" class="card-karya bg-white/5 border border-white/10 rounded-2xl overflow-hidden flex flex-col group hover:border-amber-400/40 hover:shadow-xl transition-all duration-300">
+                        <div class="relative overflow-hidden bg-black/40">
+                            <!-- 🖼️ CHANGE PHOTO URL lr-4 BELOW -->
+                            <img src="https://github.com/Name999-glich/portofolio/blob/master/IMG-20260717-WA0003.jpg?raw=true" alt="lr-4" class="w-full h-auto block object-contain group-hover:scale-105 transition-transform duration-500">
+                        </div>
+                        <div class="p-5 flex-1 flex flex-col justify-between"><!-- ✏️ CHANGE TITLE lr-4 --><h3 class="font-bold text-white">CHANGE_TITLE_LR-4_HERE</h3><!-- ✏️ CHANGE DESCRIPTION lr-4 --><p class="text-xs text-rose-100/70 mt-2">CHANGE_DESCRIPTION_LR-4_HERE</p><div class="flex items-center justify-between mt-3 pt-2 border-t border-white/10"><p class="text-[11px] text-rose-300/60">Adobe Lightroom</p><span class="text-amber-400 text-xs">→</span></div></div>
+                    </div>
+                    <div onclick="openDetails('lr-5')" class="card-karya bg-white/5 border border-white/10 rounded-2xl overflow-hidden flex flex-col group hover:border-amber-400/40 hover:shadow-xl transition-all duration-300">
+                        <div class="relative overflow-hidden bg-black/40">
+                            <!-- 🖼️ CHANGE PHOTO URL lr-5 BELOW -->
+                            <img src="https://github.com/Name999-glich/portofolio/blob/master/IMG_20260309_152922.jpg?raw=true" alt="lr-5" class="w-full h-auto block object-contain group-hover:scale-105 transition-transform duration-500">
+                        </div>
+                        <div class="p-5 flex-1 flex flex-col justify-between"><!-- ✏️ CHANGE TITLE lr-5 --><h3 class="font-bold text-white">CHANGE_TITLE_LR-5_HERE</h3><!-- ✏️ CHANGE DESCRIPTION lr-5 --><p class="text-xs text-rose-100/70 mt-2">CHANGE_DESCRIPTION_LR-5_HERE</p><div class="flex items-center justify-between mt-3 pt-2 border-t border-white/10"><p class="text-[11px] text-rose-300/60">Adobe Lightroom</p><span class="text-amber-400 text-xs">→</span></div></div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- =========== -->
+            <!-- TAB CANVA   -->
+            <!-- =========== -->
+            <div id="tab-canva" class="tab-content">
+                <div class="grid md:grid-cols-3 sm:grid-cols-2 gap-6">
+                    <div onclick="openDetails('cv-1')" class="card-karya bg-white/5 border border-white/10 rounded-2xl overflow-hidden flex flex-col group hover:border-amber-400/40 hover:shadow-xl transition-all duration-300">
+                        <div class="relative overflow-hidden bg-black/40">
+                            <!-- 🖼️ CHANGE PHOTO URL cv-1 BELOW -->
+                            <img src="https://github.com/Name999-glich/portofolio/blob/master/data%20buat%20potofolio/poster%20iklan.png?raw=true" alt="cv-1" class="w-full h-auto block object-contain group-hover:scale-105 transition-transform duration-500">
+                        </div>
+                        <div class="p-5 flex-1 flex flex-col justify-between"><!-- ✏️ CHANGE TITLE cv-1 --><h3 class="font-bold text-white">Poster Iklan Mie Ayam</h3><!-- ✏️ CHANGE DESCRIPTION cv-1 --><p class="text-xs text-rose-100/70 mt-2">CHANGE_DESCRIPTION_CV-1_HERE</p><div class="flex items-center justify-between mt-3 pt-2 border-t border-white/10"><p class="text-[11px] text-rose-300/60">Canva</p><span class="text-amber-400 text-xs">→</span></div></div>
+                    </div>
+                    <div onclick="openDetails('cv-2')" class="card-karya bg-white/5 border border-white/10 rounded-2xl overflow-hidden flex flex-col group hover:border-amber-400/40 hover:shadow-xl transition-all duration-300">
+                        <div class="relative overflow-hidden bg-black/40">
+                            <!-- 🖼️ CHANGE PHOTO URL cv-2 BELOW -->
+                            <img src="CHANGE_URL_PHOTO_CV-2_HERE" alt="cv-2" class="w-full h-auto block object-contain group-hover:scale-105 transition-transform duration-500">
+                        </div>
+                        <div class="p-5 flex-1 flex flex-col justify-between"><!-- ✏️ CHANGE TITLE cv-2 --><h3 class="font-bold text-white">CHANGE_TITLE_CV-2_HERE</h3><!-- ✏️ CHANGE DESCRIPTION cv-2 --><p class="text-xs text-rose-100/70 mt-2">CHANGE_DESCRIPTION_CV-2_HERE</p><div class="flex items-center justify-between mt-3 pt-2 border-t border-white/10"><p class="text-[11px] text-rose-300/60">Canva</p><span class="text-amber-400 text-xs">→</span></div></div>
+                    </div>
+                    <div onclick="openDetails('cv-3')" class="card-karya bg-white/5 border border-white/10 rounded-2xl overflow-hidden flex flex-col group hover:border-amber-400/40 hover:shadow-xl transition-all duration-300">
+                        <div class="relative overflow-hidden bg-black/40">
+                            <!-- 🖼️ CHANGE PHOTO URL cv-3 BELOW -->
+                            <img src="CHANGE_URL_PHOTO_CV-3_HERE" alt="cv-3" class="w-full h-auto block object-contain group-hover:scale-105 transition-transform duration-500">
+                        </div>
+                        <div class="p-5 flex-1 flex flex-col justify-between"><!-- ✏️ CHANGE TITLE cv-3 --><h3 class="font-bold text-white">CHANGE_TITLE_CV-3_HERE</h3><!-- ✏️ CHANGE DESCRIPTION cv-3 --><p class="text-xs text-rose-100/70 mt-2">CHANGE_DESCRIPTION_CV-3_HERE</p><div class="flex items-center justify-between mt-3 pt-2 border-t border-white/10"><p class="text-[11px] text-rose-300/60">Canva</p><span class="text-amber-400 text-xs">→</span></div></div>
+                    </div>
+                    <div onclick="openDetails('cv-4')" class="card-karya bg-white/5 border border-white/10 rounded-2xl overflow-hidden flex flex-col group hover:border-amber-400/40 hover:shadow-xl transition-all duration-300">
+                        <div class="relative overflow-hidden bg-black/40">
+                            <!-- 🖼️ CHANGE PHOTO URL cv-4 BELOW -->
+                            <img src="CHANGE_URL_PHOTO_CV-4_HERE" alt="cv-4" class="w-full h-auto block object-contain group-hover:scale-105 transition-transform duration-500">
+                        </div>
+                        <div class="p-5 flex-1 flex flex-col justify-between"><!-- ✏️ CHANGE TITLE cv-4 --><h3 class="font-bold text-white">CHANGE_TITLE_CV-4_HERE</h3><!-- ✏️ CHANGE DESCRIPTION cv-4 --><p class="text-xs text-rose-100/70 mt-2">CHANGE_DESCRIPTION_CV-4_HERE</p><div class="flex items-center justify-between mt-3 pt-2 border-t border-white/10"><p class="text-[11px] text-rose-300/60">Canva</p><span class="text-amber-400 text-xs">→</span></div></div>
+                    </div>
+                    <div onclick="openDetails('cv-5')" class="card-karya bg-white/5 border border-white/10 rounded-2xl overflow-hidden flex flex-col group hover:border-amber-400/40 hover:shadow-xl transition-all duration-300">
+                        <div class="relative overflow-hidden bg-black/40">
+                            <!-- 🖼️ CHANGE PHOTO URL cv-5 BELOW -->
+                            <img src="CHANGE_URL_PHOTO_CV-5_HERE" alt="cv-5" class="w-full h-auto block object-contain group-hover:scale-105 transition-transform duration-500">
+                        </div>
+                        <div class="p-5 flex-1 flex flex-col justify-between"><!-- ✏️ CHANGE TITLE cv-5 --><h3 class="font-bold text-white">CHANGE_TITLE_CV-5_HERE</h3><!-- ✏️ CHANGE DESCRIPTION cv-5 --><p class="text-xs text-rose-100/70 mt-2">CHANGE_DESCRIPTION_CV-5_HERE</p><div class="flex items-center justify-between mt-3 pt-2 border-t border-white/10"><p class="text-[11px] text-rose-300/60">Canva</p><span class="text-amber-400 text-xs">→</span></div></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ====================== -->
+            <!-- TAB ADOBE PHOTOSHOP    -->
+            <!-- ====================== -->
+            <div id="tab-photoshop" class="tab-content">
+                <div class="grid md:grid-cols-3 sm:grid-cols-2 gap-6">
+
+                    <!-- ⬇️ PHOTOSHOP WORK 1 — HAS IMAGE -->
+                    <div onclick="openDetails('ps-1')" class="card-karya bg-white/5 border border-white/10 rounded-2xl overflow-hidden flex flex-col group hover:border-amber-400/40 hover:shadow-xl transition-all duration-300">
+                        <div class="relative overflow-hidden bg-black/40">
+                            <!-- 🖼️ CHANGE PHOTO LINK ps-1 -->
+                            <img src="https://github.com/Name999-glich/portofolio/blob/master/New%20folder/IMG_20251001_153507.jpg?raw=true" alt="ps-1" class="w-full h-auto block object-contain group-hover:scale-105 transition-transform duration-500">
+                            <div class="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-all flex items-center justify-center">
+                                <span class="opacity-0 group-hover:opacity-100 bg-amber-400 text-black font-bold text-xs px-4 py-2 rounded-full transition-all"><i class="fa-solid fa-eye mr-1"></i>View Details</span>
+                            </div>
+                        </div>
+                        <div class="p-5 flex-1 flex flex-col justify-between">
+                            <!-- ✏️ CHANGE TITLE ps-1 -->
+                            <h3 class="font-bold text-white">Light in a Dark Heart</h3>
+                            <!-- ✏️ CHANGE SHORT DESCRIPTION ps-1 -->
+                            <p class="text-xs text-rose-100/70 mt-2">A high-contrast visual work about hope in dark conditions.</p>
+                            <div class="flex items-center justify-between mt-3 pt-2 border-t border-white/10">
+                                <p class="text-[11px] text-rose-300/60">Adobe Photoshop</p>
+                                <span class="text-amber-400 text-xs group-hover:translate-x-1 transition-transform">→</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ⬇️ PHOTOSHOP WORK 2-5 NO IMAGE YET -->
+                    <div onclick="openDetails('ps-2')" class="card-karya bg-white/5 border border-white/10 rounded-2xl overflow-hidden flex flex-col group hover:border-amber-400/40 hover:shadow-xl transition-all duration-300">
+                        <div class="relative overflow-hidden bg-black/40">
+                            <!-- 🖼️ CHANGE PHOTO URL ps-2 BELOW -->
+                            <img src="CHANGE_URL_PHOTO_PS-2_HERE" alt="ps-2" class="w-full h-auto block object-contain group-hover:scale-105 transition-transform duration-500">
+                        </div>
+                        <div class="p-5 flex-1 flex flex-col justify-between"><!-- ✏️ CHANGE TITLE ps-2 --><h3 class="font-bold text-white">CHANGE_TITLE_PS-2_HERE</h3><!-- ✏️ CHANGE DESCRIPTION ps-2 --><p class="text-xs text-rose-100/70 mt-2">CHANGE_DESCRIPTION_PS-2_HERE</p><div class="flex items-center justify-between mt-3 pt-2 border-t border-white/10"><p class="text-[11px] text-rose-300/60">Adobe Photoshop</p><span class="text-amber-400 text-xs">→</span></div></div>
+                    </div>
+                    <div onclick="openDetails('ps-3')" class="card-karya bg-white/5 border border-white/10 rounded-2xl overflow-hidden flex flex-col group hover:border-amber-400/40 hover:shadow-xl transition-all duration-300">
+                        <div class="relative overflow-hidden bg-black/40">
+                            <!-- 🖼️ CHANGE PHOTO URL ps-3 BELOW -->
+                            <img src="CHANGE_URL_PHOTO_PS-3_HERE" alt="ps-3" class="w-full h-auto block object-contain group-hover:scale-105 transition-transform duration-500">
+                        </div>
+                        <div class="p-5 flex-1 flex flex-col justify-between"><!-- ✏️ CHANGE TITLE ps-3 --><h3 class="font-bold text-white">CHANGE_TITLE_PS-3_HERE</h3><!-- ✏️ CHANGE DESCRIPTION ps-3 --><p class="text-xs text-rose-100/70 mt-2">CHANGE_DESCRIPTION_PS-3_HERE</p><div class="flex items-center justify-between mt-3 pt-2 border-t border-white/10"><p class="text-[11px] text-rose-300/60">Adobe Photoshop</p><span class="text-amber-400 text-xs">→</span></div></div>
+                    </div>
+                    <div onclick="openDetails('ps-4')" class="card-karya bg-white/5 border border-white/10 rounded-2xl overflow-hidden flex flex-col group hover:border-amber-400/40 hover:shadow-xl transition-all duration-300">
+                        <div class="relative overflow-hidden bg-black/40">
+                            <!-- 🖼️ CHANGE PHOTO URL ps-4 BELOW -->
+                            <img src="CHANGE_URL_PHOTO_PS-4_HERE" alt="ps-4" class="w-full h-auto block object-contain group-hover:scale-105 transition-transform duration-500">
+                        </div>
+                        <div class="p-5 flex-1 flex flex-col justify-between"><!-- ✏️ CHANGE TITLE ps-4 --><h3 class="font-bold text-white">CHANGE_TITLE_PS-4_HERE</h3><!-- ✏️ CHANGE DESCRIPTION ps-4 --><p class="text-xs text-rose-100/70 mt-2">CHANGE_DESCRIPTION_PS-4_HERE</p><div class="flex items-center justify-between mt-3 pt-2 border-t border-white/10"><p class="text-[11px] text-rose-300/60">Adobe Photoshop</p><span class="text-amber-400 text-xs">→</span></div></div>
+                    </div>
+                    <div onclick="openDetails('ps-5')" class="card-karya bg-white/5 border border-white/10 rounded-2xl overflow-hidden flex flex-col group hover:border-amber-400/40 hover:shadow-xl transition-all duration-300">
+                        <div class="relative overflow-hidden bg-black/40">
+                            <!-- 🖼️ CHANGE PHOTO URL ps-5 BELOW -->
+                            <img src="CHANGE_URL_PHOTO_PS-5_HERE" alt="ps-5" class="w-full h-auto block object-contain group-hover:scale-105 transition-transform duration-500">
+                        </div>
+                        <div class="p-5 flex-1 flex flex-col justify-between"><!-- ✏️ CHANGE TITLE ps-5 --><h3 class="font-bold text-white">CHANGE_TITLE_PS-5_HERE</h3><!-- ✏️ CHANGE DESCRIPTION ps-5 --><p class="text-xs text-rose-100/70 mt-2">CHANGE_DESCRIPTION_PS-5_HERE</p><div class="flex items-center justify-between mt-3 pt-2 border-t border-white/10"><p class="text-[11px] text-rose-300/60">Adobe Photoshop</p><span class="text-amber-400 text-xs">→</span></div></div>
+                    </div>
+
+                </div>
+            </div>
+
+        </section>
+    </div>
+
+    <!-- ===================== -->
+    <!-- WORK DETAIL PAGE  -->
+    <!-- ===================== -->
+
+    <!-- DETAIL il-1 -->
+    <div id="halaman-il-1" class="halaman">
+        <section class="py-16 max-w-4xl mx-auto px-4">
+            <button onclick="goBack()" class="flex items-center space-x-2 text-amber-300 hover:text-amber-400 mb-8 text-sm font-bold transition-colors">
+                <i class="fa-solid fa-arrow-left"></i><span>Back to All Works</span>
+            </button>
+            <div class="grid md:grid-cols-2 gap-10 items-start">
+                <div class="bg-black/40 rounded-2xl overflow-hidden border border-white/10">
+                    <!-- 🖼️ CHANGE DETAIL PHOTO LINK il-1 -->
+                    <img src="https://github.com/Name999-glich/portofolio/blob/master/New%20folder/poster-01.png?raw=true" alt="il-1" class="w-full h-auto object-contain">
+                </div>
+                <div class="space-y-5">
+                    <div>
+                        <span class="text-xs font-bold uppercase tracking-widest text-amber-300">Adobe Illustrator</span>
+                        <!-- ✏️ CHANGE DETAIL TITLE il-1 -->
+                        <h1 class="text-3xl font-black text-white mt-2">Weekend Big Deals Grocery</h1>
+                    </div>
+                    <!-- ✏️ CHANGE LONG DESCRIPTION il-1 -->
+                    <p class="text-rose-100/80 leading-relaxed">A neatly organized, informative promotional brochure design made for a school assignment. It showcases various grocery product deals with a clean layout that catches the reader's attention.</p>
+                    <div class="space-y-3">
+                        <div class="flex items-center space-x-3 bg-white/5 border border-white/10 rounded-xl p-3">
+                            <i class="fa-solid fa-pen-nib text-amber-400 w-5"></i>
+                            <div><p class="text-xs text-rose-200/50">Software</p><p class="text-sm font-bold text-white">Adobe Illustrator</p></div>
+                        </div>
+                        <!-- ✏️ CHANGE CATEGORY il-1 -->
+                        <div class="flex items-center space-x-3 bg-white/5 border border-white/10 rounded-xl p-3">
+                            <i class="fa-solid fa-tag text-amber-400 w-5"></i>
+                            <div><p class="text-xs text-rose-200/50">Category</p><p class="text-sm font-bold text-white">Brochure & Promotion Design</p></div>
+                        </div>
+                        <!-- ✏️ CHANGE ADDITIONAL NOTE il-1 -->
+                        <div class="flex items-center space-x-3 bg-white/5 border border-white/10 rounded-xl p-3">
+                            <i class="fa-solid fa-graduation-cap text-amber-400 w-5"></i>
+                            <div><p class="text-xs text-rose-200/50">Made for</p><p class="text-sm font-bold text-white">Task School SMKN 5 Tangsel</p></div>
+                        </div>
+                    </div>
+                    <div class="flex gap-3 pt-2">
+                        <button onclick="openDetails('il-2')" class="flex-1 py-3 bg-white/5 border border-white/10 text-rose-100 font-bold rounded-xl hover:bg-white/10 transition-all text-sm">Works Next →</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- DETAIL il-2 -->
+    <div id="halaman-il-2" class="halaman">
+        <section class="py-16 max-w-4xl mx-auto px-4">
+            <button onclick="goBack()" class="flex items-center space-x-2 text-amber-300 hover:text-amber-400 mb-8 text-sm font-bold transition-colors">
+                <i class="fa-solid fa-arrow-left"></i><span>Back to All Works</span>
+            </button>
+            <div class="grid md:grid-cols-2 gap-10 items-start">
+                <div class="bg-black/40 rounded-2xl overflow-hidden border border-white/10">
+                    <!-- 🖼️ CHANGE DETAIL PHOTO URL il-2 BELOW -->
+                    <img src="https://github.com/Name999-glich/portofolio/blob/master/data%20buat%20potofolio/khayalan%20(01)-01.png?raw=true" alt="il-2" class="w-full h-auto object-contain">
+                </div>
+                <div class="space-y-5">
+                    <div>
+                        <span class="text-xs font-bold uppercase tracking-widest text-amber-300">Adobe Illustrator</span>
+                        <!-- ✏️ CHANGE DETAIL TITLE il-2 -->
+                        <h1 class="text-3xl font-black text-white mt-2">Imaginative Illustration</h1>
+                    </div>
+                    <!-- ✏️ CHANGE LONG DESCRIPTION il-2 -->
+                    <p class="text-rose-100/80 leading-relaxed">CHANGE_DESCRIPTION_PANJANG_IL-2_HERE</p>
+                    <div class="space-y-3">
+                        <div class="flex items-center space-x-3 bg-white/5 border border-white/10 rounded-xl p-3">
+                            <i class="fa-solid fa-pen-nib text-amber-400 w-5"></i>
+                            <div><p class="text-xs text-rose-200/50">Software</p><p class="text-sm font-bold text-white">Adobe Illustrator</p></div>
+                        </div>
+                        <!-- ✏️ CHANGE CATEGORY il-2 -->
+                        <div class="flex items-center space-x-3 bg-white/5 border border-white/10 rounded-xl p-3">
+                            <i class="fa-solid fa-tag text-amber-400 w-5"></i>
+                            <div><p class="text-xs text-rose-200/50">Category</p><p class="text-sm font-bold text-white">CHANGE_CATEGORY_IL-2_HERE</p></div>
+                        </div>
+                        <!-- ✏️ CHANGE ADDITIONAL NOTE il-2 -->
+                        <div class="flex items-center space-x-3 bg-white/5 border border-white/10 rounded-xl p-3">
+                            <i class="fa-solid fa-info-circle text-amber-400 w-5"></i>
+                            <div><p class="text-xs text-rose-200/50">Description</p><p class="text-sm font-bold text-white">CHANGE_NOTE_IL-2_HERE</p></div>
+                        </div>
+                    </div>
+                    <div class="flex gap-3 pt-2">
+                        <button onclick="openDetails('il-1')" class="flex-1 py-3 bg-white/5 border border-white/10 text-rose-100 font-bold rounded-xl hover:bg-white/10 transition-all text-sm">← Previous</button>
+                        <button onclick="openDetails('il-3')" class="flex-1 py-3 bg-white/5 border border-white/10 text-rose-100 font-bold rounded-xl hover:bg-white/10 transition-all text-sm">Next →</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- DETAIL il-3 -->
+    <div id="halaman-il-3" class="halaman">
+        <section class="py-16 max-w-4xl mx-auto px-4">
+            <button onclick="goBack()" class="flex items-center space-x-2 text-amber-300 hover:text-amber-400 mb-8 text-sm font-bold transition-colors"><i class="fa-solid fa-arrow-left"></i><span>Back to All Works</span></button>
+            <div class="grid md:grid-cols-2 gap-10 items-start">
+                <div class="bg-black/40 rounded-2xl overflow-hidden border border-white/10"><!-- 🖼️ CHANGE DETAIL PHOTO URL il-3 BELOW --><img src="https://github.com/Name999-glich/portofolio/blob/master/data%20buat%20potofolio/logo%20supermarket.png?raw=true" alt="il-3" class="w-full h-auto object-contain"></div>
+                <div class="space-y-5">
+                    <div><span class="text-xs font-bold uppercase tracking-widest text-amber-300">Adobe Illustrator</span><!-- ✏️ CHANGE DETAIL TITLE il-3 --><h1 class="text-3xl font-black text-white mt-2">Logo Supermarket TRA</h1></div>
+                    <!-- ✏️ CHANGE LONG DESCRIPTION il-3 --><p class="text-rose-100/80 leading-relaxed">An original supermarket logo illustration I created, named TRA MARKET</p>
+                    <div class="space-y-3">
+                        <div class="flex items-center space-x-3 bg-white/5 border border-white/10 rounded-xl p-3"><i class="fa-solid fa-pen-nib text-amber-400 w-5"></i><div><p class="text-xs text-rose-200/50">Software</p><p class="text-sm font-bold text-white">Adobe Illustrator</p></div></div>
+                        <!-- ✏️ CHANGE CATEGORY il-3 --><div class="flex items-center space-x-3 bg-white/5 border border-white/10 rounded-xl p-3"><i class="fa-solid fa-tag text-amber-400 w-5"></i><div><p class="text-xs text-rose-200/50">Category</p><p class="text-sm font-bold text-white">Category Works 3</p></div></div>
+                        <!-- ✏️ CHANGE NOTE il-3 --><div class="flex items-center space-x-3 bg-white/5 border border-white/10 rounded-xl p-3"><i class="fa-solid fa-info-circle text-amber-400 w-5"></i><div><p class="text-xs text-rose-200/50">Description</p><p class="text-sm font-bold text-white">Additional description here</p></div></div>
+                    </div>
+                    <div class="flex gap-3 pt-2"><button onclick="openDetails('il-2')" class="flex-1 py-3 bg-white/5 border border-white/10 text-rose-100 font-bold rounded-xl hover:bg-white/10 transition-all text-sm">← Previous</button><button onclick="openDetails('il-4')" class="flex-1 py-3 bg-white/5 border border-white/10 text-rose-100 font-bold rounded-xl hover:bg-white/10 transition-all text-sm">Next →</button></div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- DETAIL il-4 -->
+    <div id="halaman-il-4" class="halaman">
+        <section class="py-16 max-w-4xl mx-auto px-4">
+            <button onclick="goBack()" class="flex items-center space-x-2 text-amber-300 hover:text-amber-400 mb-8 text-sm font-bold transition-colors"><i class="fa-solid fa-arrow-left"></i><span>Back to All Works</span></button>
+            <div class="grid md:grid-cols-2 gap-10 items-start">
+                <div class="bg-black/40 rounded-2xl overflow-hidden border border-white/10"><!-- 🖼️ CHANGE DETAIL PHOTO URL il-4 BELOW --><img src="CHANGE_URL_PHOTO_DETAIL_IL-4_HERE" alt="il-4" class="w-full h-auto object-contain"></div>
+                <div class="space-y-5">
+                    <div><span class="text-xs font-bold uppercase tracking-widest text-amber-300">Adobe Illustrator</span><!-- ✏️ CHANGE DETAIL TITLE il-4 --><h1 class="text-3xl font-black text-white mt-2">Work 4 Title</h1></div>
+                    <!-- ✏️ CHANGE LONG DESCRIPTION il-4 --><p class="text-rose-100/80 leading-relaxed">Full description of work 4 here...</p>
+                    <div class="space-y-3">
+                        <div class="flex items-center space-x-3 bg-white/5 border border-white/10 rounded-xl p-3"><i class="fa-solid fa-pen-nib text-amber-400 w-5"></i><div><p class="text-xs text-rose-200/50">Software</p><p class="text-sm font-bold text-white">Adobe Illustrator</p></div></div>
+                        <!-- ✏️ CHANGE CATEGORY il-4 --><div class="flex items-center space-x-3 bg-white/5 border border-white/10 rounded-xl p-3"><i class="fa-solid fa-tag text-amber-400 w-5"></i><div><p class="text-xs text-rose-200/50">Category</p><p class="text-sm font-bold text-white">Category Works 4</p></div></div>
+                        <!-- ✏️ CHANGE NOTE il-4 --><div class="flex items-center space-x-3 bg-white/5 border border-white/10 rounded-xl p-3"><i class="fa-solid fa-info-circle text-amber-400 w-5"></i><div><p class="text-xs text-rose-200/50">Description</p><p class="text-sm font-bold text-white">Additional description here</p></div></div>
+                    </div>
+                    <div class="flex gap-3 pt-2"><button onclick="openDetails('il-3')" class="flex-1 py-3 bg-white/5 border border-white/10 text-rose-100 font-bold rounded-xl hover:bg-white/10 transition-all text-sm">← Previous</button><button onclick="openDetails('il-5')" class="flex-1 py-3 bg-white/5 border border-white/10 text-rose-100 font-bold rounded-xl hover:bg-white/10 transition-all text-sm">Next →</button></div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- DETAIL il-5 -->
+    <div id="halaman-il-5" class="halaman">
+        <section class="py-16 max-w-4xl mx-auto px-4">
+            <button onclick="goBack()" class="flex items-center space-x-2 text-amber-300 hover:text-amber-400 mb-8 text-sm font-bold transition-colors"><i class="fa-solid fa-arrow-left"></i><span>Back to All Works</span></button>
+            <div class="grid md:grid-cols-2 gap-10 items-start">
+                <div class="bg-black/40 rounded-2xl overflow-hidden border border-white/10"><!-- 🖼️ CHANGE DETAIL PHOTO URL il-5 BELOW --><img src="CHANGE_URL_PHOTO_DETAIL_IL-5_HERE" alt="il-5" class="w-full h-auto object-contain"></div>
+                <div class="space-y-5">
+                    <div><span class="text-xs font-bold uppercase tracking-widest text-amber-300">Adobe Illustrator</span><!-- ✏️ CHANGE DETAIL TITLE il-5 --><h1 class="text-3xl font-black text-white mt-2">Work 5 Title</h1></div>
+                    <!-- ✏️ CHANGE LONG DESCRIPTION il-5 --><p class="text-rose-100/80 leading-relaxed">Full description of work 5 here...</p>
+                    <div class="space-y-3">
+                        <div class="flex items-center space-x-3 bg-white/5 border border-white/10 rounded-xl p-3"><i class="fa-solid fa-pen-nib text-amber-400 w-5"></i><div><p class="text-xs text-rose-200/50">Software</p><p class="text-sm font-bold text-white">Adobe Illustrator</p></div></div>
+                        <!-- ✏️ CHANGE CATEGORY il-5 --><div class="flex items-center space-x-3 bg-white/5 border border-white/10 rounded-xl p-3"><i class="fa-solid fa-tag text-amber-400 w-5"></i><div><p class="text-xs text-rose-200/50">Category</p><p class="text-sm font-bold text-white">Category Works 5</p></div></div>
+                        <!-- ✏️ CHANGE NOTE il-5 --><div class="flex items-center space-x-3 bg-white/5 border border-white/10 rounded-xl p-3"><i class="fa-solid fa-info-circle text-amber-400 w-5"></i><div><p class="text-xs text-rose-200/50">Description</p><p class="text-sm font-bold text-white">Additional description here</p></div></div>
+                    </div>
+                    <div class="flex gap-3 pt-2"><button onclick="openDetails('il-4')" class="flex-1 py-3 bg-white/5 border border-white/10 text-rose-100 font-bold rounded-xl hover:bg-white/10 transition-all text-sm">← Previous</button></div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- DETAIL lr-1 -->
+    <div id="halaman-lr-1" class="halaman">
+        <section class="py-16 max-w-4xl mx-auto px-4">
+            <button onclick="goBack()" class="flex items-center space-x-2 text-amber-300 hover:text-amber-400 mb-8 text-sm font-bold transition-colors"><i class="fa-solid fa-arrow-left"></i><span>Back to All Works</span></button>
+            <div class="grid md:grid-cols-2 gap-10 items-start">
+                <div class="bg-black/40 rounded-2xl overflow-hidden border border-white/10">
+                    <!-- 🖼️ CHANGE DETAIL PHOTO LINK lr-1 -->
+                    <img src="https://github.com/Name999-glich/portofolio/blob/master/New%20folder/IMG_20260324_083130~2.jpg?raw=true" alt="lr-1" class="w-full h-auto object-contain">
+                </div>
+                <div class="space-y-5">
+                    <div><span class="text-xs font-bold uppercase tracking-widest text-amber-300">Adobe Lightroom</span><!-- ✏️ CHANGE DETAIL TITLE lr-1 --><h1 class="text-3xl font-black text-white mt-2">Pensive Teenage Portrait</h1></div>
+                    <!-- ✏️ CHANGE LONG DESCRIPTION lr-1 --><p class="text-rose-100/80 leading-relaxed">A reflective portrait of a teenage subject blended with the beauty of nature. This photo captures a contemplative moment with deep color tones.</p>
+                    <div class="space-y-3">
+                        <div class="flex items-center space-x-3 bg-white/5 border border-white/10 rounded-xl p-3"><i class="fa-solid fa-camera text-amber-400 w-5"></i><div><p class="text-xs text-rose-200/50">Software</p><p class="text-sm font-bold text-white">Adobe Lightroom</p></div></div>
+                        <!-- ✏️ CHANGE CATEGORY lr-1 --><div class="flex items-center space-x-3 bg-white/5 border border-white/10 rounded-xl p-3"><i class="fa-solid fa-tag text-amber-400 w-5"></i><div><p class="text-xs text-rose-200/50">Category</p><p class="text-sm font-bold text-white">Portrait Photography</p></div></div>
+                        <!-- ✏️ CHANGE TECHNIQUE lr-1 --><div class="flex items-center space-x-3 bg-white/5 border border-white/10 rounded-xl p-3"><i class="fa-solid fa-palette text-amber-400 w-5"></i><div><p class="text-xs text-rose-200/50">Technique</p><p class="text-sm font-bold text-white">Color Grading & Retouching</p></div></div>
+                    </div>
+                    <div class="flex gap-3 pt-2"><button onclick="openDetails('lr-2')" class="flex-1 py-3 bg-white/5 border border-white/10 text-rose-100 font-bold rounded-xl hover:bg-white/10 transition-all text-sm">Next →</button></div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- DETAIL lr-2 until lr-5 (template kosong) -->
+    <div id="halaman-lr-2" class="halaman"><section class="py-16 max-w-4xl mx-auto px-4"><button onclick="goBack()" class="flex items-center space-x-2 text-amber-300 hover:text-amber-400 mb-8 text-sm font-bold transition-colors"><i class="fa-solid fa-arrow-left"></i><span>Back</span></button><div class="grid md:grid-cols-2 gap-10 items-start"><div class="bg-black/40 rounded-2xl overflow-hidden border border-white/10"><!-- 🖼️ CHANGE DETAIL PHOTO URL lr-2 BELOW --><img src="https://github.com/Name999-glich/portofolio/blob/master/data%20buat%20potofolio/IMG_20251001_162530.jpg?raw=true" alt="lr-2" class="w-full h-auto object-contain"></div><div class="space-y-5"><div><span class="text-xs font-bold uppercase tracking-widest text-amber-300">Adobe Lightroom</span><!-- ✏️ CHANGE TITLE lr-2 --><h1 class="text-3xl font-black text-white mt-2">CHANGE_TITLE_DETAIL_LR-2_HERE</h1></div><!-- ✏️ CHANGE DESCRIPTION lr-2 --><p class="text-rose-100/80 leading-relaxed">Full description of work 2...</p><div class="space-y-3"><div class="flex items-center space-x-3 bg-white/5 border border-white/10 rounded-xl p-3"><i class="fa-solid fa-camera text-amber-400 w-5"></i><div><p class="text-xs text-rose-200/50">Software</p><p class="text-sm font-bold text-white">Adobe Lightroom</p></div></div><!-- ✏️ CHANGE CATEGORY lr-2 --><div class="flex items-center space-x-3 bg-white/5 border border-white/10 rounded-xl p-3"><i class="fa-solid fa-tag text-amber-400 w-5"></i><div><p class="text-xs text-rose-200/50">Category</p><p class="text-sm font-bold text-white">Category Works 2</p></div></div></div><div class="flex gap-3 pt-2"><button onclick="openDetails('lr-1')" class="flex-1 py-3 bg-white/5 border border-white/10 text-rose-100 font-bold rounded-xl hover:bg-white/10 transition-all text-sm">← Previous</button><button onclick="openDetails('lr-3')" class="flex-1 py-3 bg-white/5 border border-white/10 text-rose-100 font-bold rounded-xl hover:bg-white/10 transition-all text-sm">Next →</button></div></div></div></section></div>
+    <div id="halaman-lr-3" class="halaman"><section class="py-16 max-w-4xl mx-auto px-4"><button onclick="goBack()" class="flex items-center space-x-2 text-amber-300 hover:text-amber-400 mb-8 text-sm font-bold transition-colors"><i class="fa-solid fa-arrow-left"></i><span>Back</span></button><div class="grid md:grid-cols-2 gap-10 items-start"><div class="bg-black/40 rounded-2xl overflow-hidden border border-white/10"><!-- 🖼️ CHANGE DETAIL PHOTO URL lr-3 BELOW --><img src="https://github.com/Name999-glich/portofolio/blob/master/data%20buat%20potofolio/IMG_20251119_073926.jpg?raw=true" alt="lr-3" class="w-full h-auto object-contain"></div><div class="space-y-5"><div><span class="text-xs font-bold uppercase tracking-widest text-amber-300">Adobe Lightroom</span><!-- ✏️ CHANGE TITLE lr-3 --><h1 class="text-3xl font-black text-white mt-2">CHANGE_TITLE_DETAIL_IL-3_HERE</h1></div><!-- ✏️ CHANGE DESCRIPTION lr-3 --><p class="text-rose-100/80 leading-relaxed">Full description of work 3...</p><div class="space-y-3"><div class="flex items-center space-x-3 bg-white/5 border border-white/10 rounded-xl p-3"><i class="fa-solid fa-camera text-amber-400 w-5"></i><div><p class="text-xs text-rose-200/50">Software</p><p class="text-sm font-bold text-white">Adobe Lightroom</p></div></div><!-- ✏️ CHANGE CATEGORY lr-3 --><div class="flex items-center space-x-3 bg-white/5 border border-white/10 rounded-xl p-3"><i class="fa-solid fa-tag text-amber-400 w-5"></i><div><p class="text-xs text-rose-200/50">Category</p><p class="text-sm font-bold text-white">Category Works 3</p></div></div></div><div class="flex gap-3 pt-2"><button onclick="openDetails('lr-2')" class="flex-1 py-3 bg-white/5 border border-white/10 text-rose-100 font-bold rounded-xl hover:bg-white/10 transition-all text-sm">← Previous</button><button onclick="openDetails('lr-4')" class="flex-1 py-3 bg-white/5 border border-white/10 text-rose-100 font-bold rounded-xl hover:bg-white/10 transition-all text-sm">Next →</button></div></div></div></section></div>
+    <div id="halaman-lr-4" class="halaman"><section class="py-16 max-w-4xl mx-auto px-4"><button onclick="goBack()" class="flex items-center space-x-2 text-amber-300 hover:text-amber-400 mb-8 text-sm font-bold transition-colors"><i class="fa-solid fa-arrow-left"></i><span>Back</span></button><div class="grid md:grid-cols-2 gap-10 items-start"><div class="bg-black/40 rounded-2xl overflow-hidden border border-white/10"><!-- 🖼️ CHANGE DETAIL PHOTO URL lr-4 BELOW --><img src="https://github.com/Name999-glich/portofolio/blob/master/IMG-20260717-WA0003.jpg?raw=true" alt="lr-4" class="w-full h-auto object-contain"></div><div class="space-y-5"><div><span class="text-xs font-bold uppercase tracking-widest text-amber-300">Adobe Lightroom</span><!-- ✏️ CHANGE TITLE lr-4 --><h1 class="text-3xl font-black text-white mt-2">CHANGE_TITLE_DETAIL_IL-4_HERE</h1></div><!-- ✏️ CHANGE DESCRIPTION lr-4 --><p class="text-rose-100/80 leading-relaxed">Full description of work 4...</p><div class="space-y-3"><div class="flex items-center space-x-3 bg-white/5 border border-white/10 rounded-xl p-3"><i class="fa-solid fa-camera text-amber-400 w-5"></i><div><p class="text-xs text-rose-200/50">Software</p><p class="text-sm font-bold text-white">Adobe Lightroom</p></div></div><!-- ✏️ CHANGE CATEGORY lr-4 --><div class="flex items-center space-x-3 bg-white/5 border border-white/10 rounded-xl p-3"><i class="fa-solid fa-tag text-amber-400 w-5"></i><div><p class="text-xs text-rose-200/50">Category</p><p class="text-sm font-bold text-white">Category Works 4</p></div></div></div><div class="flex gap-3 pt-2"><button onclick="openDetails('lr-3')" class="flex-1 py-3 bg-white/5 border border-white/10 text-rose-100 font-bold rounded-xl hover:bg-white/10 transition-all text-sm">← Previous</button><button onclick="openDetails('lr-5')" class="flex-1 py-3 bg-white/5 border border-white/10 text-rose-100 font-bold rounded-xl hover:bg-white/10 transition-all text-sm">Next →</button></div></div></div></section></div>
+    <div id="halaman-lr-5" class="halaman"><section class="py-16 max-w-4xl mx-auto px-4"><button onclick="goBack()" class="flex items-center space-x-2 text-amber-300 hover:text-amber-400 mb-8 text-sm font-bold transition-colors"><i class="fa-solid fa-arrow-left"></i><span>Back</span></button><div class="grid md:grid-cols-2 gap-10 items-start"><div class="bg-black/40 rounded-2xl overflow-hidden border border-white/10"><!-- 🖼️ CHANGE DETAIL PHOTO URL lr-5 BELOW --><img src="https://github.com/Name999-glich/portofolio/blob/master/IMG_20260309_152922.jpg?raw=true" alt="lr-5" class="w-full h-auto object-contain"></div><div class="space-y-5"><div><span class="text-xs font-bold uppercase tracking-widest text-amber-300">Adobe Lightroom</span><!-- ✏️ CHANGE TITLE lr-5 --><h1 class="text-3xl font-black text-white mt-2">CHANGE_TITLE_DETAIL_IL-5_HERE</h1></div><!-- ✏️ CHANGE DESCRIPTION lr-5 --><p class="text-rose-100/80 leading-relaxed">Full description of work 5...</p><div class="space-y-3"><div class="flex items-center space-x-3 bg-white/5 border border-white/10 rounded-xl p-3"><i class="fa-solid fa-camera text-amber-400 w-5"></i><div><p class="text-xs text-rose-200/50">Software</p><p class="text-sm font-bold text-white">Adobe Lightroom</p></div></div><!-- ✏️ CHANGE CATEGORY lr-5 --><div class="flex items-center space-x-3 bg-white/5 border border-white/10 rounded-xl p-3"><i class="fa-solid fa-tag text-amber-400 w-5"></i><div><p class="text-xs text-rose-200/50">Category</p><p class="text-sm font-bold text-white">Category Works 5</p></div></div></div><div class="flex gap-3 pt-2"><button onclick="openDetails('lr-4')" class="flex-1 py-3 bg-white/5 border border-white/10 text-rose-100 font-bold rounded-xl hover:bg-white/10 transition-all text-sm">← Previous</button></div></div></div></section></div>
+
+    <!-- DETAIL cv-1 until cv-5 -->
+    <div id="halaman-cv-1" class="halaman"><section class="py-16 max-w-4xl mx-auto px-4"><button onclick="goBack()" class="flex items-center space-x-2 text-amber-300 hover:text-amber-400 mb-8 text-sm font-bold transition-colors"><i class="fa-solid fa-arrow-left"></i><span>Back</span></button><div class="grid md:grid-cols-2 gap-10 items-start"><div class="bg-black/40 rounded-2xl overflow-hidden border border-white/10"><!-- 🖼️ CHANGE DETAIL PHOTO URL CV-1 BELOW --><img src="https://github.com/Name999-glich/portofolio/blob/master/data%20buat%20potofolio/poster%20iklan.png?raw=true" alt="cv-1" class="w-full h-auto object-contain"></div><div class="space-y-5"><div><span class="text-xs font-bold uppercase tracking-widest text-amber-300">Canva</span><!-- ✏️ CHANGE TITLE cv-1 --><h1 class="text-3xl font-black text-white mt-2">Chicken Noodle Ad Poster</h1></div><!-- ✏️ CHANGE DESCRIPTION cv-1 --><p class="text-rose-100/80 leading-relaxed">An ad poster for chicken noodles using several techniques such as type on path</p><div class="space-y-3"><div class="flex items-center space-x-3 bg-white/5 border border-white/10 rounded-xl p-3"><i class="fa-solid fa-c text-amber-400 w-5"></i><div><p class="text-xs text-rose-200/50">Software</p><p class="text-sm font-bold text-white">Canva</p></div></div><!-- ✏️ CHANGE CATEGORY cv-1 --><div class="flex items-center space-x-3 bg-white/5 border border-white/10 rounded-xl p-3"><i class="fa-solid fa-tag text-amber-400 w-5"></i><div><p class="text-xs text-rose-200/50">Category</p><p class="text-sm font-bold text-white">Category Works 1</p></div></div></div><div class="flex gap-3 pt-2"><button onclick="openDetails('cv-2')" class="flex-1 py-3 bg-white/5 border border-white/10 text-rose-100 font-bold rounded-xl hover:bg-white/10 transition-all text-sm">Next →</button></div></div></div></section></div>
+    <div id="halaman-cv-2" class="halaman"><section class="py-16 max-w-4xl mx-auto px-4"><button onclick="goBack()" class="flex items-center space-x-2 text-amber-300 hover:text-amber-400 mb-8 text-sm font-bold transition-colors"><i class="fa-solid fa-arrow-left"></i><span>Back</span></button><div class="grid md:grid-cols-2 gap-10 items-start"><div class="bg-black/40 rounded-2xl overflow-hidden border border-white/10"><!-- 🖼️ CHANGE DETAIL PHOTO URL cv-2 BELOW --><img src="CHANGE_URL_PHOTO_DETAIL_CV-2_HERE" alt="cv-2" class="w-full h-auto object-contain"></div><div class="space-y-5"><div><span class="text-xs font-bold uppercase tracking-widest text-amber-300">Canva</span><!-- ✏️ CHANGE TITLE cv-2 --><h1 class="text-3xl font-black text-white mt-2">CHANGE_TITLE_DETAIL_LR-2_HERE</h1></div><!-- ✏️ CHANGE DESCRIPTION cv-2 --><p class="text-rose-100/80 leading-relaxed">Full description of work 2...</p><div class="space-y-3"><div class="flex items-center space-x-3 bg-white/5 border border-white/10 rounded-xl p-3"><i class="fa-solid fa-c text-amber-400 w-5"></i><div><p class="text-xs text-rose-200/50">Software</p><p class="text-sm font-bold text-white">Canva</p></div></div><!-- ✏️ CHANGE CATEGORY cv-2 --><div class="flex items-center space-x-3 bg-white/5 border border-white/10 rounded-xl p-3"><i class="fa-solid fa-tag text-amber-400 w-5"></i><div><p class="text-xs text-rose-200/50">Category</p><p class="text-sm font-bold text-white">Category Works 2</p></div></div></div><div class="flex gap-3 pt-2"><button onclick="openDetails('cv-1')" class="flex-1 py-3 bg-white/5 border border-white/10 text-rose-100 font-bold rounded-xl hover:bg-white/10 transition-all text-sm">← Previous</button><button onclick="openDetails('cv-3')" class="flex-1 py-3 bg-white/5 border border-white/10 text-rose-100 font-bold rounded-xl hover:bg-white/10 transition-all text-sm">Next →</button></div></div></div></section></div>
+    <div id="halaman-cv-3" class="halaman"><section class="py-16 max-w-4xl mx-auto px-4"><button onclick="goBack()" class="flex items-center space-x-2 text-amber-300 hover:text-amber-400 mb-8 text-sm font-bold transition-colors"><i class="fa-solid fa-arrow-left"></i><span>Back</span></button><div class="grid md:grid-cols-2 gap-10 items-start"><div class="bg-black/40 rounded-2xl overflow-hidden border border-white/10"><!-- 🖼️ CHANGE DETAIL PHOTO URL cv-3 BELOW --><img src="CHANGE_URL_PHOTO_DETAIL_CV-3_HERE" alt="cv-3" class="w-full h-auto object-contain"></div><div class="space-y-5"><div><span class="text-xs font-bold uppercase tracking-widest text-amber-300">Canva</span><!-- ✏️ CHANGE TITLE cv-3 --><h1 class="text-3xl font-black text-white mt-2">CHANGE_TITLE_DETAIL_IL-3_HERE</h1></div><!-- ✏️ CHANGE DESCRIPTION cv-3 --><p class="text-rose-100/80 leading-relaxed">Full description of work 3...</p><div class="space-y-3"><div class="flex items-center space-x-3 bg-white/5 border border-white/10 rounded-xl p-3"><i class="fa-solid fa-c text-amber-400 w-5"></i><div><p class="text-xs text-rose-200/50">Software</p><p class="text-sm font-bold text-white">Canva</p></div></div><!-- ✏️ CHANGE CATEGORY cv-3 --><div class="flex items-center space-x-3 bg-white/5 border border-white/10 rounded-xl p-3"><i class="fa-solid fa-tag text-amber-400 w-5"></i><div><p class="text-xs text-rose-200/50">Category</p><p class="text-sm font-bold text-white">Category Works 3</p></div></div></div><div class="flex gap-3 pt-2"><button onclick="openDetails('cv-2')" class="flex-1 py-3 bg-white/5 border border-white/10 text-rose-100 font-bold rounded-xl hover:bg-white/10 transition-all text-sm">← Previous</button><button onclick="openDetails('cv-4')" class="flex-1 py-3 bg-white/5 border border-white/10 text-rose-100 font-bold rounded-xl hover:bg-white/10 transition-all text-sm">Next →</button></div></div></div></section></div>
+    <div id="halaman-cv-4" class="halaman"><section class="py-16 max-w-4xl mx-auto px-4"><button onclick="goBack()" class="flex items-center space-x-2 text-amber-300 hover:text-amber-400 mb-8 text-sm font-bold transition-colors"><i class="fa-solid fa-arrow-left"></i><span>Back</span></button><div class="grid md:grid-cols-2 gap-10 items-start"><div class="bg-black/40 rounded-2xl overflow-hidden border border-white/10"><!-- 🖼️ CHANGE DETAIL PHOTO URL cv-4 BELOW --><img src="CHANGE_URL_PHOTO_DETAIL_CV-4_HERE" alt="cv-4" class="w-full h-auto object-contain"></div><div class="space-y-5"><div><span class="text-xs font-bold uppercase tracking-widest text-amber-300">Canva</span><!-- ✏️ CHANGE TITLE cv-4 --><h1 class="text-3xl font-black text-white mt-2">CHANGE_TITLE_DETAIL_IL-4_HERE</h1></div><!-- ✏️ CHANGE DESCRIPTION cv-4 --><p class="text-rose-100/80 leading-relaxed">Full description of work 4...</p><div class="space-y-3"><div class="flex items-center space-x-3 bg-white/5 border border-white/10 rounded-xl p-3"><i class="fa-solid fa-c text-amber-400 w-5"></i><div><p class="text-xs text-rose-200/50">Software</p><p class="text-sm font-bold text-white">Canva</p></div></div><!-- ✏️ CHANGE CATEGORY cv-4 --><div class="flex items-center space-x-3 bg-white/5 border border-white/10 rounded-xl p-3"><i class="fa-solid fa-tag text-amber-400 w-5"></i><div><p class="text-xs text-rose-200/50">Category</p><p class="text-sm font-bold text-white">Category Works 4</p></div></div></div><div class="flex gap-3 pt-2"><button onclick="openDetails('cv-3')" class="flex-1 py-3 bg-white/5 border border-white/10 text-rose-100 font-bold rounded-xl hover:bg-white/10 transition-all text-sm">← Previous</button><button onclick="openDetails('cv-5')" class="flex-1 py-3 bg-white/5 border border-white/10 text-rose-100 font-bold rounded-xl hover:bg-white/10 transition-all text-sm">Next →</button></div></div></div></section></div>
+    <div id="halaman-cv-5" class="halaman"><section class="py-16 max-w-4xl mx-auto px-4"><button onclick="goBack()" class="flex items-center space-x-2 text-amber-300 hover:text-amber-400 mb-8 text-sm font-bold transition-colors"><i class="fa-solid fa-arrow-left"></i><span>Back</span></button><div class="grid md:grid-cols-2 gap-10 items-start"><div class="bg-black/40 rounded-2xl overflow-hidden border border-white/10"><!-- 🖼️ CHANGE DETAIL PHOTO URL cv-5 BELOW --><img src="CHANGE_URL_PHOTO_DETAIL_CV-5_HERE" alt="cv-5" class="w-full h-auto object-contain"></div><div class="space-y-5"><div><span class="text-xs font-bold uppercase tracking-widest text-amber-300">Canva</span><!-- ✏️ CHANGE TITLE cv-5 --><h1 class="text-3xl font-black text-white mt-2">CHANGE_TITLE_DETAIL_IL-5_HERE</h1></div><!-- ✏️ CHANGE DESCRIPTION cv-5 --><p class="text-rose-100/80 leading-relaxed">Full description of work 5...</p><div class="space-y-3"><div class="flex items-center space-x-3 bg-white/5 border border-white/10 rounded-xl p-3"><i class="fa-solid fa-c text-amber-400 w-5"></i><div><p class="text-xs text-rose-200/50">Software</p><p class="text-sm font-bold text-white">Canva</p></div></div><!-- ✏️ CHANGE CATEGORY cv-5 --><div class="flex items-center space-x-3 bg-white/5 border border-white/10 rounded-xl p-3"><i class="fa-solid fa-tag text-amber-400 w-5"></i><div><p class="text-xs text-rose-200/50">Category</p><p class="text-sm font-bold text-white">Category Works 5</p></div></div></div><div class="flex gap-3 pt-2"><button onclick="openDetails('cv-4')" class="flex-1 py-3 bg-white/5 border border-white/10 text-rose-100 font-bold rounded-xl hover:bg-white/10 transition-all text-sm">← Previous</button></div></div></div></section></div>
+
+    <!-- DETAIL ps-1 -->
+    <div id="halaman-ps-1" class="halaman">
+        <section class="py-16 max-w-4xl mx-auto px-4">
+            <button onclick="goBack()" class="flex items-center space-x-2 text-amber-300 hover:text-amber-400 mb-8 text-sm font-bold transition-colors"><i class="fa-solid fa-arrow-left"></i><span>Back to All Works</span></button>
+            <div class="grid md:grid-cols-2 gap-10 items-start">
+                <div class="bg-black/40 rounded-2xl overflow-hidden border border-white/10">
+                    <!-- 🖼️ CHANGE DETAIL PHOTO LINK ps-1 -->
+                    <img src="https://github.com/Name999-glich/portofolio/blob/master/New%20folder/IMG_20251001_153507.jpg?raw=true" alt="ps-1" class="w-full h-auto object-contain">
+                </div>
+                <div class="space-y-5">
+                    <div><span class="text-xs font-bold uppercase tracking-widest text-amber-300">Adobe Photoshop</span><!-- ✏️ CHANGE DETAIL TITLE ps-1 --><h1 class="text-3xl font-black text-white mt-2">Light in a Dark Heart</h1></div>
+                    <!-- ✏️ CHANGE LONG DESCRIPTION ps-1 --><p class="text-rose-100/80 leading-relaxed">A symbolic, high-contrast visual work about hope shining through dark conditions. Uses light manipulation techniques to create a powerful visual narrative.</p>
+                    <div class="space-y-3">
+                        <div class="flex items-center space-x-3 bg-white/5 border border-white/10 rounded-xl p-3"><i class="fa-solid fa-wand-magic-sparkles text-amber-400 w-5"></i><div><p class="text-xs text-rose-200/50">Software</p><p class="text-sm font-bold text-white">Adobe Photoshop</p></div></div>
+                        <!-- ✏️ CHANGE CATEGORY ps-1 --><div class="flex items-center space-x-3 bg-white/5 border border-white/10 rounded-xl p-3"><i class="fa-solid fa-tag text-amber-400 w-5"></i><div><p class="text-xs text-rose-200/50">Category</p><p class="text-sm font-bold text-white">Digital Manipulation</p></div></div>
+                        <!-- ✏️ CHANGE TECHNIQUE ps-1 --><div class="flex items-center space-x-3 bg-white/5 border border-white/10 rounded-xl p-3"><i class="fa-solid fa-circle-half-stroke text-amber-400 w-5"></i><div><p class="text-xs text-rose-200/50">Technique</p><p class="text-sm font-bold text-white">High Contrast & Light Manipulation</p></div></div>
+                    </div>
+                    <div class="flex gap-3 pt-2"><button onclick="openDetails('ps-2')" class="flex-1 py-3 bg-white/5 border border-white/10 text-rose-100 font-bold rounded-xl hover:bg-white/10 transition-all text-sm">Next →</button></div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- DETAIL ps-2 until ps-5 -->
+    <div id="halaman-ps-2" class="halaman"><section class="py-16 max-w-4xl mx-auto px-4"><button onclick="goBack()" class="flex items-center space-x-2 text-amber-300 hover:text-amber-400 mb-8 text-sm font-bold transition-colors"><i class="fa-solid fa-arrow-left"></i><span>Back</span></button><div class="grid md:grid-cols-2 gap-10 items-start"><div class="bg-black/40 rounded-2xl overflow-hidden border border-white/10"><!-- 🖼️ CHANGE DETAIL PHOTO URL ps-2 BELOW --><img src="CHANGE_URL_PHOTO_DETAIL_PS-2_HERE" alt="ps-2" class="w-full h-auto object-contain"></div><div class="space-y-5"><div><span class="text-xs font-bold uppercase tracking-widest text-amber-300">Adobe Photoshop</span><!-- ✏️ CHANGE TITLE ps-2 --><h1 class="text-3xl font-black text-white mt-2">CHANGE_TITLE_DETAIL_LR-2_HERE</h1></div><!-- ✏️ CHANGE DESCRIPTION ps-2 --><p class="text-rose-100/80 leading-relaxed">Full description of work 2...</p><div class="space-y-3"><div class="flex items-center space-x-3 bg-white/5 border border-white/10 rounded-xl p-3"><i class="fa-solid fa-wand-magic-sparkles text-amber-400 w-5"></i><div><p class="text-xs text-rose-200/50">Software</p><p class="text-sm font-bold text-white">Adobe Photoshop</p></div></div><!-- ✏️ CHANGE CATEGORY ps-2 --><div class="flex items-center space-x-3 bg-white/5 border border-white/10 rounded-xl p-3"><i class="fa-solid fa-tag text-amber-400 w-5"></i><div><p class="text-xs text-rose-200/50">Category</p><p class="text-sm font-bold text-white">Category Works 2</p></div></div></div><div class="flex gap-3 pt-2"><button onclick="openDetails('ps-1')" class="flex-1 py-3 bg-white/5 border border-white/10 text-rose-100 font-bold rounded-xl hover:bg-white/10 transition-all text-sm">← Previous</button><button onclick="openDetails('ps-3')" class="flex-1 py-3 bg-white/5 border border-white/10 text-rose-100 font-bold rounded-xl hover:bg-white/10 transition-all text-sm">Next →</button></div></div></div></section></div>
+    <div id="halaman-ps-3" class="halaman"><section class="py-16 max-w-4xl mx-auto px-4"><button onclick="goBack()" class="flex items-center space-x-2 text-amber-300 hover:text-amber-400 mb-8 text-sm font-bold transition-colors"><i class="fa-solid fa-arrow-left"></i><span>Back</span></button><div class="grid md:grid-cols-2 gap-10 items-start"><div class="bg-black/40 rounded-2xl overflow-hidden border border-white/10"><!-- 🖼️ CHANGE DETAIL PHOTO URL ps-3 BELOW --><img src="CHANGE_URL_PHOTO_DETAIL_PS-3_HERE" alt="ps-3" class="w-full h-auto object-contain"></div><div class="space-y-5"><div><span class="text-xs font-bold uppercase tracking-widest text-amber-300">Adobe Photoshop</span><!-- ✏️ CHANGE TITLE ps-3 --><h1 class="text-3xl font-black text-white mt-2">CHANGE_TITLE_DETAIL_IL-3_HERE</h1></div><!-- ✏️ CHANGE DESCRIPTION ps-3 --><p class="text-rose-100/80 leading-relaxed">Full description of work 3...</p><div class="space-y-3"><div class="flex items-center space-x-3 bg-white/5 border border-white/10 rounded-xl p-3"><i class="fa-solid fa-wand-magic-sparkles text-amber-400 w-5"></i><div><p class="text-xs text-rose-200/50">Software</p><p class="text-sm font-bold text-white">Adobe Photoshop</p></div></div><!-- ✏️ CHANGE CATEGORY ps-3 --><div class="flex items-center space-x-3 bg-white/5 border border-white/10 rounded-xl p-3"><i class="fa-solid fa-tag text-amber-400 w-5"></i><div><p class="text-xs text-rose-200/50">Category</p><p class="text-sm font-bold text-white">Category Works 3</p></div></div></div><div class="flex gap-3 pt-2"><button onclick="openDetails('ps-2')" class="flex-1 py-3 bg-white/5 border border-white/10 text-rose-100 font-bold rounded-xl hover:bg-white/10 transition-all text-sm">← Previous</button><button onclick="openDetails('ps-4')" class="flex-1 py-3 bg-white/5 border border-white/10 text-rose-100 font-bold rounded-xl hover:bg-white/10 transition-all text-sm">Next →</button></div></div></div></section></div>
+    <div id="halaman-ps-4" class="halaman"><section class="py-16 max-w-4xl mx-auto px-4"><button onclick="goBack()" class="flex items-center space-x-2 text-amber-300 hover:text-amber-400 mb-8 text-sm font-bold transition-colors"><i class="fa-solid fa-arrow-left"></i><span>Back</span></button><div class="grid md:grid-cols-2 gap-10 items-start"><div class="bg-black/40 rounded-2xl overflow-hidden border border-white/10"><!-- 🖼️ CHANGE DETAIL PHOTO URL ps-4 BELOW --><img src="CHANGE_URL_PHOTO_DETAIL_PS-4_HERE" alt="ps-4" class="w-full h-auto object-contain"></div><div class="space-y-5"><div><span class="text-xs font-bold uppercase tracking-widest text-amber-300">Adobe Photoshop</span><!-- ✏️ CHANGE TITLE ps-4 --><h1 class="text-3xl font-black text-white mt-2">CHANGE_TITLE_DETAIL_IL-4_HERE</h1></div><!-- ✏️ CHANGE DESCRIPTION ps-4 --><p class="text-rose-100/80 leading-relaxed">Full description of work 4...</p><div class="space-y-3"><div class="flex items-center space-x-3 bg-white/5 border border-white/10 rounded-xl p-3"><i class="fa-solid fa-wand-magic-sparkles text-amber-400 w-5"></i><div><p class="text-xs text-rose-200/50">Software</p><p class="text-sm font-bold text-white">Adobe Photoshop</p></div></div><!-- ✏️ CHANGE CATEGORY ps-4 --><div class="flex items-center space-x-3 bg-white/5 border border-white/10 rounded-xl p-3"><i class="fa-solid fa-tag text-amber-400 w-5"></i><div><p class="text-xs text-rose-200/50">Category</p><p class="text-sm font-bold text-white">Category Works 4</p></div></div></div><div class="flex gap-3 pt-2"><button onclick="openDetails('ps-3')" class="flex-1 py-3 bg-white/5 border border-white/10 text-rose-100 font-bold rounded-xl hover:bg-white/10 transition-all text-sm">← Previous</button><button onclick="openDetails('ps-5')" class="flex-1 py-3 bg-white/5 border border-white/10 text-rose-100 font-bold rounded-xl hover:bg-white/10 transition-all text-sm">Next →</button></div></div></div></section></div>
+    <div id="halaman-ps-5" class="halaman"><section class="py-16 max-w-4xl mx-auto px-4"><button onclick="goBack()" class="flex items-center space-x-2 text-amber-300 hover:text-amber-400 mb-8 text-sm font-bold transition-colors"><i class="fa-solid fa-arrow-left"></i><span>Back</span></button><div class="grid md:grid-cols-2 gap-10 items-start"><div class="bg-black/40 rounded-2xl overflow-hidden border border-white/10"><!-- 🖼️ CHANGE DETAIL PHOTO URL ps-5 BELOW --><img src="CHANGE_URL_PHOTO_DETAIL_PS-5_HERE" alt="ps-5" class="w-full h-auto object-contain"></div><div class="space-y-5"><div><span class="text-xs font-bold uppercase tracking-widest text-amber-300">Adobe Photoshop</span><!-- ✏️ CHANGE TITLE ps-5 --><h1 class="text-3xl font-black text-white mt-2">CHANGE_TITLE_DETAIL_IL-5_HERE</h1></div><!-- ✏️ CHANGE DESCRIPTION ps-5 --><p class="text-rose-100/80 leading-relaxed">Full description of work 5...</p><div class="space-y-3"><div class="flex items-center space-x-3 bg-white/5 border border-white/10 rounded-xl p-3"><i class="fa-solid fa-wand-magic-sparkles text-amber-400 w-5"></i><div><p class="text-xs text-rose-200/50">Software</p><p class="text-sm font-bold text-white">Adobe Photoshop</p></div></div><!-- ✏️ CHANGE CATEGORY ps-5 --><div class="flex items-center space-x-3 bg-white/5 border border-white/10 rounded-xl p-3"><i class="fa-solid fa-tag text-amber-400 w-5"></i><div><p class="text-xs text-rose-200/50">Category</p><p class="text-sm font-bold text-white">Category Works 5</p></div></div></div><div class="flex gap-3 pt-2"><button onclick="openDetails('ps-4')" class="flex-1 py-3 bg-white/5 border border-white/10 text-rose-100 font-bold rounded-xl hover:bg-white/10 transition-all text-sm">← Previous</button></div></div></div></section></div>
+
+    <!-- FOOTER -->
+    <footer class="bg-black/40 border-t border-white/5 py-10 text-center text-xs text-rose-200/50">
+        <p>© 2026 Aditya Putra Rahmayadi. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        let activeTab = 'illustrator';
+
+        function switchTab(tab) {
+            activeTab = tab;
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+            document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+            document.getElementById('tab-' + tab).classList.add('active');
+            document.getElementById('btn-' + tab).classList.add('active');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function openDetails(id) {
+            document.querySelectorAll('.halaman').forEach(el => el.classList.remove('active'));
+            document.getElementById('halaman-' + id).classList.add('active');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function goBack() {
+            document.querySelectorAll('.halaman').forEach(el => el.classList.remove('active'));
+            document.getElementById('halaman-list').classList.add('active');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html><!DOCTYPE html>
 <html lang="id">
 <head>
     <meta charset="UTF-8">
