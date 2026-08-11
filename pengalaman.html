@@ -1,4 +1,586 @@
 <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Work Experience - Aditya Portfolio</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        html { scroll-behavior: smooth; }
+
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes pulse-ring {
+            0% { transform: scale(1); opacity: 0.8; }
+            100% { transform: scale(1.5); opacity: 0; }
+        }
+
+        .animate-fadeup { animation: fadeUp 0.7s ease-out forwards; }
+        .delay-1 { animation-delay: 0.1s; opacity: 0; }
+        .delay-2 { animation-delay: 0.3s; opacity: 0; }
+        .delay-3 { animation-delay: 0.5s; opacity: 0; }
+
+        .card-hover {
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .card-hover:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 40px rgba(245, 158, 11, 0.15);
+            border-color: rgba(245, 158, 11, 0.3);
+        }
+
+        .foto-klik {
+            cursor: zoom-in;
+            transition: all 0.3s ease;
+        }
+        .foto-klik:hover {
+            transform: scale(1.05);
+            filter: brightness(1.1);
+        }
+
+        /* LIGHTBOX */
+        #lightbox {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.95);
+            z-index: 9999;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            backdrop-filter: blur(10px);
+        }
+        #lightbox.show { display: flex; animation: fadeIn 0.3s ease-out; }
+        #lightbox-img {
+            max-width: 90vw;
+            max-height: 85vh;
+            object-fit: contain;
+            border-radius: 12px;
+            box-shadow: 0 0 60px rgba(245, 158, 11, 0.3);
+            animation: fadeUp 0.4s ease-out;
+        }
+        #lightbox-close {
+            position: fixed;
+            top: 20px;
+            right: 24px;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+            z-index: 10000;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            width: 44px;
+            height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.2s;
+        }
+        #lightbox-close:hover { background: rgba(245,158,11,0.4); }
+
+        /* PHOTO NAVIGATION IN LIGHTBOX */
+        #lightbox-prev, #lightbox-next {
+            position: fixed;
+            top: 50%;
+            transform: translateY(-50%);
+            color: white;
+            font-size: 20px;
+            cursor: pointer;
+            z-index: 10000;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            width: 44px;
+            height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.2s;
+        }
+        #lightbox-prev { left: 16px; }
+        #lightbox-next { right: 16px; }
+        #lightbox-prev:hover, #lightbox-next:hover { background: rgba(245,158,11,0.4); }
+
+        #lightbox-caption {
+            position: fixed;
+            bottom: 24px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: white;
+            font-size: 13px;
+            background: rgba(0,0,0,0.6);
+            padding: 8px 20px;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.1);
+            white-space: nowrap;
+        }
+
+        #lightbox-counter {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: white;
+            font-size: 12px;
+            background: rgba(0,0,0,0.5);
+            padding: 5px 14px;
+            border-radius: 20px;
+        }
+
+        /* PHOTO GALLERY */
+        .galeri-foto {
+            display: grid;
+            gap: 8px;
+        }
+        .galeri-foto.satu { grid-template-columns: 1fr; }
+        .galeri-foto.dua { grid-template-columns: 1fr 1fr; }
+        .galeri-foto.tiga { grid-template-columns: 1fr 1fr; }
+        .galeri-foto.tiga .foto-utama { grid-column: 1 / -1; }
+        .galeri-foto.empat { grid-template-columns: 1fr 1fr; }
+        .galeri-foto.lima { grid-template-columns: 1fr 1fr 1fr; }
+        .galeri-foto.lima .foto-utama { grid-column: 1 / -1; }
+
+        .foto-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 12px;
+            border: 1px solid rgba(255,255,255,0.1);
+            background: rgba(0,0,0,0.4);
+        }
+        .foto-item img {
+            width: 100%;
+            height: auto;
+            object-fit: contain;
+            display: block;
+        }
+        .foto-item .overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(0,0,0,0);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.3s;
+        }
+        .foto-item:hover .overlay { background: rgba(0,0,0,0.35); }
+        .foto-item .overlay i {
+            opacity: 0;
+            color: white;
+            font-size: 20px;
+            transition: opacity 0.3s;
+        }
+        .foto-item:hover .overlay i { opacity: 1; }
+
+        .dot-pulse::after {
+            content: '';
+            position: absolute;
+            inset: -4px;
+            border-radius: 50%;
+            border: 2px solid #f97316;
+            animation: pulse-ring 1.5s ease-out infinite;
+        }
+    </style>
+</head>
+<body class="min-h-screen bg-gradient-to-b from-[#1e1332] via-[#3a1c40] to-[#4a1835] text-rose-50 font-sans">
+
+    <!-- LIGHTBOX -->
+    <div id="lightbox" onclick="closeLightbox(event)">
+        <button id="lightbox-close" onclick="closeLightbox()">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+        <button id="lightbox-prev" onclick="navigatePhoto(-1); event.stopPropagation()">
+            <i class="fa-solid fa-chevron-left"></i>
+        </button>
+        <img id="lightbox-img" src="" alt="">
+        <button id="lightbox-next" onclick="navigatePhoto(1); event.stopPropagation()">
+            <i class="fa-solid fa-chevron-right"></i>
+        </button>
+        <div id="lightbox-counter"></div>
+        <div id="lightbox-caption"></div>
+    </div>
+
+    <!-- HEADER -->
+    <header class="sticky top-0 z-50 backdrop-blur-md bg-[#1e1332]/80 border-b border-rose-900/30">
+        <div class="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between">
+            <a href="index.html" class="flex items-center space-x-2">
+                <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-amber-400 via-orange-500 to-rose-600 flex items-center justify-center font-black text-white text-xl">A</div>
+                <span class="font-bold tracking-widest text-lg text-rose-100 hidden sm:block">ADITYA.PORTFOLIO</span>
+            </a>
+            <a href="index.html" class="flex items-center space-x-2 text-sm text-rose-200/80 hover:text-amber-300 transition-colors">
+                <i class="fa-solid fa-arrow-left"></i>
+                <span>Back to Portfolio</span>
+            </a>
+        </div>
+    </header>
+
+    <!-- HERO -->
+    <section class="py-16 max-w-4xl mx-auto px-4 text-center animate-fadeup">
+        <span class="text-xs font-bold uppercase tracking-widest text-amber-300">Experience</span>
+        <h1 class="text-4xl font-black text-white mt-2">Work Experience & Internship</h1>
+        <p class="text-rose-100/70 mt-3 max-w-xl mx-auto">My real journey in the working world, internships, and on-the-job training that shaped my professional skills.</p>
+        <p class="text-amber-300/70 text-xs mt-4"><i class="fa-solid fa-hand-pointer mr-1"></i> Click photo to view full size • Swipe for the next photo</p>
+    </section>
+
+    <!-- EXPERIENCE TIMELINE -->
+    <section class="pb-20 max-w-4xl mx-auto px-4">
+        <h2 class="text-2xl font-black text-white mb-12 flex items-center space-x-3 animate-fadeup delay-1">
+            <i class="fa-solid fa-briefcase text-amber-400 animate-bounce"></i>
+            <span>History Experience</span>
+        </h2>
+
+        <div class="relative border-l-2 border-white/10 ml-4 md:ml-40 space-y-16">
+
+            <!-- ================================ -->
+            <!-- EXPERIENCE 1                     -->
+            <!-- ================================ -->
+            <div class="relative pl-8 md:pl-10 group animate-fadeup delay-1">
+                <div class="absolute -left-[9px] top-2 w-4 h-4 rounded-full bg-[#1e1332] border-2 border-orange-500 shadow-md dot-pulse relative"></div>
+                <div class="absolute left-[-155px] top-2 hidden md:block text-right w-36">
+                    <!-- ✏️ CHANGE EXPERIENCE 1 TYPE & PERIOD -->
+                    <p class="text-sm font-black text-white">PKL</p>
+                    <p class="text-xs text-rose-300/60">March 3, 2025 - May 31, 2025</p>
+                </div>
+
+                <div class="card-hover bg-white/5 border border-white/10 backdrop-blur-md p-6 rounded-3xl">
+                    <div class="space-y-5">
+
+                        <!-- COMPANY INFO -->
+                        <div>
+                            <!-- ✏️ CHANGE COMPANY 1 NAME -->
+                            <span class="text-[11px] font-extrabold text-orange-400 uppercase tracking-widest block">AMERTA GRUP</span>
+                            <!-- ✏️ CHANGE POSITION 1 -->
+                            <p class="text-base font-bold text-white mt-1">CRM (Customer Relationship Management)
+                            <!-- ✏️ CHANGE DESCRIPTION 1 -->
+                            <p class="text-sm text-rose-100/70 mt-3 leading-relaxed">I interned at Amerta Grup as a CRM (Customer Relationship Management) staff member, responsible for managing interactions with customers and prospective customers.</p>
+                        </div>
+
+                        <!-- TASKS -->
+                        <div class="space-y-2">
+                            <p class="text-xs font-bold text-amber-300 uppercase tracking-wider">Tasks & Responsibilities:</p>
+                            <div class="flex items-start space-x-2">
+                                <i class="fa-solid fa-check text-amber-400 text-xs mt-0.5 flex-shrink-0"></i>
+                                <!-- ✏️ CHANGE TASK 1-1 -->
+                                <p class="text-xs text-rose-100/70">Managed sales data</p>
+                            </div>
+                     
+                            <!-- ✏️ DUPLICATE THE ROW ABOVE TO ADD A NEW TASK -->
+                        </div>
+
+                        <!-- TOOLS -->
+                        <div class="flex flex-wrap gap-2">
+                            <!-- ✏️ CHANGE/ADD TOOLS -->
+                            <span class="text-[11px] bg-amber-400/10 text-amber-300 border border-amber-400/20 px-2 py-0.5 rounded-full font-bold">EXCEL</span>
+                            <span class="text-[11px] bg-amber-400/10 text-amber-300 border border-amber-400/20 px-2 py-0.5 rounded-full font-bold">WORD</span>
+                        
+                       </div>
+
+                        <!-- ======================= -->
+                        <!-- COMPANY 1 PHOTO GALLERY -->
+                        <!-- ======================= -->
+                        <!-- 
+                            HOW TO SET THE NUMBER OF PHOTOS:
+                            - 1 photo  → class="galeri-foto satu"
+                            - 2 photos → class="galeri-foto dua"
+                            - 3 photos → class="galeri-foto tiga" (1 large on top, 2 small below)
+                            - 4 photos → class="galeri-foto empat"
+                            - 5 photos → class="galeri-foto lima"
+                            
+                            HOW TO ADD A PHOTO:
+                            Duplicate the <div class="foto-item"> block below
+                            and change the photo URL and its caption
+                        -->
+                        <div>
+                            <p class="text-xs font-bold text-amber-300 uppercase tracking-wider mb-3">Documentation:</p>
+                            <!-- ✏️ CHANGE gallery class to match the photo count (satu/dua/tiga/empat/lima) -->
+                            <div class="galeri-foto tiga" id="galeri-1">
+
+                                <!-- 🖼️ MAIN PHOTO (large) - CHANGE URL BELOW -->
+                                <div class="foto-item foto-utama"
+                                     onclick="openGallery('galeri-1', 0)">
+                                    <img src="https://github.com/Name999-glich/portofolio/blob/master/data%20buat%20potofolio/WhatsApp%20Image%202026-04-27%20at%209.37.49%20AM_upscayl_3x_ultramix-balanced-4x.png?raw=true" alt="foto-1a"
+                                         onerror="this.parentElement.style.display='none'">
+                                    <div class="overlay"><i class="fa-solid fa-expand"></i></div>
+                                </div>
+
+                                <!-- 🖼️ SECOND PHOTO - CHANGE URL BELOW -->
+                                <div class="foto-item"
+                                     onclick="openGallery('galeri-1', 1)">
+                                    <img src="CHANGE_URL_PHOTO_1B_HERE" alt="foto-1b"
+                                         onerror="this.parentElement.style.display='none'">
+                                    <div class="overlay"><i class="fa-solid fa-expand"></i></div>
+                                </div>
+
+                                <!-- 🖼️ THIRD PHOTO - CHANGE URL BELOW -->
+                                <div class="foto-item"
+                                     onclick="openGallery('galeri-1', 2)">
+                                    <img src="CHANGE_URL_PHOTO_1C_HERE" alt="foto-1c"
+                                         onerror="this.parentElement.style.display='none'">
+                                    <div class="overlay"><i class="fa-solid fa-expand"></i></div>
+                                </div>
+
+                                <!-- ✏️ WANT TO ADD MORE PHOTOS? Duplicate the foto-item block above -->
+                                <!-- Example for photo #4:
+                                <div class="foto-item"
+                                     onclick="openGallery('galeri-1', 3)">
+                                    <img src="LINK_FOTO_1D" alt="foto-1d"
+                                         onerror="this.parentElement.style.display='none'">
+                                    <div class="overlay"><i class="fa-solid fa-expand"></i></div>
+                                </div>
+                                -->
+
+                            </div>
+                        </div>
+                        <!-- Gallery 1 caption - fill in the company/event name -->
+                        <p class="text-[11px] text-rose-300/50 text-center -mt-2">
+                            <!-- ✏️ CHANGE GALLERY 1 CAPTION -->
+                            CHANGE_CAPTION_GALLERY_1_HERE
+                        </p>
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- ================================ -->
+            <!-- EXPERIENCE 2                     -->
+            <!-- ================================ -->
+            <div class="relative pl-8 md:pl-10 group animate-fadeup delay-2">
+                <div class="absolute -left-[9px] top-2 w-4 h-4 rounded-full bg-[#1e1332] border-2 border-orange-500 shadow-md"></div>
+                <div class="absolute left-[-155px] top-2 hidden md:block text-right w-36">
+                    <!-- ✏️ CHANGE EXPERIENCE 2 TYPE & PERIOD -->
+                    <p class="text-sm font-black text-white">CHANGE_TYPE_2</p>
+                    <p class="text-xs text-rose-300/60">CHANGE_PERIOD_2</p>
+                </div>
+
+                <div class="card-hover bg-white/5 border border-white/10 backdrop-blur-md p-6 rounded-3xl">
+                    <div class="space-y-5">
+                        <div>
+                            <!-- ✏️ CHANGE COMPANY 2 NAME -->
+                            <span class="text-[11px] font-extrabold text-orange-400 uppercase tracking-widest block">CHANGE_NAME_COMPANY_2_HERE</span>
+                            <!-- ✏️ CHANGE POSITION 2 -->
+                            <p class="text-base font-bold text-white mt-1">CHANGE_POSITION_2_HERE</p>
+                            <!-- ✏️ CHANGE DESCRIPTION 2 -->
+                            <p class="text-sm text-rose-100/70 mt-3 leading-relaxed">CHANGE_DESCRIPTION_FULL_2_HERE</p>
+                        </div>
+
+                        <div class="space-y-2">
+                            <p class="text-xs font-bold text-amber-300 uppercase tracking-wider">Tasks & Responsibilities:</p>
+                            <div class="flex items-start space-x-2">
+                                <i class="fa-solid fa-check text-amber-400 text-xs mt-0.5 flex-shrink-0"></i>
+                                <!-- ✏️ CHANGE TASK 2-1 -->
+                                <p class="text-xs text-rose-100/70">CHANGE_TASK_1_HERE</p>
+                            </div>
+                            <div class="flex items-start space-x-2">
+                                <i class="fa-solid fa-check text-amber-400 text-xs mt-0.5 flex-shrink-0"></i>
+                                <!-- ✏️ CHANGE TASK 2-2 -->
+                                <p class="text-xs text-rose-100/70">CHANGE_TASK_2_HERE</p>
+                            </div>
+                            <div class="flex items-start space-x-2">
+                                <i class="fa-solid fa-check text-amber-400 text-xs mt-0.5 flex-shrink-0"></i>
+                                <!-- ✏️ CHANGE TASK 2-3 -->
+                                <p class="text-xs text-rose-100/70">CHANGE_TASK_3_HERE</p>
+                            </div>
+                            <!-- ✏️ DUPLICATE THE ROW ABOVE TO ADD A NEW TASK -->
+                        </div>
+
+                        <div class="flex flex-wrap gap-2">
+                            <!-- ✏️ CHANGE/ADD TOOLS -->
+                            <span class="text-[11px] bg-amber-400/10 text-amber-300 border border-amber-400/20 px-2 py-0.5 rounded-full font-bold">CHANGE_TOOL_1</span>
+                            <span class="text-[11px] bg-amber-400/10 text-amber-300 border border-amber-400/20 px-2 py-0.5 rounded-full font-bold">CHANGE_TOOL_2</span>
+                        </div>
+
+                        <!-- COMPANY 2 PHOTO GALLERY -->
+                        <div>
+                            <p class="text-xs font-bold text-amber-300 uppercase tracking-wider mb-3">Documentation:</p>
+                            <!-- ✏️ CHANGE gallery class (satu/dua/tiga/empat/lima) -->
+                            <div class="galeri-foto dua" id="galeri-2">
+
+                                <!-- 🖼️ FIRST PHOTO - CHANGE URL BELOW -->
+                                <div class="foto-item"
+                                     onclick="openGallery('galeri-2', 0)">
+                                    <img src="CHANGE_URL_PHOTO_2A_HERE" alt="foto-2a"
+                                         onerror="this.parentElement.style.display='none'">
+                                    <div class="overlay"><i class="fa-solid fa-expand"></i></div>
+                                </div>
+
+                                <!-- 🖼️ SECOND PHOTO - CHANGE URL BELOW -->
+                                <div class="foto-item"
+                                     onclick="openGallery('galeri-2', 1)">
+                                    <img src="CHANGE_URL_PHOTO_2B_HERE" alt="foto-2b"
+                                         onerror="this.parentElement.style.display='none'">
+                                    <div class="overlay"><i class="fa-solid fa-expand"></i></div>
+                                </div>
+
+                                <!-- ✏️ WANT TO ADD MORE PHOTOS? Duplicate the foto-item block above -->
+
+                            </div>
+                        </div>
+                        <p class="text-[11px] text-rose-300/50 text-center -mt-2">
+                            <!-- ✏️ CHANGE GALLERY 2 CAPTION -->
+                            CHANGE_CAPTION_GALLERY_2_HERE
+                        </p>
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- ================================ -->
+            <!-- EXPERIENCE 3                     -->
+            <!-- ================================ -->
+            <div class="relative pl-8 md:pl-10 group animate-fadeup delay-3">
+                <div class="absolute -left-[9px] top-2 w-4 h-4 rounded-full bg-[#1e1332] border-2 border-orange-500 shadow-md"></div>
+                <div class="absolute left-[-155px] top-2 hidden md:block text-right w-36">
+                    <!-- ✏️ CHANGE EXPERIENCE 3 TYPE & PERIOD -->
+                    <p class="text-sm font-black text-white">CHANGE_TYPE_3</p>
+                    <p class="text-xs text-rose-300/60">CHANGE_PERIOD_3</p>
+                </div>
+
+                <div class="card-hover bg-white/5 border border-white/10 backdrop-blur-md p-6 rounded-3xl">
+                    <div class="space-y-5">
+                        <div>
+                            <!-- ✏️ CHANGE COMPANY 3 NAME -->
+                            <span class="text-[11px] font-extrabold text-orange-400 uppercase tracking-widest block">CHANGE_NAME_COMPANY_3_HERE</span>
+                            <!-- ✏️ CHANGE POSITION 3 -->
+                            <p class="text-base font-bold text-white mt-1">CHANGE_POSITION_3_HERE</p>
+                            <!-- ✏️ CHANGE DESCRIPTION 3 -->
+                            <p class="text-sm text-rose-100/70 mt-3 leading-relaxed">CHANGE_DESCRIPTION_FULL_3_HERE</p>
+                        </div>
+
+                        <div class="space-y-2">
+                            <p class="text-xs font-bold text-amber-300 uppercase tracking-wider">Tasks & Responsibilities:</p>
+                            <div class="flex items-start space-x-2">
+                                <i class="fa-solid fa-check text-amber-400 text-xs mt-0.5 flex-shrink-0"></i>
+                                <!-- ✏️ CHANGE TASK 3-1 -->
+                                <p class="text-xs text-rose-100/70">CHANGE_TASK_1_HERE</p>
+                            </div>
+                            <div class="flex items-start space-x-2">
+                                <i class="fa-solid fa-check text-amber-400 text-xs mt-0.5 flex-shrink-0"></i>
+                                <!-- ✏️ CHANGE TASK 3-2 -->
+                                <p class="text-xs text-rose-100/70">CHANGE_TASK_2_HERE</p>
+                            </div>
+                            <!-- ✏️ DUPLICATE THE ROW ABOVE TO ADD A NEW TASK -->
+                        </div>
+
+                        <div class="flex flex-wrap gap-2">
+                            <!-- ✏️ CHANGE/ADD TOOLS -->
+                            <span class="text-[11px] bg-amber-400/10 text-amber-300 border border-amber-400/20 px-2 py-0.5 rounded-full font-bold">CHANGE_TOOL_1</span>
+                            <span class="text-[11px] bg-amber-400/10 text-amber-300 border border-amber-400/20 px-2 py-0.5 rounded-full font-bold">CHANGE_TOOL_2</span>
+                        </div>
+
+                        <!-- COMPANY 3 PHOTO GALLERY -->
+                        <div>
+                            <p class="text-xs font-bold text-amber-300 uppercase tracking-wider mb-3">Documentation:</p>
+                            <!-- ✏️ CHANGE gallery class (satu/dua/tiga/empat/lima) -->
+                            <div class="galeri-foto satu" id="galeri-3">
+
+                                <!-- 🖼️ FIRST PHOTO - CHANGE URL BELOW -->
+                                <div class="foto-item"
+                                     onclick="openGallery('galeri-3', 0)">
+                                    <img src="CHANGE_URL_PHOTO_3A_HERE" alt="foto-3a"
+                                         onerror="this.parentElement.style.display='none'">
+                                    <div class="overlay"><i class="fa-solid fa-expand"></i></div>
+                                </div>
+
+                                <!-- ✏️ WANT TO ADD MORE PHOTOS? Duplicate the foto-item block above -->
+
+                            </div>
+                        </div>
+                        <p class="text-[11px] text-rose-300/50 text-center -mt-2">
+                            <!-- ✏️ CHANGE GALLERY 3 CAPTION -->
+                            CHANGE_CAPTION_GALLERY_3_HERE
+                        </p>
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- ✏️ DUPLICATE THE ENTIRE EXPERIENCE BLOCK ABOVE TO ADD A NEW EXPERIENCE -->
+            <!-- Don't forget to change the gallery id to galeri-4, galeri-5, etc. -->
+
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-black/40 border-t border-white/5 py-10 text-center text-xs text-rose-200/50">
+        <p>© 2026 Aditya Putra Rahmayadi. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        // Active gallery data for navigation
+        let activeGallery = [];
+        let activeIndex = 0;
+        let galleryCaption = '';
+
+        function openGallery(galleryId, index) {
+            const gallery = document.getElementById(galleryId);
+            const allPhotos = gallery.querySelectorAll('.foto-item img');
+            const caption = gallery.closest('.card-hover')
+                .querySelector('.text-rose-300\\/50')?.textContent?.trim() || '';
+
+            // Collect all photo URLs that loaded successfully
+            activeGallery = [];
+            allPhotos.forEach(img => {
+                if (img.style.display !== 'none' && img.src && !img.src.includes('CHANGE_URL')) {
+                    activeGallery.push(img.src);
+                }
+            });
+
+            if (activeGallery.length === 0) return;
+
+            galleryCaption = caption;
+            activeIndex = Math.min(index, activeGallery.length - 1);
+            displayPhoto();
+
+            document.getElementById('lightbox').classList.add('show');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function displayPhoto() {
+            document.getElementById('lightbox-img').src = activeGallery[activeIndex];
+            document.getElementById('lightbox-counter').textContent =
+                `${activeIndex + 1} / ${activeGallery.length}`;
+            document.getElementById('lightbox-caption').textContent = galleryCaption;
+
+            // Hide prev/next buttons if there's only 1 photo
+            const showNav = activeGallery.length > 1;
+            document.getElementById('lightbox-prev').style.display = showNav ? 'flex' : 'none';
+            document.getElementById('lightbox-next').style.display = showNav ? 'flex' : 'none';
+        }
+
+        function navigatePhoto(direction) {
+            activeIndex = (activeIndex + direction + activeGallery.length) % activeGallery.length;
+            displayPhoto();
+        }
+
+        function closeLightbox(event) {
+            if (event && event.target !== document.getElementById('lightbox') &&
+                event.target !== document.getElementById('lightbox-close') &&
+                !document.getElementById('lightbox-close').contains(event.target)) {
+                return;
+            }
+            document.getElementById('lightbox').classList.remove('show');
+            document.body.style.overflow = '';
+            activeGallery = [];
+        }
+
+        // ESC key to close
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                document.getElementById('lightbox').classList.remove('show');
+                document.body.style.overflow = '';
+            }
+            if (e.key === 'ArrowLeft') navigatePhoto(-1);
+            if (e.key === 'ArrowRight') navigatePhoto(1);
+        });
+    </script>
+</body>
+</html><!DOCTYPE html>
 <html lang="id">
 <head>
     <meta charset="UTF-8">
