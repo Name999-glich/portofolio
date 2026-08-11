@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -24,13 +24,13 @@
                 <span class="font-bold tracking-widest text-lg text-rose-100 hidden sm:block">ADITYA.PORTFOLIO</span>
             </div>
             <nav class="flex space-x-6 text-xs sm:text-sm font-semibold text-rose-200/80">
-                <a href="#about" class="hover:text-amber-300 transition-colors">Tentang</a>
-                <a href="#skills" class="hover:text-amber-300 transition-colors">Keahlian</a>
+                <a href="#about" class="hover:text-amber-300 transition-colors">About</a>
+                <a href="#skills" class="hover:text-amber-300 transition-colors">Skills</a>
                 <a href="#lightroom-sim" class="hover:text-amber-300 transition-colors hidden md:block">Simulator</a>
-                <a href="#portfolio" class="hover:text-amber-300 transition-colors">Karya</a>
-                <a href="#journey" class="hover:text-amber-300 transition-colors">Perjalanan</a>
-                <a href="#experience" class="hover:text-amber-300 transition-colors">Pengalaman</a>
-                <a href="#contact" class="hover:text-amber-300 transition-colors">Kontak</a>
+                <a href="#portfolio" class="hover:text-amber-300 transition-colors">Works</a>
+                <a href="#journey" class="hover:text-amber-300 transition-colors">Journey</a>
+                <a href="#experience" class="hover:text-amber-300 transition-colors">Experience</a>
+                <a href="#contact" class="hover:text-amber-300 transition-colors">Contact</a>
             </nav>
         </div>
     </header>
@@ -54,11 +54,11 @@
 
             <div class="mt-10 flex flex-col sm:flex-row justify-center items-center gap-4">
                 <a href="#portfolio" class="w-full sm:w-auto px-8 py-4 bg-gradient-to-r from-amber-400 via-orange-500 to-rose-500 text-black font-extrabold rounded-xl hover:shadow-xl hover:shadow-orange-500/25 transition-all transform hover:-translate-y-0.5 flex items-center justify-center space-x-2">
-                    <span>Lihat Hasil Karya</span>
+                    <span>View Hasil Works</span>
                     <i class="fa-solid fa-chevron-right text-sm"></i>
                 </a>
                 <a href="#contact" class="w-full sm:w-auto px-8 py-4 bg-white/5 hover:bg-white/10 text-rose-100 font-bold rounded-xl border border-white/10 transition-all flex items-center justify-center space-x-2 backdrop-blur-md">
-                    <span>Hubungi Saya</span>
+                    <span>Contact Me</span>
                 </a>
             </div>
 
@@ -68,7 +68,7 @@
                     <p class="text-sm text-amber-200 font-extrabold mt-1">Adobe </p>
                 </div>
                 <div class="bg-white/5 border border-white/10 p-4 rounded-xl backdrop-blur-sm">
-                    <p class="text-[10px] text-rose-200/60 font-bold uppercase tracking-wider">Asal Sekolah</p>
+                    <p class="text-[10px] text-rose-200/60 font-bold uppercase tracking-wider">Asal School</p>
                     <p class="text-sm text-amber-200 font-extrabold mt-1">SMKN 5 Tangsel</p>
                 </div>
                 <div class="bg-white/5 border border-white/10 p-4 rounded-xl backdrop-blur-sm">
@@ -109,7 +109,7 @@
             <div class="md:col-span-7 space-y-6">
                 <div class="flex items-center space-x-2 text-orange-400">
                     <i class="fa-solid fa-user text-sm"></i>
-                    <span class="text-xs font-bold uppercase tracking-widest">Tentang Profil Saya</span>
+                    <span class="text-xs font-bold uppercase tracking-widest">About Profil Saya</span>
                 </div>
                 <h2 class="text-3xl font-extrabold text-white">Menjajaki Makna Melalui Tulisan, Koleksi, dan Desain Visual</h2>
                 <div class="text-rose-100/80 text-base space-y-4 leading-relaxed">
@@ -145,7 +145,7 @@
                     <i class="fa-solid fa-layer-group text-xs animate-bounce"></i>
                     <span class="text-xs font-bold uppercase tracking-widest">Kombinasi Keterampilan</span>
                 </div>
-                <h2 class="text-3xl font-bold text-white">Keahlian Teknis & Sosial</h2>
+                <h2 class="text-3xl font-bold text-white">Skills Teknis & Sosial</h2>
             </div>
             
             <div class="grid md:grid-cols-2 gap-12">
@@ -219,24 +219,24 @@
                     </div>
                     <div class="flex justify-between items-center text-xs text-rose-200/70">
                         <p>Ubah tuas di kanan untuk simulasi warna.</p>
-                        <button onclick="resetSliders()" class="text-amber-400 hover:underline font-semibold">Reset Filter</button>
+                        <button onclick="resetSliders()" class="text-amber-400 hover:underline font-semibold">Reset Filters</button>
                     </div>
                 </div>
                 <div class="md:col-span-6 space-y-5">
                     <div>
-                        <div class="flex justify-between text-xs mb-1"><span>Exposure (Kecerahan)</span><span id="val-exp" class="text-amber-400">105%</span></div>
+                        <div class="flex justify-between text-xs mb-1"><span>Exposure (Brightness)</span><span id="val-exp" class="text-amber-400">105%</span></div>
                         <input type="range" id="slide-exp" min="30" max="200" value="105" oninput="updateFilters()" class="w-full accent-orange-500 bg-black/40 h-1.5 rounded-lg appearance-none cursor-pointer">
                     </div>
                     <div>
-                        <div class="flex justify-between text-xs mb-1"><span>Contrast (Kontras)</span><span id="val-con" class="text-amber-400">110%</span></div>
+                        <div class="flex justify-between text-xs mb-1"><span>Contrast</span><span id="val-con" class="text-amber-400">110%</span></div>
                         <input type="range" id="slide-con" min="40" max="200" value="110" oninput="updateFilters()" class="w-full accent-orange-500 bg-black/40 h-1.5 rounded-lg appearance-none cursor-pointer">
                     </div>
                     <div>
-                        <div class="flex justify-between text-xs mb-1"><span>Saturation (Warna)</span><span id="val-sat" class="text-amber-400">115%</span></div>
+                        <div class="flex justify-between text-xs mb-1"><span>Saturation (Color)</span><span id="val-sat" class="text-amber-400">115%</span></div>
                         <input type="range" id="slide-sat" min="0" max="200" value="115" oninput="updateFilters()" class="w-full accent-orange-500 bg-black/40 h-1.5 rounded-lg appearance-none cursor-pointer">
                     </div>
                     <div>
-                        <div class="flex justify-between text-xs mb-1"><span>Hue Shift (Rona Senja)</span><span id="val-hue" class="text-amber-400">10°</span></div>
+                        <div class="flex justify-between text-xs mb-1"><span>Hue Shift</span><span id="val-hue" class="text-amber-400">10°</span></div>
                         <input type="range" id="slide-hue" min="0" max="360" value="10" oninput="updateFilters()" class="w-full accent-orange-500 bg-black/40 h-1.5 rounded-lg appearance-none cursor-pointer">
                     </div>
                 </div>
@@ -246,9 +246,9 @@
 
     <section id="portfolio" class="py-24 max-w-5xl mx-auto px-4 border-t border-white/5 bg-black/10">
         <div class="mb-12">
-            <h2 class="text-3xl font-bold text-white">Koleksi Karya Pilihan</h2>
-            <p class="text-sm text-rose-100/70 mt-1">Mengadaptasi gaya pameran visual resolusi tinggi.</p>
-            <a href="karya.html" class="inline-flex items-center space-x-2 mt-4 px-5 py-2.5 bg-gradient-to-r from-amber-400 via-orange-500 to-rose-500 text-black font-extrabold rounded-xl hover:opacity-90 transition-all text-sm"><i class="fa-solid fa-images mr-2"></i>Lihat Semua Karya</a>
+            <h2 class="text-3xl font-bold text-white">Koleksi Works Pilihan</h2>
+            <p class="text-sm text-rose-100/70 mt-1">Adapting high-resolution visual exhibition style.</p>
+            <a href="karya.html" class="inline-flex items-center space-x-2 mt-4 px-5 py-2.5 bg-gradient-to-r from-amber-400 via-orange-500 to-rose-500 text-black font-extrabold rounded-xl hover:opacity-90 transition-all text-sm"><i class="fa-solid fa-images mr-2"></i>View All Works</a>
         </div>
        <div class="grid md:grid-cols-3 gap-6">
             <div class="bg-white/5 border border-white/10 backdrop-blur-sm rounded-2xl overflow-hidden flex flex-col group hover:border-white/20 transition-all shadow-md">
@@ -284,7 +284,7 @@
                 <div class="p-6 flex-1 flex flex-col justify-between">
                     <div>
                         <h3 class="font-bold text-white text-lg">Light in a Dark Heart</h3>
-                        <p class="text-xs text-rose-100/70 mt-2">Karya visual kontras tinggi simbolik tentang harapan yang bersinar di kondisi gelap.</p>
+                        <p class="text-xs text-rose-100/70 mt-2">Works visual kontras tinggi simbolik tentang harapan yang bersinar di kondisi gelap.</p>
                     </div>
                     <p class="text-[11px] text-rose-300/60 mt-4 pt-2 border-t border-white/10">Software: <strong>Adobe Photoshop</strong></p>
                 </div>
@@ -295,8 +295,8 @@
     <section id="journey" class="py-24 border-t border-white/5 relative">
         <div class="max-w-4xl mx-auto px-4">
             <div class="text-center max-w-xl mx-auto mb-16">
-                <h2 class="text-3xl font-bold text-white">Perjalanan Pendidikan Aditya</h2>
-                <a href="pendidikan.html" class="inline-flex items-center space-x-2 mt-4 px-5 py-2.5 bg-gradient-to-r from-amber-400 via-orange-500 to-rose-500 text-black font-extrabold rounded-xl hover:opacity-90 transition-all text-sm"><i class="fa-solid fa-graduation-cap mr-2"></i>Lihat Detail Pendidikan</a>
+                <h2 class="text-3xl font-bold text-white">Journey Pendidikan Aditya</h2>
+                <a href="pendidikan.html" class="inline-flex items-center space-x-2 mt-4 px-5 py-2.5 bg-gradient-to-r from-amber-400 via-orange-500 to-rose-500 text-black font-extrabold rounded-xl hover:opacity-90 transition-all text-sm"><i class="fa-solid fa-graduation-cap mr-2"></i>View Education Detailss</a>
             </div>
             <div class="relative border-l-2 border-white/10 ml-4 md:ml-36 space-y-16">
                 <div class="relative pl-8 md:pl-10 group">
@@ -359,12 +359,12 @@
 
     <section class="py-24 max-w-5xl mx-auto px-4 border-t border-white/5 bg-black/10">
         <div class="text-center max-w-xl mx-auto mb-16">
-            <h2 class="text-3xl font-bold text-white">Ijazah & Sertifikat Resmi</h2>
+            <h2 class="text-3xl font-bold text-white">Diplomas & Certificates Resmi</h2>
         </div>
         <div class="grid md:grid-cols-2 gap-8">
             <div class="bg-white/5 border border-white/10 backdrop-blur-md p-6 rounded-3xl flex flex-col">
                 <div class="relative aspect-video w-full rounded-xl overflow-hidden border border-white/10 mb-6">
-                    <div class="absolute inset-0 bg-gradient-to-tr from-amber-900/80 to-rose-900/80 flex items-center justify-center text-center"><span class="bg-black/40 text-[10px] p-1.5 rounded font-bold">Sertifikat Silat</span></div>
+                    <div class="absolute inset-0 bg-gradient-to-tr from-amber-900/80 to-rose-900/80 flex items-center justify-center text-center"><span class="bg-black/40 text-[10px] p-1.5 rounded font-bold">Certificate Silat</span></div>
                     <img src="https://github.com/Name999-glich/portofolio/blob/master/data%20buat%20potofolio/IMG_20260503_122905.jpg?raw=true" alt="Silat" class="absolute inset-0 w-full h-full object-cover opacity-90 z-10" onerror="this.style.display='none'">
                 </div>
                 <h3 class="text-xl font-extrabold text-white">Keluarga Silat Nasional Indonesia "Perisai Diri"</h3>
@@ -372,10 +372,10 @@
             </div>
             <div class="bg-white/5 border border-white/10 backdrop-blur-md p-6 rounded-3xl flex flex-col">
                 <div class="relative aspect-video w-full rounded-xl overflow-hidden border border-white/10 mb-6">
-                    <div class="absolute inset-0 bg-gradient-to-tr from-[#2a1331]/90 to-amber-950/90 flex items-center justify-center text-center"><span class="bg-black/40 text-[10px] p-1.5 rounded font-bold">Sertifikat HKAN</span></div>
+                    <div class="absolute inset-0 bg-gradient-to-tr from-[#2a1331]/90 to-amber-950/90 flex items-center justify-center text-center"><span class="bg-black/40 text-[10px] p-1.5 rounded font-bold">Certificate HKAN</span></div>
                     <img src="https://github.com/Name999-glich/portofolio/blob/master/data%20buat%20potofolio/IMG_20260503_122719.jpg?raw=true" alt="HKAN" class="absolute inset-0 w-full h-full object-cover opacity-90 z-10" onerror="this.style.display='none'">
                 </div>
-                <h3 class="text-xl font-extrabold text-white">Sertifikat Kehormatan PEAP 2025</h3>
+                <h3 class="text-xl font-extrabold text-white">Certificate Kehormatan PEAP 2025</h3>
                 <p class="text-xs text-rose-200/70 mt-3 leading-relaxed flex-1">Partisipasi aktif dalam Ecosystem Field Visit di Rumpin Bogor oleh Hari Konservasi Alam Nasional.</p>
             </div>
         </div>
@@ -384,10 +384,10 @@
     <!-- SECTION PENGALAMAN -->
     <section id="experience" class="py-24 border-t border-white/5 max-w-5xl mx-auto px-4">
         <div class="mb-12">
-            <span class="text-xs font-bold uppercase tracking-widest text-amber-300">Pengalaman</span>
-            <h2 class="text-3xl font-bold text-white mt-2">Pengalaman Kerja & PKL</h2>
-            <p class="text-sm text-rose-100/70 mt-1">Perjalanan nyata di dunia kerja dan industri kreatif.</p>
-            <a href="pengalaman.html" class="inline-flex items-center space-x-2 mt-4 px-5 py-2.5 bg-gradient-to-r from-amber-400 via-orange-500 to-rose-500 text-black font-extrabold rounded-xl hover:opacity-90 transition-all text-sm"><i class="fa-solid fa-briefcase mr-2"></i>Lihat Detail Pengalaman</a>
+            <span class="text-xs font-bold uppercase tracking-widest text-amber-300">Experience</span>
+            <h2 class="text-3xl font-bold text-white mt-2">Experience Kerja & PKL</h2>
+            <p class="text-sm text-rose-100/70 mt-1">Journey nyata di dunia kerja dan industri kreatif.</p>
+            <a href="pengalaman.html" class="inline-flex items-center space-x-2 mt-4 px-5 py-2.5 bg-gradient-to-r from-amber-400 via-orange-500 to-rose-500 text-black font-extrabold rounded-xl hover:opacity-90 transition-all text-sm"><i class="fa-solid fa-briefcase mr-2"></i>View Details Experience</a>
         </div>
         <div class="grid md:grid-cols-2 gap-6">
 
@@ -407,7 +407,7 @@
                         <!-- ✏️ GANTI DESKRIPSI SINGKAT -->
                         <p class="text-xs text-rose-100/70 mt-3 leading-relaxed">Saya magang di Amerta Grup sebagai CRM (Customer Relationship Management) yang bertugas mengelola interaksi dengan pelanggan dan calon pelanggan.</p>
                         <span class="inline-block mt-3 text-[11px] bg-amber-400/10 text-amber-300 border border-amber-400/20 px-2 py-0.5 rounded-full font-bold">
-                            <!-- ✏️ GANTI TIPE: PKL / Magang / Freelance -->
+                            <!-- ✏️ GANTI TIPE: PKL / Internship / Freelance -->
                             PKL
                         </span>
                     </div>
@@ -447,26 +447,26 @@
             <div class="grid md:grid-cols-12 gap-12 items-start">
                 <div class="md:col-span-5 space-y-8">
                     <div>
-                        <h2 class="text-3xl font-extrabold text-white">Mari Berkarya Bersama!</h2>
-                        <p class="text-sm text-rose-100/70 mt-2">Hubungi saya untuk kebutuhan desain atau diskusi kreatif.</p>
+                        <h2 class="text-3xl font-extrabold text-white">Let's Create Together!</h2>
+                        <p class="text-sm text-rose-100/70 mt-2">Contact me for design needs or creative discussions.</p>
                     </div>
                     <div class="space-y-4 text-sm">
                         <div class="p-4 bg-white/5 border border-white/10 rounded-2xl flex justify-between items-center">
                            <a href="https://www.instagram.com/freeky_lust?igsh=czRvM3E1Ymxjcm1h" target="_blank" class="hover:text-pink-400 transition-colors flex items-center"><i class="fa-brands fa-instagram text-pink-400 mr-2"></i> @freeky_lust</a>
-                            <button onclick="copyToClipboard('@freeky_lust')" class="text-xs text-amber-300 hover:underline">Salin</button>
+                            <button onclick="copyToClipboard('@freeky_lust')" class="text-xs text-amber-300 hover:underline">Copy</button>
                         </div>
                         <div class="p-4 bg-white/5 border border-white/10 rounded-2xl flex justify-between items-center">
                             <span class="truncate mr-2"><i class="fa-solid fa-envelope text-orange-400 mr-2"></i> adityaputrara090302@gmail.com</span>
-                            <button onclick="copyToClipboard('adityaputrara090302@gmail.com')" class="text-xs text-amber-300 hover:underline">Salin</button>
+                            <button onclick="copyToClipboard('adityaputrara090302@gmail.com')" class="text-xs text-amber-300 hover:underline">Copy</button>
                         </div>
                         <div class="p-4 bg-white/5 border border-white/10 rounded-2xl flex justify-between items-center">
                             <span><i class="fa-solid fa-phone text-emerald-400 mr-2"></i> +62 857-7987-8856</span>
-                            <button onclick="copyToClipboard('+6285779878856')" class="text-xs text-amber-300 hover:underline">Salin</button>
+                            <button onclick="copyToClipboard('+6285779878856')" class="text-xs text-amber-300 hover:underline">Copy</button>
                         </div>
                     </div>
                 </div>
                 <div class="md:col-span-7 bg-white/5 border border-white/10 backdrop-blur-md rounded-3xl p-8 shadow-xl">
-                    <h3 class="text-lg font-bold text-white mb-6">Kirim Pesan Langsung</h3>
+                    <h3 class="text-lg font-bold text-white mb-6">Send a Direct Message</h3>
                     <div class="flex flex-col items-center justify-center py-10 space-y-5">
                         <div class="w-16 h-16 rounded-full bg-amber-400/10 border border-amber-400/30 flex items-center justify-center">
                             <div class="w-16 h-16 rounded-full bg-red-500/10 border border-red-500/30 flex items-center justify-center">
@@ -474,11 +474,11 @@
 </div>
                         </div>
                        
-                            <p class="text-rose-200/60 text-sm">Hubungi saya langsung melalui:</p>
+                            <p class="text-rose-200/60 text-sm">Contact me directly via:</p>
                         </div>
                         <a href="mailto:adityaputrara090302@gmail.com" class="px-6 py-3 bg-gradient-to-r from-amber-400 via-orange-500 to-rose-500 text-black font-extrabold rounded-xl hover:opacity-90 transition-all flex items-center space-x-2">
                             <i class="fa-solid fa-envelope"></i>
-                            <span>Kirim Email Langsung</span>
+                            <span>Send Direct Email</span>
                         </a>
                         <p class="text-rose-200/40 text-xs">adityaputrara090302@gmail.com</p>
                     </div>
@@ -488,7 +488,7 @@
     </section>
 
     <footer class="bg-black/40 border-t border-white/5 py-10 text-center text-xs text-rose-200/50 backdrop-blur-md">
-        <p>© 2026 Aditya Putra Rahmayadi. Semua Hak Cipta Dilindungi Undang-Undang.</p>
+        <p>© 2026 Aditya Putra Rahmayadi. All Rights Reserved.</p>
     </footer>
 
     <script src="https://unpkg.com/@emailjs/browser@3.11.0/dist/index.min.js"></script>
@@ -523,7 +523,7 @@
         // Jalankan filter default saat pertama dimuat
         updateFilters();
 
-        // Fungsi Salin Kontak
+        // Fungsi Copy Contact
         function copyToClipboard(text) {
             navigator.clipboard.writeText(text).then(() => {
                 alert('Berhasil menyalin ke papan klip: ' + text);
@@ -543,7 +543,7 @@ function handleSubmit(e) {
     const message = textarea.value;
 
     if (!name || !email || !message) {
-        alert('Semua field harus diisi!');
+        alert('All field harus diisi!');
         return;
     }
 
@@ -555,7 +555,7 @@ function handleSubmit(e) {
     emailjs.send('service_hd3ye5a', 'template_2v8mex2', {
         name: name,
         email: email,
-        subject: `Pesan Portofolio dari ${name}`,
+        subject: `Message Portfolio dari ${name}`,
         message: message
     })
     .then(function() {
