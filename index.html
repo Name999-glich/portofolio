@@ -7,9 +7,22 @@
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* Menggunakan font kustom jika diinginkan */
         html {
             scroll-behavior: smooth;
+        }
+        .lang-indo {
+            font-family: 'Segoe UI', system-ui, sans-serif;
+        }
+        .lang-eng {
+            font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
+            font-weight: 300;
+            letter-spacing: 0.3px;
+        }
+        .lang-badge {
+            font-size: 8px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            opacity: 0.5;
         }
     </style>
 </head>
@@ -35,6 +48,7 @@
         </div>
     </header>
 
+    <!-- HERO SECTION -->
     <section class="relative py-24 md:py-36 overflow-hidden">
         <div class="absolute top-1/4 left-1/3 -translate-x-1/2 -translate-y-1/2 w-[450px] h-[450px] bg-gradient-to-tr from-orange-500/20 via-rose-500/10 to-transparent rounded-full blur-[100px] pointer-events-none"></div>
         
@@ -42,14 +56,18 @@
             <span class="inline-flex items-center space-x-2 px-4 py-1.5 bg-white/5 border border-white/10 text-amber-300 text-[11px] font-bold tracking-widest rounded-full uppercase shadow-inner backdrop-blur-sm">
                 <i class="fa-solid fa-wand-magic-sparkles text-orange-400 animate-pulse"></i>
                 <span>Desainer Grafis & Editor Visual</span>
+                <span class="lang-badge text-white/30">| Graphic Designer & Visual Editor</span>
             </span>
             
             <h1 class="mt-8 text-5xl md:text-7xl font-black tracking-tight leading-none text-white">
                 Halo, Saya <span class="bg-gradient-to-r from-amber-300 via-orange-400 to-rose-400 bg-clip-text text-transparent">Aditya</span>!
+                <span class="block text-2xl md:text-3xl font-light text-rose-200/50 mt-2">Hello, I'm <span class="text-amber-300/70">Aditya</span></span>
             </h1>
             
             <p class="mt-6 text-base md:text-lg text-rose-100/90 max-w-2xl mx-auto leading-relaxed">
-                Siswa kreatif dari <span class="text-amber-300 font-semibold">SMKN 5 Kota Tangerang Selatan</span>. Seniman visual yang menuangkan keindahan alam, kedalaman imajinasi, serta harmoni desain grafis ke dunia nyata.
+                <span class="lang-indo">Siswa kreatif dari <span class="text-amber-300 font-semibold">SMKN 5 Kota Tangerang Selatan</span>. Seniman visual yang menuangkan keindahan alam, kedalaman imajinasi, serta harmoni desain grafis ke dunia nyata.</span>
+                <br>
+                <span class="lang-eng text-rose-200/60 text-sm md:text-base">A creative student from <span class="text-amber-300/80 font-semibold">SMKN 5 South Tangerang</span>. A visual artist who translates nature's beauty, imaginative depth, and graphic design harmony into the real world.</span>
             </p>
 
             <div class="mt-10 flex flex-col sm:flex-row justify-center items-center gap-4">
@@ -64,25 +82,26 @@
 
             <div class="mt-20 grid grid-cols-2 md:grid-cols-4 gap-4 max-w-3xl mx-auto">
                 <div class="bg-white/5 border border-white/10 p-4 rounded-xl backdrop-blur-sm">
-                    <p class="text-[10px] text-rose-200/60 font-bold uppercase tracking-wider">Spesialisasi</p>
-                    <p class="text-sm text-amber-200 font-extrabold mt-1">Adobe </p>
+                    <p class="text-[10px] text-rose-200/60 font-bold uppercase tracking-wider">Spesialisasi <span class="lang-badge block text-[7px]">Specialization</span></p>
+                    <p class="text-sm text-amber-200 font-extrabold mt-1">Adobe Suite</p>
                 </div>
                 <div class="bg-white/5 border border-white/10 p-4 rounded-xl backdrop-blur-sm">
-                    <p class="text-[10px] text-rose-200/60 font-bold uppercase tracking-wider">Asal School</p>
+                    <p class="text-[10px] text-rose-200/60 font-bold uppercase tracking-wider">Asal School <span class="lang-badge block text-[7px]">School Origin</span></p>
                     <p class="text-sm text-amber-200 font-extrabold mt-1">SMKN 5 Tangsel</p>
                 </div>
                 <div class="bg-white/5 border border-white/10 p-4 rounded-xl backdrop-blur-sm">
-                    <p class="text-[10px] text-rose-200/60 font-bold uppercase tracking-wider">Fokus Utama</p>
+                    <p class="text-[10px] text-rose-200/60 font-bold uppercase tracking-wider">Fokus Utama <span class="lang-badge block text-[7px]">Main Focus</span></p>
                     <p class="text-sm text-amber-200 font-extrabold mt-1">Grading & Layout</p>
                 </div>
                 <div class="bg-white/5 border border-white/10 p-4 rounded-xl backdrop-blur-sm">
-                    <p class="text-[10px] text-rose-200/60 font-bold uppercase tracking-wider">Hobi Terkuat</p>
+                    <p class="text-[10px] text-rose-200/60 font-bold uppercase tracking-wider">Hobi Terkuat <span class="lang-badge block text-[7px]">Top Hobby</span></p>
                     <p class="text-sm text-amber-200 font-extrabold mt-1">Menulis & Baca</p>
                 </div>
             </div>
         </div>
     </section>
 
+    <!-- ABOUT SECTION -->
     <section id="about" class="py-24 max-w-5xl mx-auto px-4 border-t border-white/5">
         <div class="grid md:grid-cols-12 gap-12 items-center">
             <div class="md:col-span-5 space-y-6">
@@ -102,32 +121,52 @@
                     </div>
                 </div>
                 <div class="bg-white/5 border border-white/10 p-6 rounded-2xl backdrop-blur-sm">
-                    <p class="text-rose-100/90 italic text-sm leading-relaxed">"Cita-cita tidak akan pernah bisa terwujud dengan nyata tanpa adanya kedisiplinan yang konsisten."</p>
-                    <p class="text-xs text-amber-400/90 mt-2 font-semibold">— Filosofi Hidup Aditya</p>
+                    <p class="text-rose-100/90 italic text-sm leading-relaxed">
+                        <span class="lang-indo">"Cita-cita tidak akan pernah bisa terwujud dengan nyata tanpa adanya kedisiplinan yang konsisten."</span>
+                        <br>
+                        <span class="lang-eng text-rose-200/60 text-xs">"Dreams will never manifest into reality without consistent discipline."</span>
+                    </p>
+                    <p class="text-xs text-amber-400/90 mt-2 font-semibold">— Filosofi Hidup Aditya <span class="lang-eng text-rose-200/40">| Aditya's Life Philosophy</span></p>
                 </div>
             </div>
             <div class="md:col-span-7 space-y-6">
                 <div class="flex items-center space-x-2 text-orange-400">
                     <i class="fa-solid fa-user text-sm"></i>
-                    <span class="text-xs font-bold uppercase tracking-widest">About Profil Saya</span>
+                    <span class="text-xs font-bold uppercase tracking-widest">About Profil Saya <span class="lang-eng text-white/30">| About Me</span></span>
                 </div>
-                <h2 class="text-3xl font-extrabold text-white">Menjajaki Makna Melalui Tulisan, Koleksi, dan Desain Visual</h2>
+                <h2 class="text-3xl font-extrabold text-white">
+                    <span class="lang-indo">Menjajaki Makna Melalui Tulisan, Koleksi, dan Desain Visual</span>
+                    <span class="lang-eng block text-xl text-rose-200/50 font-light">Exploring Meaning Through Writing, Collecting, and Visual Design</span>
+                </h2>
                 <div class="text-rose-100/80 text-base space-y-4 leading-relaxed">
-                    <p>Saya berasal dari kota <span class="text-amber-300 font-semibold">Tangerang</span> dan memiliki ketertarikan yang mendalam pada berbagai aktivitas reflektif serta pengembangan kualitas diri secara mandiri.</p>
-                    <p>Sebagai pribadi, saya memiliki hobi yang cukup unik: senang mengoleksi berbagai macam benda bersejarah/berkesan, serta gemar membaca buku guna memperluas cakrawala pengetahuan dan wawasan umum saya.</p>
-                    <p>Selain dunia visual, saya juga menekuni dunia kepenulisan. Bagi saya, menulis adalah sarana terapeutik terbaik untuk mengekspresikan ide, menuangkan pemikiran yang rumit, dan memahami aneka ragam perspektif kehidupan manusia.</p>
+                    <p>
+                        <span class="lang-indo">Saya berasal dari kota <span class="text-amber-300 font-semibold">Tangerang</span> dan memiliki ketertarikan yang mendalam pada berbagai aktivitas reflektif serta pengembangan kualitas diri secara mandiri.</span>
+                        <br>
+                        <span class="lang-eng text-rose-200/60 text-sm">I come from <span class="text-amber-300/80 font-semibold">Tangerang</span> and have a deep interest in various reflective activities and self-development.</span>
+                    </p>
+                    <p>
+                        <span class="lang-indo">Sebagai pribadi, saya memiliki hobi yang cukup unik: senang mengoleksi berbagai macam benda bersejarah/berkesan, serta gemar membaca buku guna memperluas cakrawala pengetahuan dan wawasan umum saya.</span>
+                        <br>
+                        <span class="lang-eng text-rose-200/60 text-sm">As an individual, I have a unique hobby: collecting various historical/sentimental items, and I enjoy reading books to broaden my knowledge and general insight.</span>
+                    </p>
+                    <p>
+                        <span class="lang-indo">Selain dunia visual, saya juga menekuni dunia kepenulisan. Bagi saya, menulis adalah sarana terapeutik terbaik untuk mengekspresikan ide, menuangkan pemikiran yang rumit, dan memahami aneka ragam perspektif kehidupan manusia.</span>
+                        <br>
+                        <span class="lang-eng text-rose-200/60 text-sm">Beyond the visual world, I also pursue writing. For me, writing is the best therapeutic medium to express ideas, articulate complex thoughts, and understand the diverse perspectives of human life.</span>
+                    </p>
                 </div>
                 <div class="pt-4 flex flex-wrap gap-2">
-                    <span class="px-3 py-1.5 bg-white/5 text-rose-100 text-xs rounded-lg border border-white/10 backdrop-blur-sm">🌇 Membaca Buku</span>
-                    <span class="px-3 py-1.5 bg-white/5 text-rose-100 text-xs rounded-lg border border-white/10 backdrop-blur-sm">🌇 Menulis Esai</span>
-                    <span class="px-3 py-1.5 bg-white/5 text-rose-100 text-xs rounded-lg border border-white/10 backdrop-blur-sm">🌇 Kolektor Memorabilia</span>
-                    <span class="px-3 py-1.5 bg-white/5 text-rose-100 text-xs rounded-lg border border-white/10 backdrop-blur-sm">🌇 Fotografi Lanskap</span>
+                    <span class="px-3 py-1.5 bg-white/5 text-rose-100 text-xs rounded-lg border border-white/10 backdrop-blur-sm">📚 Membaca Buku <span class="lang-eng text-rose-300/30">| Reading</span></span>
+                    <span class="px-3 py-1.5 bg-white/5 text-rose-100 text-xs rounded-lg border border-white/10 backdrop-blur-sm">✍️ Menulis Esai <span class="lang-eng text-rose-300/30">| Essay Writing</span></span>
+                    <span class="px-3 py-1.5 bg-white/5 text-rose-100 text-xs rounded-lg border border-white/10 backdrop-blur-sm">🏺 Kolektor Memorabilia <span class="lang-eng text-rose-300/30">| Memorabilia Collector</span></span>
+                    <span class="px-3 py-1.5 bg-white/5 text-rose-100 text-xs rounded-lg border border-white/10 backdrop-blur-sm">🌄 Fotografi Lanskap <span class="lang-eng text-rose-300/30">| Landscape Photography</span></span>
                 </div>
             </div>
         </div>
     </section>
 
-   <section id="skills" class="py-24 border-t border-white/5 bg-black/10 relative overflow-hidden">
+    <!-- SKILLS SECTION -->
+    <section id="skills" class="py-24 border-t border-white/5 bg-black/10 relative overflow-hidden">
         
         <style>
             @keyframes progressFill {
@@ -143,25 +182,35 @@
             .star-empty {
                 color: #4a4a5a;
             }
+            .lang-badge-sm {
+                font-size: 7px;
+                text-transform: uppercase;
+                letter-spacing: 0.5px;
+                opacity: 0.4;
+            }
         </style>
 
         <div class="max-w-6xl mx-auto px-4 relative z-10">
             <div class="text-center max-w-xl mx-auto mb-16">
                 <div class="flex justify-center items-center space-x-2 text-rose-400 mb-2">
                     <i class="fa-solid fa-layer-group text-xs animate-bounce"></i>
-                    <span class="text-xs font-bold uppercase tracking-widest">Kombinasi Keterampilan</span>
+                    <span class="text-xs font-bold uppercase tracking-widest">Kombinasi Keterampilan <span class="lang-eng text-white/30">| Skills Overview</span></span>
                 </div>
-                <h2 class="text-3xl font-bold text-white">Skills & Kemampuan</h2>
+                <h2 class="text-3xl font-bold text-white">
+                    Skills & Kemampuan
+                    <span class="lang-eng block text-xl text-rose-200/50 font-light">Skills & Competencies</span>
+                </h2>
             </div>
             
             <div class="grid md:grid-cols-3 gap-8">
-                <!-- HARD SKILL - Kolom 1 -->
+                <!-- HARD SKILL -->
                 <div class="bg-white/5 border border-white/10 p-6 rounded-2xl backdrop-blur-md hover:-translate-y-2 hover:shadow-[0_10px_30px_rgba(245,158,11,0.15)] transition-all duration-500">
                     <h3 class="text-lg font-bold flex items-center space-x-2 text-amber-300 mb-5">
-                        <i class="fa-solid fa-code"></i> <span>Hard Skill</span>
+                        <i class="fa-solid fa-code"></i> 
+                        <span>Hard Skill</span>
+                        <span class="lang-badge-sm text-white/30">| Technical Skills</span>
                     </h3>
                     <div class="space-y-5">
-                        <!-- Adobe Lightroom -->
                         <div class="group">
                             <div class="flex justify-between items-center text-xs mb-1">
                                 <span class="group-hover:text-amber-300 transition-colors">Adobe Lightroom</span>
@@ -181,7 +230,6 @@
                             </div>
                         </div>
 
-                        <!-- Adobe Illustrator -->
                         <div class="group">
                             <div class="flex justify-between items-center text-xs mb-1">
                                 <span class="group-hover:text-orange-400 transition-colors">Adobe Illustrator</span>
@@ -201,7 +249,6 @@
                             </div>
                         </div>
 
-                        <!-- Adobe Photoshop -->
                         <div class="group">
                             <div class="flex justify-between items-center text-xs mb-1">
                                 <span class="group-hover:text-rose-400 transition-colors">Adobe Photoshop</span>
@@ -221,7 +268,6 @@
                             </div>
                         </div>
 
-                        <!-- Corel Draw -->
                         <div class="group">
                             <div class="flex justify-between items-center text-xs mb-1">
                                 <span class="group-hover:text-cyan-400 transition-colors">Corel Draw</span>
@@ -243,16 +289,17 @@
                     </div>
                 </div>
 
-                <!-- SOFT SKILL - Kolom 2 -->
+                <!-- SOFT SKILL -->
                 <div class="bg-white/5 border border-white/10 p-6 rounded-2xl backdrop-blur-md hover:-translate-y-2 hover:shadow-[0_10px_30px_rgba(244,63,94,0.15)] transition-all duration-500">
                     <h3 class="text-lg font-bold flex items-center space-x-2 text-rose-400 mb-5">
-                        <i class="fa-solid fa-handshake"></i> <span>Soft Skill</span>
+                        <i class="fa-solid fa-handshake"></i> 
+                        <span>Soft Skill</span>
+                        <span class="lang-badge-sm text-white/30">| Interpersonal Skills</span>
                     </h3>
                     <div class="space-y-5">
-                        <!-- Adaptasi -->
                         <div class="group">
                             <div class="flex justify-between items-center text-xs mb-1">
-                                <span class="group-hover:text-rose-400 transition-colors">Adaptasi (Adaptation)</span>
+                                <span class="group-hover:text-rose-400 transition-colors">Adaptasi <span class="text-rose-300/50">| Adaptation</span></span>
                                 <div class="flex items-center gap-2">
                                     <span class="text-rose-400 font-bold">90%</span>
                                     <div class="flex text-[9px]">
@@ -269,10 +316,9 @@
                             </div>
                         </div>
 
-                        <!-- Kerjasama Tim -->
                         <div class="group">
                             <div class="flex justify-between items-center text-xs mb-1">
-                                <span class="group-hover:text-orange-400 transition-colors">Kerjasama Tim (Teamwork)</span>
+                                <span class="group-hover:text-orange-400 transition-colors">Kerjasama Tim <span class="text-rose-300/50">| Teamwork</span></span>
                                 <div class="flex items-center gap-2">
                                     <span class="text-rose-400 font-bold">80%</span>
                                     <div class="flex text-[9px]">
@@ -289,10 +335,9 @@
                             </div>
                         </div>
 
-                        <!-- Komunikasi -->
                         <div class="group">
                             <div class="flex justify-between items-center text-xs mb-1">
-                                <span class="group-hover:text-purple-400 transition-colors">Komunikasi (Communication)</span>
+                                <span class="group-hover:text-purple-400 transition-colors">Komunikasi <span class="text-rose-300/50">| Communication</span></span>
                                 <div class="flex items-center gap-2">
                                     <span class="text-rose-400 font-bold">80%</span>
                                     <div class="flex text-[9px]">
@@ -309,10 +354,9 @@
                             </div>
                         </div>
 
-                        <!-- Problem Solving -->
                         <div class="group">
                             <div class="flex justify-between items-center text-xs mb-1">
-                                <span class="group-hover:text-emerald-400 transition-colors">Pemecahan Masalah</span>
+                                <span class="group-hover:text-emerald-400 transition-colors">Pemecahan Masalah <span class="text-rose-300/50">| Problem Solving</span></span>
                                 <div class="flex items-center gap-2">
                                     <span class="text-rose-400 font-bold">75%</span>
                                     <div class="flex text-[9px]">
@@ -331,16 +375,17 @@
                     </div>
                 </div>
 
-                <!-- KEMAMPUAN BAHASA - Kolom 3 -->
+                <!-- LANGUAGE SKILL -->
                 <div class="bg-white/5 border border-white/10 p-6 rounded-2xl backdrop-blur-md hover:-translate-y-2 hover:shadow-[0_10px_30px_rgba(168,85,247,0.15)] transition-all duration-500">
                     <h3 class="text-lg font-bold flex items-center space-x-2 text-purple-400 mb-5">
-                        <i class="fa-solid fa-language"></i> <span>Kemampuan Bahasa</span>
+                        <i class="fa-solid fa-language"></i> 
+                        <span>Kemampuan Bahasa</span>
+                        <span class="lang-badge-sm text-white/30">| Language Skills</span>
                     </h3>
                     <div class="space-y-5">
-                        <!-- Bahasa Indonesia -->
                         <div class="group">
                             <div class="flex justify-between items-center text-xs mb-1">
-                                <span class="group-hover:text-amber-300 transition-colors">Bahasa Indonesia</span>
+                                <span class="group-hover:text-amber-300 transition-colors">Bahasa Indonesia <span class="text-rose-300/50">| Indonesian</span></span>
                                 <div class="flex items-center gap-2">
                                     <span class="text-amber-400 font-bold">95%</span>
                                     <div class="flex text-[9px]">
@@ -357,10 +402,9 @@
                             </div>
                         </div>
 
-                        <!-- Bahasa Inggris -->
                         <div class="group">
                             <div class="flex justify-between items-center text-xs mb-1">
-                                <span class="group-hover:text-cyan-400 transition-colors">Bahasa Inggris (English)</span>
+                                <span class="group-hover:text-cyan-400 transition-colors">Bahasa Inggris <span class="text-rose-300/50">| English</span></span>
                                 <div class="flex items-center gap-2">
                                     <span class="text-amber-400 font-bold">55%</span>
                                     <div class="flex text-[9px]">
@@ -376,42 +420,45 @@
                                 <div class="h-full bg-gradient-to-r from-cyan-500 to-blue-500 rounded-full animate-progress" style="width: 55%; animation-delay: 0.2s;"></div>
                             </div>
                         </div>
-
-                    
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="h-1.5 bg-black/40 rounded-full overflow-hidden">
-                                <div class="h-full bg-gradient-to-r from-rose-500 to-purple-500 rounded-full animate-progress" style="width: 65%; animation-delay: 0.4s;"></div>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
+
+    <!-- LIGHTROOM SIMULATOR -->
     <section id="lightroom-sim" class="py-24 border-t border-white/5">
         <div class="max-w-5xl mx-auto px-4">
             <div class="text-center max-w-xl mx-auto mb-12">
-                <h2 class="text-3xl font-bold text-white">Uji Keterampilan Lightroom</h2>
-                <p class="text-sm text-rose-100/70 mt-2">Geser kontrol di bawah untuk memanipulasi rona foto secara langsung.</p>
+                <h2 class="text-3xl font-bold text-white">
+                    Uji Keterampilan Lightroom
+                    <span class="lang-eng block text-xl text-rose-200/50 font-light">Test Your Lightroom Skills</span>
+                </h2>
+                <p class="text-sm text-rose-100/70 mt-2">
+                    <span class="lang-indo">Geser kontrol di bawah untuk memanipulasi rona foto secara langsung.</span>
+                    <br>
+                    <span class="lang-eng text-rose-200/50 text-xs">Slide the controls below to manipulate the photo's tones in real-time.</span>
+                </p>
             </div>
             <div class="bg-white/5 border border-white/10 backdrop-blur-sm rounded-3xl p-6 md:p-10 grid md:grid-cols-12 gap-8 items-center">
                 <div class="md:col-span-6 space-y-4">
                     <div id="sim-canvas" class="relative aspect-video w-full rounded-2xl overflow-hidden bg-gradient-to-t from-[#250917] via-[#200e26] to-[#0a0510] p-6 flex flex-col justify-between shadow-inner transition-all duration-75">
                         <svg class="absolute bottom-0 left-0 w-full h-24 text-[#0d040a]" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0,100 L35,35 L65,75 L82,45 L100,100 Z" fill="currentColor"></path></svg>
                         <div class="w-20 h-20 rounded-full bg-gradient-to-br from-amber-300 via-orange-500 to-rose-600 absolute bottom-6 right-20 blur-[1px] opacity-90 shadow-2xl shadow-orange-500/30"></div>
-                        <span class="relative z-10 text-[9px] uppercase tracking-widest px-2.5 py-1 bg-black/60 backdrop-blur-md rounded-lg border border-white/10 text-rose-100 w-max">Senja di Tepi Tebing</span>
-                        <p class="relative z-10 text-right text-xs text-amber-200/60 italic font-serif">"Melodi Jingga Reflektif..."</p>
+                        <span class="relative z-10 text-[9px] uppercase tracking-widest px-2.5 py-1 bg-black/60 backdrop-blur-md rounded-lg border border-white/10 text-rose-100 w-max">Senja di Tepi Tebing <span class="lang-eng text-rose-300/30">| Cliffside Sunset</span></span>
+                        <p class="relative z-10 text-right text-xs text-amber-200/60 italic font-serif">"Melodi Jingga Reflektif..." <span class="lang-eng text-rose-300/30">| "Reflective Orange Melody..."</span></p>
                     </div>
                     <div class="flex justify-between items-center text-xs text-rose-200/70">
-                        <p>Ubah tuas di kanan untuk simulasi warna.</p>
+                        <p>
+                            <span class="lang-indo">Ubah tuas di kanan untuk simulasi warna.</span>
+                            <span class="lang-eng text-rose-300/30">| Adjust sliders on the right.</span>
+                        </p>
                         <button onclick="resetSliders()" class="text-amber-400 hover:underline font-semibold">Reset Filters</button>
                     </div>
                 </div>
                 <div class="md:col-span-6 space-y-5">
                     <div>
-                        <div class="flex justify-between text-xs mb-1"><span>Exposure (Brightness)</span><span id="val-exp" class="text-amber-400">105%</span></div>
+                        <div class="flex justify-between text-xs mb-1"><span>Exposure <span class="lang-eng text-white/30">| Brightness</span></span><span id="val-exp" class="text-amber-400">105%</span></div>
                         <input type="range" id="slide-exp" min="30" max="200" value="105" oninput="updateFilters()" class="w-full accent-orange-500 bg-black/40 h-1.5 rounded-lg appearance-none cursor-pointer">
                     </div>
                     <div>
@@ -419,7 +466,7 @@
                         <input type="range" id="slide-con" min="40" max="200" value="110" oninput="updateFilters()" class="w-full accent-orange-500 bg-black/40 h-1.5 rounded-lg appearance-none cursor-pointer">
                     </div>
                     <div>
-                        <div class="flex justify-between text-xs mb-1"><span>Saturation (Color)</span><span id="val-sat" class="text-amber-400">115%</span></div>
+                        <div class="flex justify-between text-xs mb-1"><span>Saturation <span class="lang-eng text-white/30">| Color</span></span><span id="val-sat" class="text-amber-400">115%</span></div>
                         <input type="range" id="slide-sat" min="0" max="200" value="115" oninput="updateFilters()" class="w-full accent-orange-500 bg-black/40 h-1.5 rounded-lg appearance-none cursor-pointer">
                     </div>
                     <div>
@@ -431,43 +478,5 @@
         </div>
     </section>
 
-    <section id="portfolio" class="py-24 max-w-5xl mx-auto px-4 border-t border-white/5 bg-black/10">
-        <div class="mb-12">
-            <h2 class="text-3xl font-bold text-white">Koleksi Works Pilihan</h2>
-            <p class="text-sm text-rose-100/70 mt-1">Adapting high-resolution visual exhibition style.</p>
-            <a href="karya.html" class="inline-flex items-center space-x-2 mt-4 px-5 py-2.5 bg-gradient-to-r from-amber-400 via-orange-500 to-rose-500 text-black font-extrabold rounded-xl hover:opacity-90 transition-all text-sm"><i class="fa-solid fa-images mr-2"></i>View All Works</a>
-        </div>
-       <div class="grid md:grid-cols-3 gap-6">
-            <div class="bg-white/5 border border-white/10 backdrop-blur-sm rounded-2xl overflow-hidden flex flex-col group hover:border-white/20 transition-all shadow-md">
-                <div class="relative overflow-hidden flex items-center justify-center bg-black/40">
-                    <img src="https://github.com/Name999-glich/portofolio/blob/master/New%20folder/poster-01.png?raw=true" alt="Grocery" class="w-full h-auto block object-contain group-hover:scale-105 transition-transform duration-500 z-10" onerror="this.style.display='none'">
-                </div>
-                <div class="p-6 flex-1 flex flex-col justify-between">
-                    <div>
-                        <h3 class="font-bold text-white text-lg">Weekend Big Deals Grocery</h3>
-                        <p class="text-xs text-rose-100/70 mt-2">Desain brosur promosi informatif dari tugas sekolah yang tertata rapi.</p>
-                    </div>
-                    <p class="text-[11px] text-rose-300/60 mt-4 pt-2 border-t border-white/10">Software: <strong>Adobe Illustrator</strong></p>
-                </div>
-            </div>
-
-            <div class="bg-white/5 border border-white/10 backdrop-blur-sm rounded-2xl overflow-hidden flex flex-col group hover:border-white/20 transition-all shadow-md">
-                <div class="relative overflow-hidden flex items-center justify-center bg-black/40">
-                    <img src="https://github.com/Name999-glich/portofolio/blob/master/New%20folder/IMG_20260324_083130~2.jpg?raw=true" alt="Portrait" class="w-full h-auto block object-contain group-hover:scale-105 transition-transform duration-500 z-10" onerror="this.style.display='none'">
-                </div>
-                <div class="p-6 flex-1 flex flex-col justify-between">
-                    <div>
-                        <h3 class="font-bold text-white text-lg">Pensive Teenage Portrait</h3>
-                        <p class="text-xs text-rose-100/70 mt-2">Potret reflektif seorang subjek remaja yang menyatu dengan keindahan alam.</p>
-                    </div>
-                    <p class="text-[11px] text-rose-300/60 mt-4 pt-2 border-t border-white/10">Software: <strong>Adobe Lightroom</strong></p>
-                </div>
-            </div>
-
-            <div class="bg-white/5 border border-white/10 backdrop-blur-sm rounded-2xl overflow-hidden flex flex-col group hover:border-white/20 transition-all shadow-md">
-                <div class="relative overflow-hidden flex items-center justify-center bg-black/40">
-                    <img src="https://github.com/Name999-glich/portofolio/blob/master/New%20folder/IMG_20251001_153507.jpg?raw=true" alt="Light Dark" class="w-full h-auto block object-contain group-hover:scale-105 transition-transform duration-500 z-10" onerror="this.style.display='none'">
-                </div>
-                <div class="p-6 flex-1 flex flex-col justify-between">
-                    <div>
-                        <h3 class="font-bold text-white text-lg">Light in a Dark
+    <!-- PORTFOLIO SECTION -->
+    <section id="portfolio" class="py-24 max-w-5xl mx-auto px-4 border-t border-white/5 bg-black/10
